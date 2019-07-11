@@ -28,7 +28,7 @@ dependencies {
 }
 
 jar {
-    baseName = 'NumberSequence'
+    baseName = 'WebsiteAnalysis'
 }
 
 test {
