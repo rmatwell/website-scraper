@@ -4,7 +4,7 @@ package edu.odu.cs.cs350;
 /**
  * Container for data extracted from HTML files. Data includes file size,
  * whether the resource is internal, external, or intra-page, the url of
- * the resource, and the page that it is found on.
+ * the resource, and the page that it is found on
  * 
  * @author Richard Atwell
  * 
