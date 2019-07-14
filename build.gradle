@@ -28,7 +28,11 @@ dependencies {
 }
 
 jar {
-    baseName = 'WebsiteAnalysis'
+    baseName = 'WebAnalysis'
+    manifest {
+        attributes 'Main-Class': 'edu.odu.cs.cs350.WebsiteAnalysis'
+    }
+    from configurations.runtime.collect { zipTree(it) }
 }
 
 test {
