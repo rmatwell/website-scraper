@@ -10,7 +10,7 @@ package edu.odu.cs.cs350;
  * 
  * @since 7-12-19
  */
-public class Resource{
+public class Resource implements Cloneable{
 	
 	
 	double fileSize;
@@ -107,9 +107,10 @@ public class Resource{
 	
 	
 	/* 
-	 * Checks to see if two resource objects are equal if their
+	 * Checks to see if two Resource objects are equal if their
 	 * data types are the same values.
 	 */
+	@Override
 	public boolean equals(Object rhs) {
 		
 		// If the object is compared with itself then return true   
@@ -126,7 +127,7 @@ public class Resource{
         // typecast rhs to Resource so that we can compare data members  
         Resource r = (Resource) rhs; 
         
-     // Compare the data members and return accordingly  
+        //Compare the data members and return accordingly  
         return Double.compare(this.fileSize, r.fileSize) == 0
                 && r.typeOfLink.equals(this.typeOfLink)
                 && r.url.equals(this.url)
@@ -136,6 +137,30 @@ public class Resource{
 		}
 	
 	
+	/**
+     * Creates identical copy of Resource object
+     * 
+     */
+	@Override
+    public Object clone()
+    {
+        Resource clone= new Resource(this.fileSize,
+                this.typeOfLink,this.url,this.pageFoundOn);
+
+     
+        return clone;
+    }
+	
+	/**
+     * Displays the contents of the Resource 
+     *  
+     */
+    @Override
+    public String toString()
+    {
+        String s = Double.toString(fileSize) + "," + typeOfLink + "," + url + ","+ pageFoundOn;
+		return s;
+    }	
 
 }
 
