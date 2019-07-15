@@ -105,6 +105,22 @@ public class Resource implements Cloneable{
 		return pageFoundOn;
 	}
 	
+	public void setPageFoundOn(String pageFoundOn) {
+		this.pageFoundOn=pageFoundOn;
+	}
+	
+	
+	/* 
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		Double d = new  Double(fileSize);
+		int hashValue = d.hashCode();
+		
+	    return 3*(hashValue + url.hashCode() + typeOfLink.hashCode() + pageFoundOn.hashCode());
+	}
+	
 	
 	/* 
 	 * Checks to see if two Resource objects are equal if their
