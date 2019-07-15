@@ -11,7 +11,7 @@ import java.util.*; //used to make Lists.
 
 public class AnalysisInputManager 
 {	
-	//the 'user' variables are used to record the user's input when invoking WebAnalysis
+	//the 'user' variables are used to record the user's input when invoking WebAnalysis.jar
 	private static String userFilePath;
 	private static List<String> userURLs = new ArrayList<>();
 	
@@ -22,6 +22,7 @@ public class AnalysisInputManager
 		//make report
 
 	}
+	//This should only be called ONCE, at the beginning of the program to handle the arguments the user supplies when invoking WebAnalysis.jar
 	private static void handleUserArgs(String[] args)
 	{
 		//"If no command line arguments are provided, an appropriate usage message should be displayed."
@@ -29,8 +30,9 @@ public class AnalysisInputManager
 		{
 			System.out.println("ERROR: No arguments provided. Please specify the directory containing the off-line site, as well as the URLs to be analyzed");
 		}
-		//"After identifying a set of HTML files, an error message must be output if ... more than 1000 pages are present." adding 1 to account for the directory argument. 
-		//This is probably NOT the appropriate place to check this, as all 1000 URLS could be identical, etc. As we develop more robust 
+		//"After identifying a set of HTML files, an error message must be output if ... more than 1000 pages are present." 
+		//adding 1 (1001 args max) to account for the directory argument. 
+		//This is probably NOT the appropriate place to check this, as all 1000 URLS could be identical, etc. As we develop the system, this should be moved -jmora
 		else if(args.length > 1001)
 		{
 			System.out.println("ERROR: Maximum number of pages reached: Please specify 1000 pages or less");
