@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.io.File;
 import java.util.*; //used to make Lists.
 
 //The purpose of this class is to: 
@@ -18,12 +17,11 @@ public class AnalysisInputManager
 	public static void main(String[] args)
 	{
 		handleUserArgs(args);
-		//do analysis
-		//make report
+		//makeAnalysis();
 
 	}
 	//This should only be called ONCE, at the beginning of the program to handle the arguments the user supplies when invoking WebAnalysis.jar
-	private static void handleUserArgs(String[] args)
+	public static void handleUserArgs(String[] args)
 	{
 		//"If no command line arguments are provided, an appropriate usage message should be displayed."
 		if(args.length == 0)
@@ -44,24 +42,15 @@ public class AnalysisInputManager
 		}	
 	}
 
-	
-	/**
-	 * 	Starts at the root directory of the local website and parses all files, including the files of sub-directories.
-	 * 	Method to extract resources from file will be called in else branch of method when available.
-	 * 
-	 * @param rootDirectory
-	 */
-	public void traverseFiles(File[] rootDirectory) {
-			
-	    for (File file : rootDirectory) {
-	        if (file.isDirectory()) {
-	        	// Calls method again if current "file" is a directory
-	        	traverseFiles(file.listFiles()); 
-	        } else {
-	        	
-	            //tbd method to extract resources from file
-	        }
-	    }
+	//'get' methods for the user's arguments
+	public String getUserFilePath()
+	{
+		return userFilePath;
 	}
-}
+	public List<String> getUserURLs()
+	{
+		return userURLs;
+	}	
+}	
+
   
