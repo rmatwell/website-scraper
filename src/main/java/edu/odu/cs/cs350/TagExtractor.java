@@ -1,6 +1,8 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TagExtractor 
 {
@@ -15,7 +17,10 @@ public class TagExtractor
 	 */
 	public void traverseFiles(File[] rootDirectory) 
 	{
-			
+		
+		String analysisTime = new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date());
+		//not sure if this will need to be moved but put here for now
+		
 	    for (File file : rootDirectory) 
 	    {
 	        if (file.isDirectory()) 
