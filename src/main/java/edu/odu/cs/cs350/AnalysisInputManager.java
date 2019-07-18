@@ -24,10 +24,11 @@ public class AnalysisInputManager
 	public static void handleUserArgs(String[] args)
 	{
 		//"If no command line arguments are provided, an appropriate usage message should be displayed."
-		if(args.length == 0)
+		if(args.length <= 1)
 		{
-			System.out.println("ERROR: No arguments provided. Please specify the directory containing the off-line site, as well as the URLs to be analyzed");
+			System.out.println("ERROR: Inssufficent numer of arguments provided. Please specify (1) the directory containing the off-line site and (2) the URLs to be analyzed");
 		}
+
 		//"After identifying a set of HTML files, an error message must be output if ... more than 1000 pages are present." 
 		//adding 1 (1001 args max) to account for the directory argument. 
 		//This is probably NOT the appropriate place to check this, as all 1000 URLS could be identical, etc. As we develop the system, this should be moved -jmora
