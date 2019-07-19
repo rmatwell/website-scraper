@@ -25,7 +25,7 @@ public class TagExtractor
 	
 	//moved this here from AnalysisInputManager just to clean up -Jmora 7/16/19
 	/**
-	 * 	Starts at the root directory of the local website and parses all files, including the files of sub-directories.
+	 * 	Starts at the root directory of the local Website and parses all files, including the files of sub-directories.
 	 * 	Method to extract resources from file will be called in else branch of method when available.
 	 * 
 	 * @param rootDirectory
