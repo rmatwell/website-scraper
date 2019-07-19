@@ -25,6 +25,7 @@ dependencies {
     testCompile "org.apache.poi:poi:3.12+"
     testCompile "org.apache.poi:poi-ooxml:3.12+"
     testCompile "com.cedarsoftware:json-io:4.10.1"
+    compile "com.cedarsoftware:json-io:4.10.1"
 }
 
 jar {
