@@ -27,7 +27,7 @@ public class JSONReport {
 	}
 	
 	/**
-	 * @param Takes the website object
+	 * @param Takes the website object.
 	 * @return The JSON created from the objects of the website as a Formatted String 
 	 */
 	public String writeJSON(Website website) {
