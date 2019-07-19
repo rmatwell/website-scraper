@@ -41,7 +41,7 @@ public class AnalysisInputManager
 		{
 			userFilePath = args[0];
 			Collections.addAll(userURLs, Arrays.copyOfRange(args, 1 ,args.length)); 
-			analysisTime = new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date());
+			setAnalysisTime(new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date()));
 		}	
 	}
 
@@ -57,6 +57,12 @@ public class AnalysisInputManager
 	public static void makeAnalysis()
 	{
 		//WebsiteAnalysis analysis = new WebsiteAnalysis(userFilePath, userURLs, analysisTime);
+	}
+	public static String getAnalysisTime() {
+		return analysisTime;
+	}
+	public static void setAnalysisTime(String analysisTime) {
+		AnalysisInputManager.analysisTime = analysisTime;
 	}
 }	
 
