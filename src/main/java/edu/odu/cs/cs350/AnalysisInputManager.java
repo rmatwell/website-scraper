@@ -5,9 +5,8 @@ import java.util.Date;
 
 //The purpose of this class is to: 
 //	-Take input from the user
-//	-Validate that the input
+//	-Validate that the user input enough input (at least 2 args) and display appropriate error message
 //	-Create a WebsiteAnalysis object (which controls the actual data storage, parsing, and reporting parts of the program
-//	-and finally, display appropriate error messages relating to the user's input.
 
 public class AnalysisInputManager 
 {	
@@ -21,14 +20,23 @@ public class AnalysisInputManager
 		}
 		else
 		{
-			makeAnalysis(args);
+			doAnalysis(args);
 		}
-
 	}
 	
-	public static void makeAnalysis(String[] args)
+	public static void doAnalysis(String[] args)
 	{
 		WebsiteAnalysis analysis = new WebsiteAnalysis(args, getAnalysisTime() );
+		
+		if(analysis.IsReady() )
+		{
+			analysis.parseFiles();
+			analysis.generateReports();
+		}
+		else
+		{
+			//don't have what we need, do no analysis
+		}
 	}
 	
 	public static String getAnalysisTime()
