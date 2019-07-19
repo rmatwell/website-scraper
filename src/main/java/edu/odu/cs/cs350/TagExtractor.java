@@ -1,9 +1,13 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+
+
 
 public class TagExtractor 
 {
@@ -29,6 +33,9 @@ public class TagExtractor
 	public void traverseFiles(File[] rootDirectory) 
 	{
 		
+
+		//not sure if this will need to be moved but put here for now
+
 		
 	    for (File file : rootDirectory) 
 	    {
