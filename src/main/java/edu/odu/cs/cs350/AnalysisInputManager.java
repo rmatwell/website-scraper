@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class AnalysisInputManager 
 {	
-	
 	public static void main(String[] args)
 	{
 		//"If no command line arguments are provided, an appropriate usage message should be displayed."

@@ -23,21 +23,30 @@ public class WebsiteAnalysis
 	
 	public void setUserFilePath(String input)
 	{
-		if(validFilePath(input) )
+		if(IsValidFilePath(input) )
 		{
 			userFilePath = input;
 		}
 	}
 	public void setUserURLs(String[] input)
 	{
-		Collections.addAll(userURLs, input ); 
+		HashSet preliminarySet = new HashSet<>();
+		Collections.addAll(preliminarySet, input ); 
+		if(userURLsAreValid(preliminarySet) )
+		{
+			userURLs = preliminarySet;
+		}
+		else
+		{
+			//warn the user the files are not valid
+		}
 	}
 	public void setAnalysisTime(String input)
 	{
 		analysisTime = input;
 	}
 	//determines whether the user's file path is valid (correctly formatted, exists)
-	public boolean validFilePath(String path)
+	public boolean IsValidFilePath(String path)
 	{
 		/*
 		if(some condition that makes sure the file is good)
@@ -46,15 +55,22 @@ public class WebsiteAnalysis
 			return true;
 		/*
 		}
-		else if(Some condition that makes sure the file exists)
+		else
 		{
-			System.out.println("ERROR: File path does not exist. Please input an existing file path");
-		}
-		else if(Some other logic that checks format)
-		{
+			if(Some condition that makes sure the file exists)
+			{
+				System.out.println("ERROR: File path does not exist. Please input an existing file path");
+			}
+			else if(Some other logic that checks format)
+			{
 			System.out.println("ERROR: File path is not formatted correctly. Please input the file path in a proper format");
+			}
 		}
 		*/	
+	}
+	public boolean userURLsAreValid(HashSet urls)
+	{
+		return true; //replace this with actual logic
 	}
 	//determines whether or not the analysis has the information necessary to begin (i.e. date time, valid user path, valid user sites)
 	public boolean IsReady()
@@ -76,5 +92,17 @@ public class WebsiteAnalysis
 	public void generateReports()
 	{
 		//take our resources and make the report writers use them
+	}
+	public String getUserFilePath()
+	{
+		return userFilePath;
+	}
+	public HashSet<String> getUserURLs()
+	{
+		return userURLs;
+	}
+	public String getAnalysisTime()
+	{
+		return analysisTime;
 	}
 }
