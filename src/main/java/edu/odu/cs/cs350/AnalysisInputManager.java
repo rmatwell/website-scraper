@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.text.SimpleDateFormat;
 import java.util.*; //used to make Lists.
 
 //The purpose of this class is to: 
@@ -13,11 +14,11 @@ public class AnalysisInputManager
 	//the 'user' variables are used to record the user's input when invoking WebAnalysis.jar
 	private static String userFilePath;
 	private static List<String> userURLs = new ArrayList<>();
-	
+	private static String analysisTime;
 	public static void main(String[] args)
 	{
 		handleUserArgs(args);
-		//makeAnalysis();
+		makeAnalysis();
 
 	}
 	//This should only be called ONCE, at the beginning of the program to handle the arguments the user supplies when invoking WebAnalysis.jar
@@ -40,6 +41,7 @@ public class AnalysisInputManager
 		{
 			userFilePath = args[0];
 			Collections.addAll(userURLs, Arrays.copyOfRange(args, 1 ,args.length)); 
+			analysisTime = new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date());
 		}	
 	}
 
@@ -52,6 +54,10 @@ public class AnalysisInputManager
 	{
 		return userURLs;
 	}	
+	public static void makeAnalysis()
+	{
+		//WebsiteAnalysis analysis = new WebsiteAnalysis(userFilePath, userURLs, analysisTime);
+	}
 }	
 
   
