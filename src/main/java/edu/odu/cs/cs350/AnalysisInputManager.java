@@ -1,5 +1,7 @@
 package edu.odu.cs.cs350;
 
+import java.nio.file.Paths;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*; //used to make Lists.
 
@@ -43,6 +45,16 @@ public class AnalysisInputManager
 			Collections.addAll(userURLs, Arrays.copyOfRange(args, 1 ,args.length)); 
 			setAnalysisTime(new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date()));
 		}	
+	}
+	
+	public static boolean directoryExists(String userFilePath)
+	{
+		if(!Paths.get(userFilePath).toFile().isDirectory())
+		{
+			return false;
+		}
+		
+		return true;
 	}
 
 	//'get' methods for the user's arguments
