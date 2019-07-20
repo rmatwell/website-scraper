@@ -11,8 +11,8 @@ import static org.hamcrest.Matchers.*;
 import java.util.*;
 import java.io.File;
 
-public class TestWebsiteAnalysis 
-{
+public class TestWebsiteAnalysis  
+{ 
 	@Test
 	public void TestSetUserPathGoodPath()
 	{

@@ -52,7 +52,7 @@ public class WebsiteAnalysis
 	public boolean IsValidFilePath(File path)
 	{
 		
-		if(path.exists() && path.isDirectory() )
+		if(path.exists() && path.isDirectory() ) 
 		{
 			return true;	
 		}
