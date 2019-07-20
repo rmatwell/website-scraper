@@ -9,22 +9,54 @@ import static org.hamcrest.Matchers.*;
 //import static org.hamcrest.Matchers.closeTo;
 
 import java.util.*;
+import java.io.File;
 
 public class TestWebsiteAnalysis 
 {
 	@Test
-	public void TestSetUserPath() //once logic is introduced to actually test the validity of the path, this test should be modified to reflect that
+	public void TestSetUserPathGoodPath()
 	{
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
 		
-		String goodPath = "dir1/dir2";
-		//String badPath = "dir1:dir2";
+		String goodPath = "build\\libs";
+		File goodPathFile = new File(goodPath);
 		
 		assertNull(testAnalysis.getUserFilePath() );
 		testAnalysis.setUserFilePath(goodPath);
+		
 		//because the path was good, it should take
-		assertThat(testAnalysis.getUserFilePath(), is(goodPath) );
+		assertThat(testAnalysis.getUserFilePath(), is(goodPathFile) );
 	}
+	
+	@Test
+	public void TestSetUserPathNonExistantPath()
+	{
+		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		
+		String nonPath = "build\\libz";
+		File nonPathFile = new File(nonPath);
+
+		assertNull(testAnalysis.getUserFilePath() );
+		testAnalysis.setUserFilePath(nonPath);
+
+		assertNull(testAnalysis.getUserFilePath() );
+	}
+	
+	@Test
+	public void TestSetUserPathNotAPath() 	
+	{
+		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		
+		String nonPath = "gradlew.bat"; //using this because gradlew.bat is basically guaranteed to work
+		File nonPathFile = new File(nonPath);
+		
+		assertNull(testAnalysis.getUserFilePath() );
+		testAnalysis.setUserFilePath(nonPath);
+		
+
+		assertNull(testAnalysis.getUserFilePath() );
+	}
+		
 	@Test
 	public void TestSetUserURLs()
 	{

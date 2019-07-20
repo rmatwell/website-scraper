@@ -1,10 +1,11 @@
 package edu.odu.cs.cs350;
 
 import java.util.*; //used to make Lists.
+import java.io.File;
 
 public class WebsiteAnalysis 
 {
-	String userFilePath;
+	File userFilePath;
 	HashSet<String> userURLs = new HashSet<>();
 	String analysisTime;
 	
@@ -23,9 +24,11 @@ public class WebsiteAnalysis
 	
 	public void setUserFilePath(String input)
 	{
-		if(IsValidFilePath(input) )
+		File inputPath = new File(input);
+		
+		if(IsValidFilePath(inputPath) )
 		{
-			userFilePath = input;
+			userFilePath = inputPath;
 		}
 	}
 	public void setUserURLs(String[] input)
@@ -46,27 +49,25 @@ public class WebsiteAnalysis
 		analysisTime = input;
 	}
 	//determines whether the user's file path is valid (correctly formatted, exists)
-	public boolean IsValidFilePath(String path)
+	public boolean IsValidFilePath(File path)
 	{
-		/*
-		if(some condition that makes sure the file is good)
+		
+		if(path.exists() && path.isDirectory() )
 		{
-		*/
-			return true;
-		/*
+			return true;	
 		}
 		else
 		{
-			if(Some condition that makes sure the file exists)
+			if(!path.exists() )
 			{
-				System.out.println("ERROR: File path does not exist. Please input an existing file path");
+				System.out.println("ERROR: " + path.toString() + " does not exist. Please input an existing directory.");
 			}
-			else if(Some other logic that checks format)
+			else if(!path.isDirectory() )
 			{
-			System.out.println("ERROR: File path is not formatted correctly. Please input the file path in a proper format");
+			System.out.println("ERROR: " + path.toString() + " is not a directory. Please input a directory (not a file). ");
 			}
+			return false;
 		}
-		*/	
 	}
 	public boolean userURLsAreValid(HashSet urls)
 	{
@@ -93,7 +94,7 @@ public class WebsiteAnalysis
 	{
 		//take our resources and make the report writers use them
 	}
-	public String getUserFilePath()
+	public File getUserFilePath()
 	{
 		return userFilePath;
 	}
