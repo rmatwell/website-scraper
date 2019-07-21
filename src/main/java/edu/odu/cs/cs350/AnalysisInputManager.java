@@ -27,7 +27,7 @@ public class AnalysisInputManager
 	{
 		WebsiteAnalysis analysis = new WebsiteAnalysis(args, getAnalysisTime() );
 		
-		if(analysis.IsReady() )
+		if(analysis.isReady() )
 		{
 			analysis.parseFiles();
 			analysis.generateReports();
