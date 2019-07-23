@@ -168,6 +168,7 @@ jacocoTestReport {
 }
 
 checkstyle {
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     toolVersion '8.11'
     ignoreFailures = true
     showViolations = false
