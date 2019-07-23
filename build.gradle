@@ -142,6 +142,7 @@ pmd {
     ]
 }
 
+/*
 spotbugsMain {
     ignoreFailures = true
     effort = 'max'
@@ -151,6 +152,7 @@ spotbugsMain {
        html.enabled = true
     }
 }
+*/
 
 jacoco {
     toolVersion = "0.8.0"
