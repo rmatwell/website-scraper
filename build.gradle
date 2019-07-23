@@ -21,6 +21,11 @@ buildscript {
         classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:2.0.0"
 
     }
+    
+    checkstyle {
+    config = rootProject.resources.text.fromFile('buildConfig/checkstyle/checkstyle.xml')
+    toolVersion '8.11'
+    }
 }
 
 import edu.odu.cs.zeil.report_accumulator.ReportStats
@@ -38,7 +43,7 @@ apply plugin: "findbugs"
 apply plugin: "pmd"
 apply plugin: "com.github.spotbugs"
 
-//apply plugin: "checkstyle"
+apply plugin: "checkstyle"
 
 
 sourceCompatibility = 1.8
@@ -165,7 +170,7 @@ jacocoTestReport {
         csv.enabled true
     }
 }
-/*
+
 checkstyle {
     ignoreFailures = true
     showViolations = false
@@ -179,7 +184,7 @@ tasks.withType(Checkstyle) {
 
 checkstyleTest.enabled = false
 // End Checkstyle config
-*/
+
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
     reportsURL = "http://www.cs.odu.edu/~ratwell/examples/cs350/statistics/"
