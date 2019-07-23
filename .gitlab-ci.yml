@@ -7,6 +7,7 @@ build-job:
   - yellow1
   stage: build
   script:
+  - chmod a+x ./gradlew
   - ./gradlew --no-daemon build javadoc jacocoTestReport collectStats
   - eval $(ssh-agent -t 5m -s)
   - ssh-add <(echo "$RSYNC_KEY")
