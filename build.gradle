@@ -39,7 +39,7 @@ apply plugin: "findbugs"
 apply plugin: "pmd"
 apply plugin: "com.github.spotbugs"
 
-apply plugin: "checkstyle"
+//apply plugin: "checkstyle"
 
 
 sourceCompatibility = 1.8
@@ -166,7 +166,7 @@ jacocoTestReport {
         csv.enabled true
     }
 }
-
+/*
 checkstyle {
     configFile = rootProject.file('config/checkstyle/checkstyle.xml')
     toolVersion '8.11'
@@ -182,7 +182,7 @@ tasks.withType(Checkstyle) {
 
 checkstyleTest.enabled = false
 // End Checkstyle config
-
+*/
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
     reportsURL = "http://www.cs.odu.edu/~ratwell/cs350/WebsiteAnalysis/"
