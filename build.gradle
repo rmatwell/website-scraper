@@ -36,9 +36,9 @@ apply plugin: "jacoco"
 
 apply plugin: "findbugs"
 apply plugin: "pmd"
-//apply plugin: 'com.github.spotbugs'
+apply plugin: 'com.github.spotbugs'
 
-apply plugin: "checkstyle"
+//apply plugin: "checkstyle"
 
 
 sourceCompatibility = 1.8
@@ -142,7 +142,7 @@ pmd {
     ]
 }
 
-/*
+
 spotbugsMain {
     ignoreFailures = true
     effort = 'max'
@@ -152,7 +152,7 @@ spotbugsMain {
        html.enabled = true
     }
 }
-*/
+
 
 jacoco {
     toolVersion = "0.8.0"
@@ -165,7 +165,7 @@ jacocoTestReport {
         csv.enabled true
     }
 }
-
+/*
 checkstyle {
     ignoreFailures = true
     showViolations = false
@@ -176,6 +176,7 @@ tasks.withType(Checkstyle) {
         html.destination project.file("build/reports/checkstyle/main.html")
     }
 }
+*/
 checkstyleTest.enabled = false
 // End Checkstyle config
 
