@@ -22,10 +22,6 @@ buildscript {
 
     }
     
-    checkstyle {
-    config = rootProject.resources.text.fromFile('buildConfig/checkstyle/checkstyle.xml')
-    toolVersion '8.11'
-    }
 }
 
 import edu.odu.cs.zeil.report_accumulator.ReportStats
@@ -172,6 +168,8 @@ jacocoTestReport {
 }
 
 checkstyle {
+    config = rootProject.resources.text.fromFile('buildConfig/checkstyle/checkstyle.xml')
+    toolVersion '8.11'
     ignoreFailures = true
     showViolations = false
 }
