@@ -37,7 +37,7 @@ apply plugin: "jacoco"
 
 apply plugin: "findbugs"
 apply plugin: "pmd"
-apply plugin: "com.github.spotbugs"
+apply plugin: 'com.github.spotbugs'
 
 apply plugin: "checkstyle"
 
@@ -154,6 +154,7 @@ spotbugsMain {
     }
 }
 
+spotbugsTest.enabled = false
 
 jacoco {
     toolVersion = "0.8.0"
