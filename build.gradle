@@ -168,7 +168,6 @@ jacocoTestReport {
 }
 
 checkstyle {
-    config = rootProject.resources.text.fromFile('buildConfig/checkstyle/checkstyle.xml')
     toolVersion '8.11'
     ignoreFailures = true
     showViolations = false
@@ -185,11 +184,11 @@ checkstyleTest.enabled = false
 
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
-    reportsURL = "http://www.cs.odu.edu/~ratwell/examples/cs350/statistics/"
+    reportsURL = "http://www.cs.odu.edu/~ratwell/cs350/WebsiteAnalysis/"
 }
 
 // Deploy csv stats files
 task report (type: ReportsDeploy, dependsOn: "collectStats") {
     // Test locally on atria
-    deployDestination = "/home/ratwell/public_html/examples/cs350/statistics/"
+    deployDestination = "/home/ratwell/secure_html/cs350/WebsiteAnalysis"
 }
