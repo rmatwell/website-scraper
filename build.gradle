@@ -176,10 +176,10 @@ tasks.withType(Checkstyle) {
         html.destination project.file("build/reports/checkstyle/main.html")
     }
 }
-*/
+
 checkstyleTest.enabled = false
 // End Checkstyle config
-
+*/
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
     reportsURL = "http://www.cs.odu.edu/~ratwell/examples/cs350/statistics/"
