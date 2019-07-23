@@ -168,7 +168,7 @@ jacocoTestReport {
 }
 
 checkstyle {
-    configDir = file("$rootProject.projectDir/checkstyle")
+    configFile rootProject.file('build/reports/checkstyle/checkstyle.xml')
     toolVersion '8.11'
     ignoreFailures = true
     showViolations = false
