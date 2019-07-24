@@ -1,13 +1,15 @@
 
 package edu.odu.cs.cs350;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
-import org.junit.Before;
-
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author Richard Atwell
@@ -15,13 +17,28 @@ import static org.hamcrest.Matchers.closeTo;
  */
 public class TestResource {
 
+	/**
+	 *
+	 */
 	Resource defaultConstruct;
-	Resource nonDefaultConstruct;
+
+	/**
+	 *
+	 */
+	Resource testConstructor;
+
+	private double fileSize = 1.70;
+
+	private String typeOfLink = "external";
+
+	private String url = "/image.jpg";
+
+	private String pageFoundOn = "/root/desktop/directory";
 
 	@Before
 	public void setUp() {
 		defaultConstruct = new Resource();
-		nonDefaultConstruct = new Resource(1.70, "external", "/image.jpg", "/root/desktop/directory");
+		testConstructor = new Resource(fileSize, typeOfLink, url, pageFoundOn);
 	}
 
 	@Test
@@ -37,12 +54,12 @@ public class TestResource {
 
 	@Test
 	public void testNonDefault() {
-		assertThat(nonDefaultConstruct.getFileSize(), is(closeTo(1.7, .01)));
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is("external"));
-		assertThat(nonDefaultConstruct.getUrl(), is("/image.jpg"));
-		assertThat(nonDefaultConstruct.getPageFoundOn(), is("/root/desktop/directory"));
-		assertThat(nonDefaultConstruct.toString(), containsString("1.7,external,/image.jpg,/root/desktop/directory"));
-		assertThat(defaultConstruct, not(equalTo(nonDefaultConstruct)));
+		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
+		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
+		assertThat(testConstructor.getUrl(), is(url));
+		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.toString(), containsString("1.7,external,/image.jpg,/root/desktop/directory"));
+		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 
 	}
 
@@ -64,19 +81,19 @@ public class TestResource {
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
 		// testing nonDefault
-		initialHash = nonDefaultConstruct.hashCode();
+		initialHash = testConstructor.hashCode();
 
-		nonDefaultConstruct.setFileSize(-34.7);
-		assertThat(nonDefaultConstruct.getFileSize(), is(closeTo(-34.7, .1)));
+		testConstructor.setFileSize(-34.7);
+		assertThat(testConstructor.getFileSize(), is(closeTo(-34.7, .1)));
 
-		finalHash = nonDefaultConstruct.hashCode();
+		finalHash = testConstructor.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
 
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is("external"));
-		assertThat(nonDefaultConstruct.getUrl(), is("/image.jpg"));
-		assertThat(nonDefaultConstruct.getPageFoundOn(), is("/root/desktop/directory"));
-		assertThat(nonDefaultConstruct.toString(), containsString("-34.7,external,/image.jpg,/root/desktop/directory"));
-		assertThat(defaultConstruct, not(equalTo(nonDefaultConstruct)));
+		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
+		assertThat(testConstructor.getUrl(), is(url));
+		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.toString(), containsString("-34.7,external,/image.jpg,/root/desktop/directory"));
+		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 	}
 
 	@Test
@@ -101,22 +118,22 @@ public class TestResource {
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
 		// testing nonDefault
-		initialHash = nonDefaultConstruct.hashCode();
+		initialHash = testConstructor.hashCode();
 
-		nonDefaultConstruct.setTypeOfLink("invalid");
+		testConstructor.setTypeOfLink("invalid");
 		// testing that "invalid" is not a valid option for type of link
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is(not("invalid")));
-		nonDefaultConstruct.setTypeOfLink("intrapage");
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is("intrapage"));
+		assertThat(testConstructor.getTypeOfLink(), is(not("invalid")));
+		testConstructor.setTypeOfLink("intrapage");
+		assertThat(testConstructor.getTypeOfLink(), is("intrapage"));
 
-		finalHash = nonDefaultConstruct.hashCode();
+		finalHash = testConstructor.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
 
-		assertThat(nonDefaultConstruct.getFileSize(), is(closeTo(1.7, .01)));
-		assertThat(nonDefaultConstruct.getUrl(), is("/image.jpg"));
-		assertThat(nonDefaultConstruct.getPageFoundOn(), is("/root/desktop/directory"));
-		assertThat(nonDefaultConstruct.toString(), containsString("1.7,intrapage,/image.jpg,/root/desktop/directory"));
-		assertThat(defaultConstruct, not(equalTo(nonDefaultConstruct)));
+		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
+		assertThat(testConstructor.getUrl(), is(url));
+		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.toString(), containsString("1.7,intrapage,/image.jpg,/root/desktop/directory"));
+		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 
 	}
 
@@ -138,19 +155,19 @@ public class TestResource {
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
 		// testing nonDefault
-		initialHash = nonDefaultConstruct.hashCode();
+		initialHash = testConstructor.hashCode();
 
-		nonDefaultConstruct.setUrl("archive.gz");
-		assertThat(nonDefaultConstruct.getUrl(), is("archive.gz"));
+		testConstructor.setUrl("archive.gz");
+		assertThat(testConstructor.getUrl(), is("archive.gz"));
 
-		finalHash = nonDefaultConstruct.hashCode();
+		finalHash = testConstructor.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
 
-		assertThat(nonDefaultConstruct.getFileSize(), is(closeTo(1.7, .01)));
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is("external"));
-		assertThat(nonDefaultConstruct.getPageFoundOn(), is("/root/desktop/directory"));
-		assertThat(nonDefaultConstruct.toString(), containsString("1.7,external,archive.gz,/root/desktop/directory"));
-		assertThat(defaultConstruct, not(equalTo(nonDefaultConstruct)));
+		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
+		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
+		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.toString(), containsString("1.7,external,archive.gz,/root/desktop/directory"));
+		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 	}
 
 	@Test
@@ -172,19 +189,19 @@ public class TestResource {
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
 		// testing nonDefault
-		initialHash = nonDefaultConstruct.hashCode();
+		initialHash = testConstructor.hashCode();
 
-		nonDefaultConstruct.setPageFoundOn("e:/OneDrive");
-		assertThat(nonDefaultConstruct.getPageFoundOn(), is("e:/OneDrive"));
+		testConstructor.setPageFoundOn("e:/OneDrive");
+		assertThat(testConstructor.getPageFoundOn(), is("e:/OneDrive"));
 
-		finalHash = nonDefaultConstruct.hashCode();
+		finalHash = testConstructor.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
 
-		assertThat(nonDefaultConstruct.getFileSize(), is(closeTo(1.7, .01)));
-		assertThat(nonDefaultConstruct.getTypeOfLink(), is("external"));
-		assertThat(nonDefaultConstruct.getUrl(), is("/image.jpg"));
-		assertThat(nonDefaultConstruct.toString(), containsString("1.7,external,/image.jpg,e:/OneDrive"));
-		assertThat(defaultConstruct, not(equalTo(nonDefaultConstruct)));
+		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
+		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
+		assertThat(testConstructor.getUrl(), is(url));
+		assertThat(testConstructor.toString(), containsString("1.7,external,/image.jpg,e:/OneDrive"));
+		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 
 	}
 
