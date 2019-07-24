@@ -186,11 +186,11 @@ checkstyleTest.enabled = false
 
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
-    reportsURL = "http://www.cs.odu.edu/~ratwell/cs350/WebsiteAnalysis/"
+    reportsURL = "http://www.cs.odu.edu/~ratwell/WebsiteAnalysis/"
 }
 
 // Deploy csv stats files
 task report (type: ReportsDeploy, dependsOn: "collectStats") {
     // Test locally on atria
-    deployDestination = "/home/ratwell/secure_html/cs350/WebsiteAnalysis"
+    deployDestination = "/home/ratwell/secure_html/WebsiteAnalysis"
 }
