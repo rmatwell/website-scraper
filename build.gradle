@@ -186,7 +186,7 @@ checkstyleTest.enabled = false
 
 // Setup Statistics tasks
 task collectStats (type: ReportStats, dependsOn: "build") {
-    reportsURL = "http://www.cs.odu.edu/~ratwell/WebsiteAnalysis/"
+    reportsURL = "https://www.cs.odu.edu/~ratwell/WebsiteAnalysis/"
 }
 
 // Deploy csv stats files
