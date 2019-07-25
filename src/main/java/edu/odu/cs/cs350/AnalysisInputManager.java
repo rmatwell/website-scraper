@@ -34,6 +34,7 @@ public class AnalysisInputManager
 		}
 		else
 		{
+			System.out.println("Aborting Analysis.");
 			//don't have what we need, do no analysis
 		}
 	}

@@ -64,17 +64,18 @@ public class TestWebsiteAnalysis
 	{
 		//setup
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		testAnalysis.setUserFilePath("testing/test");
 		
-		String goodURL1 = "https://www.test.com/test1";
-		String goodURL2 = "https://www.test.com/test2";
+		String goodURL1 = "https://www.test.com/testing/test/test1";
+		String goodURL2 = "https://www.test.com/testing/test/test2";
 
 		String[] goodURLs = {goodURL1,goodURL2};
 		
-		HashSet<URL> goodURLsHash = new HashSet<URL>();
+		HashSet<File> goodURLsHash = new HashSet<File>();
 		try
 		{
-			goodURLsHash.add(new URL(goodURL1) );
-			goodURLsHash.add(new URL(goodURL2) );
+			goodURLsHash.add(new File(new URL(goodURL1).getPath().replaceFirst("/", "") ) );
+			goodURLsHash.add(new File(new URL(goodURL2).getPath().replaceFirst("/", "") ) );
 		}
 		catch(MalformedURLException e)
 		{
@@ -82,11 +83,12 @@ public class TestWebsiteAnalysis
 		}
 	
 		//actual test
-		assertThat(testAnalysis.getUserURLs(), is(new HashSet<String>() ) );
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
 		
+		testAnalysis.setUserFilePath("testing/test");
 		testAnalysis.setUserURLs(goodURLs);
 		
-		assertThat(testAnalysis.getUserURLs(), is( goodURLsHash) );
+		assertThat(testAnalysis.getTranslatedUserURLs(), is( goodURLsHash) );
 	}
 	
 	@Test
@@ -94,6 +96,7 @@ public class TestWebsiteAnalysis
 	{
 		//setup
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		testAnalysis.setUserFilePath("testing/test");
 		
 		String badURL1 = "testdir1//testdir2";
 		String badURL2 = "com.IamNotAWebSite.www";
@@ -112,12 +115,45 @@ public class TestWebsiteAnalysis
 		}
 	
 		//actual test
-		assertThat(testAnalysis.getUserURLs(), is(new HashSet<String>() ) );
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<File>() ) );
 		
 		testAnalysis.setUserURLs(badURLs);
 		
-		assertThat(testAnalysis.getUserURLs(), is(new HashSet<String>() ) );
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<File>() ) );
 	}
+	
+
+	@Test
+	public void TestSetUserURLsOutOfPath()
+	{
+		//setup
+		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		testAnalysis.setUserFilePath("testing\\notTest");
+		
+		String goodURL1 = "https://www.test.com/testing/test/test1";
+		String goodURL2 = "https://www.test.com/testing/test/test2";
+
+		String[] goodURLs = {goodURL1,goodURL2};
+		
+		HashSet<File> goodURLsHash = new HashSet<File>();
+		try
+		{
+			goodURLsHash.add(new File(new URL(goodURL1).getPath().replaceFirst("/", "") ) );
+			goodURLsHash.add(new File(new URL(goodURL2).getPath().replaceFirst("/", "") ) );
+		}
+		catch(MalformedURLException e)
+		{
+			
+		}
+	
+		//actual test
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
+		
+		testAnalysis.setUserURLs(goodURLs);
+		
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
+	}
+	
 	
 	
 	@Test
