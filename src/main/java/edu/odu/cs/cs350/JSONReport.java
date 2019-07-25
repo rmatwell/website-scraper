@@ -14,8 +14,9 @@ import com.cedarsoftware.util.io.JsonWriter;
 /**
  * @author Richard Atwell
  * 
- * JSON File generator which incorporates JSON-IO api. Generator takes a Website object
- * and creates a JSON file that is formatted to be more "reader friendly".
+ * JSON File generator which incorporates JSON-IO api.
+ * Generator takes a Website object and creates a JSON
+ * file that is formatted to be more "reader friendly".
  *
  */
 public class JSONReport implements Cloneable{
@@ -48,12 +49,16 @@ public class JSONReport implements Cloneable{
 
 
 	/**
-	 * @param website
-	 * @param analysisTime
-	 *
+	 * 		Prime number to use with hashcode function.
+	 */
+	private final int PRIME_NUM_FOR_HASHCODE = 31;
+
+	/**
 	 * JSONReport takes a website object and the time the analysis started
 	 * to created a formatted JSON file.
 	 *
+	 * @param website
+	 * @param analysisTime
 	 */
 	public JSONReport(Website website, String analysisTime){
 
@@ -168,7 +173,7 @@ public class JSONReport implements Cloneable{
 	}
 
 	/*
-	 * Checks to see if JSONReport objects are equal based on string contents
+	 * Checks to see if JSONReport objects are equal based on string contents.
 	 * 
 	 */
 	@Override
@@ -178,6 +183,16 @@ public class JSONReport implements Cloneable{
 		return true;
 	}
 
+	/*
+	 * Creates hashcode based on json & fileName strings.
+	 */
+	@Override
+	public int hashCode() {
+		int jsonHash = json.hashCode();
+		int fileNameHash = fileName.hashCode();
+
+		return PRIME_NUM_FOR_HASHCODE * (jsonHash + fileNameHash);
+	}
 
 
 }

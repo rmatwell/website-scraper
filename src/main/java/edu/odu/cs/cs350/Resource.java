@@ -14,29 +14,34 @@ public class Resource implements Cloneable {
 
 
 	/**
-	 *  Size of the resource
+	 *  Size of the resource.
 	 */
 	private double fileSize;
 
 	/**
-	 *  Type of link, either internal, external, or intra-page
+	 *  Type of link, either internal, external, or intra-page.
 	 */
 	private String typeOfLink;
 
 	/**
-	 * 	The url of the resource
+	 * 	The url of the resource.
 	 */
 	private String url;
 
 	/**
-	 * 	The webpage url that the resource is found on
+	 * 	The webpage url that the resource is found on.
 	 */
 	private String pageFoundOn;
 
 	/**
+	 *  Prime number to use with hashcode function.
+	 */
+	private final int PRIME_NUM_FOR_HASHCODE = 31;
+
+	/**
 	 *
-	 * Initializes the resource
-	 * Sets file size to 0
+	 * Initializes the resource.
+	 * Sets file size to 0.
 	 * Sets type of link, url, and the page found on to empty.	 *
 	 *
 	 */
@@ -55,7 +60,8 @@ public class Resource implements Cloneable {
 	 * @param url
 	 * @param pageFoundOn
 	 */
-	public Resource(double fileSize, String typeOfLink, String url, String pageFoundOn) {
+	public Resource(double fileSize, String typeOfLink,
+			String url, String pageFoundOn) {
 
 		this.fileSize = fileSize;
 		this.typeOfLink = typeOfLink;
@@ -93,8 +99,8 @@ public class Resource implements Cloneable {
 	 * sets the type of link to external, internal, or intra-page
 	 */
 	public void setTypeOfLink(String typeOfLink) {
-		if(typeOfLink.equals("internal")||typeOfLink.equals("external")
-				||typeOfLink.equals("intrapage")) {
+		if (typeOfLink.equals("internal") || typeOfLink.equals("external")
+				|| typeOfLink.equals("intrapage")) {
 			this.typeOfLink = typeOfLink;
 		}
 	}
@@ -126,6 +132,11 @@ public class Resource implements Cloneable {
 		return pageFoundOn;
 	}
 
+	/**
+	 * Sets the url of the page the resource is found on.
+	 * 
+	 * @param pageFoundOn
+	 */
 	public void setPageFoundOn(String pageFoundOn) {
 		this.pageFoundOn = pageFoundOn;
 	}
@@ -139,7 +150,7 @@ public class Resource implements Cloneable {
 		Double newHash = new  Double(fileSize);
 		int hashValue = newHash.hashCode();
 
-		return 3*(hashValue + url.hashCode() + typeOfLink.hashCode()
+		return PRIME_NUM_FOR_HASHCODE * (hashValue + url.hashCode() + typeOfLink.hashCode()
 		+ pageFoundOn.hashCode());
 	}
 
@@ -151,7 +162,7 @@ public class Resource implements Cloneable {
 	@Override
 	public boolean equals(Object rhs) {
 
-		// If the object is compared with itself then return true
+		// If the object is compared with itself then return true.
 		if (rhs == this) {
 			return true;
 		}
@@ -162,10 +173,10 @@ public class Resource implements Cloneable {
 			return false;
 		}
 
-		// typecast rhs to Resource so that we can compare data members
+		// typecast rhs to Resource so that we can compare data members.
 		Resource resource = (Resource) rhs;
 
-		//Compare the data members and return accordingly
+		//Compare the data members and return accordingly.
 		return Double.compare(fileSize, resource.fileSize) == 0
 				&& resource.typeOfLink.equals(typeOfLink)
 				&& resource.url.equals(url)
@@ -176,7 +187,7 @@ public class Resource implements Cloneable {
 
 
 	/**
-	 * Creates identical copy of Resource object
+	 * Creates identical copy of Resource object.
 	 *
 	 */
 	@Override
@@ -191,7 +202,8 @@ public class Resource implements Cloneable {
 
 	/**
 	 * @return string
-	 * Displays the contents of the Resource
+	 * 
+	 * Displays the contents of the Resource.
 	 *
 	 */
 	@Override
