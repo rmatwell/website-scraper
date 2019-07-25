@@ -68,10 +68,6 @@ jar {
 }
 
 test {
-    testLogging {
-        events "passed","skipped", "failed", "standardOut", "standardError"
-    }
-
     reports {
         html.enabled = true
     }    
@@ -192,5 +188,5 @@ task collectStats (type: ReportStats, dependsOn: "build") {
 // Deploy csv stats files
 task report (type: ReportsDeploy, dependsOn: "collectStats") {
     // Test locally on atria
-    deployDestination = "/home/ratwell/secure_html/WebsiteAnalysis"
+    deployDestination = "/home/ratwell/secure_html/WebsiteAnalysis/"
 }
