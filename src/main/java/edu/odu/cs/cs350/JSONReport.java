@@ -9,34 +9,41 @@ import java.util.Map;
 
 import com.cedarsoftware.util.io.JsonWriter;
 
-public class JSONReport {
+
+
+/**
+ * @author Richard Atwell
+ * 
+ * JSON File generator which incorporates JSON-IO api. Generator takes a Website object
+ * and creates a JSON file that is formatted to be more "reader friendly".
+ *
+ */
+public class JSONReport implements Cloneable{
 
 	/**
-	 * 		The name of the JSON file that will be created
+	 * 		The name of the JSON file that will be created.
 	 */
-
 	private String fileName;
-	/**
-	 * 		The formatted time that the analysis began
-	 */
 
+	/**
+	 * 		The formatted time that the analysis began.
+	 */
 	private String analysisTime;
-	/**
-	 * 		The formatted JSON string created from the website object
-	 */
 
+	/**
+	 * 		The formatted JSON string created from the website object.
+	 */
 	private String json;
+
 	/**
 	 * 		The file output stream that will write the formatted JSON string
 	 * 		to the file.
 	 */
-
 	private FileOutputStream jsonFile;
 
 	/**
-	 * 		The website object
+	 * 		The website object from which the JSON file will be generated.
 	 */
-
 	private Website website;
 
 
@@ -45,7 +52,7 @@ public class JSONReport {
 	 * @param analysisTime
 	 *
 	 * JSONReport takes a website object and the time the analysis started
-	 * to created a formatted JSON file
+	 * to created a formatted JSON file.
 	 *
 	 */
 	public JSONReport(Website website, String analysisTime){
@@ -59,7 +66,7 @@ public class JSONReport {
 
 	/**
 	 * @param website The website object that will be used in the JSON file
-	 * @return json The JSON created from the objects of the website as a Formatted String
+	 * @return json The JSON created from the objects of the website as a Formatted String.
 	 */
 	public String writeJSON(Website website) {
 
@@ -82,7 +89,7 @@ public class JSONReport {
 	 *
 	 * @throws Exception if fileName already exists
 	 */
-	public void createJSONFile() throws Exception, IOException, FileNotFoundException  {
+	public void createJSONFile() throws IOException, FileNotFoundException  {
 
 		//TODO implement try & catch sections for exceptions
 		jsonFile = new FileOutputStream(fileName, true);
@@ -97,7 +104,7 @@ public class JSONReport {
 	 *  Takes the analysisTime and appends .json to the end.
 	 */
 	public void setFileName(String analysisTime) {
-		this.fileName = analysisTime + ".json";
+		fileName = analysisTime + ".json";
 	}
 
 	/**
@@ -143,6 +150,32 @@ public class JSONReport {
 	 */
 	public void setAnalysisTime(String analysisTime) {
 		this.analysisTime = analysisTime;
+	}
+
+
+
+
+	/*
+	 * Creates an identical copy of the JSONReport object
+	 * 
+	 */
+	@Override
+	public Object clone() {
+
+		JSONReport aCopy = new JSONReport(website, analysisTime);
+
+		return aCopy;
+	}
+
+	/*
+	 * Checks to see if JSONReport objects are equal based on string contents
+	 * 
+	 */
+	@Override
+	public boolean equals(Object rhs) {
+
+		//TODO implementation
+		return true;
 	}
 
 

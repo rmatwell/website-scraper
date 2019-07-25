@@ -10,12 +10,27 @@ package edu.odu.cs.cs350;
  *
  * @since 7-12-19
  */
-public class Resource implements Cloneable{
+public class Resource implements Cloneable {
 
 
+	/**
+	 *  Size of the resource
+	 */
 	private double fileSize;
+
+	/**
+	 *  Type of link, either internal, external, or intra-page
+	 */
 	private String typeOfLink;
+
+	/**
+	 * 	The url of the resource
+	 */
 	private String url;
+
+	/**
+	 * 	The webpage url that the resource is found on
+	 */
 	private String pageFoundOn;
 
 	/**
@@ -25,12 +40,12 @@ public class Resource implements Cloneable{
 	 * Sets type of link, url, and the page found on to empty.	 *
 	 *
 	 */
-	public Resource(){
+	public Resource() {
 
-		fileSize=0;
-		typeOfLink="";
-		url="";
-		pageFoundOn="";
+		fileSize = 0;
+		typeOfLink = "";
+		url = "";
+		pageFoundOn = "";
 
 	}
 
@@ -40,12 +55,12 @@ public class Resource implements Cloneable{
 	 * @param url
 	 * @param pageFoundOn
 	 */
-	public Resource(double fileSize, String typeOfLink, String url, String pageFoundOn){
+	public Resource(double fileSize, String typeOfLink, String url, String pageFoundOn) {
 
-		this.fileSize=fileSize;
-		this.typeOfLink=typeOfLink;
-		this.url=url;
-		this.pageFoundOn=pageFoundOn;
+		this.fileSize = fileSize;
+		this.typeOfLink = typeOfLink;
+		this.url = url;
+		this.pageFoundOn = pageFoundOn;
 
 	}
 
@@ -60,7 +75,7 @@ public class Resource implements Cloneable{
 	 * @param fileSize
 	 */
 	public void setFileSize(double fileSize) {
-		this.fileSize=fileSize;
+		this.fileSize = fileSize;
 	}
 
 
@@ -78,8 +93,10 @@ public class Resource implements Cloneable{
 	 * sets the type of link to external, internal, or intra-page
 	 */
 	public void setTypeOfLink(String typeOfLink) {
-		if(typeOfLink.equals("internal")||typeOfLink.equals("external")||typeOfLink.equals("intrapage"))
-			this.typeOfLink=typeOfLink;
+		if(typeOfLink.equals("internal")||typeOfLink.equals("external")
+				||typeOfLink.equals("intrapage")) {
+			this.typeOfLink = typeOfLink;
+		}
 	}
 
 
@@ -97,7 +114,7 @@ public class Resource implements Cloneable{
 	 * sets the url of the resource
 	 */
 	public void setUrl(String url) {
-		this.url=url;
+		this.url = url;
 	}
 
 
@@ -110,7 +127,7 @@ public class Resource implements Cloneable{
 	}
 
 	public void setPageFoundOn(String pageFoundOn) {
-		this.pageFoundOn=pageFoundOn;
+		this.pageFoundOn = pageFoundOn;
 	}
 
 
@@ -122,7 +139,8 @@ public class Resource implements Cloneable{
 		Double newHash = new  Double(fileSize);
 		int hashValue = newHash.hashCode();
 
-		return 3*(hashValue + url.hashCode() + typeOfLink.hashCode() + pageFoundOn.hashCode());
+		return 3*(hashValue + url.hashCode() + typeOfLink.hashCode()
+		+ pageFoundOn.hashCode());
 	}
 
 
@@ -148,10 +166,10 @@ public class Resource implements Cloneable{
 		Resource resource = (Resource) rhs;
 
 		//Compare the data members and return accordingly
-		return Double.compare(this.fileSize, resource.fileSize) == 0
-				&& resource.typeOfLink.equals(this.typeOfLink)
-				&& resource.url.equals(this.url)
-				&& resource.pageFoundOn.equals(this.pageFoundOn);
+		return Double.compare(fileSize, resource.fileSize) == 0
+				&& resource.typeOfLink.equals(typeOfLink)
+				&& resource.url.equals(url)
+				&& resource.pageFoundOn.equals(pageFoundOn);
 
 
 	}
@@ -164,8 +182,8 @@ public class Resource implements Cloneable{
 	@Override
 	public Object clone()
 	{
-		Resource clone= new Resource(this.fileSize,
-				this.typeOfLink,this.url,this.pageFoundOn);
+		Resource clone = new Resource(fileSize,
+				typeOfLink, url, pageFoundOn);
 
 
 		return clone;
@@ -179,7 +197,8 @@ public class Resource implements Cloneable{
 	@Override
 	public String toString()
 	{
-		String string = Double.toString(fileSize) + "," + typeOfLink + "," + url + ","+ pageFoundOn;
+		String string = Double.toString(fileSize) + "," + typeOfLink
+				+ "," + url + "," + pageFoundOn;
 		return string;
 	}
 
