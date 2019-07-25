@@ -134,6 +134,7 @@ public class Resource implements Cloneable {
 
 	/**
 	 * Sets the url of the page the resource is found on.
+	 * 
 	 * @param pageFoundOn
 	 */
 	public void setPageFoundOn(String pageFoundOn) {
