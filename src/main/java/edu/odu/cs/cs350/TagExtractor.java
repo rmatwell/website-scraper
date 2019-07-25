@@ -8,7 +8,6 @@ import java.util.TimeZone;
 
 
 
-
 public class TagExtractor 
 {
 
@@ -32,10 +31,6 @@ public class TagExtractor
 	 */
 	public void traverseFiles(File[] rootDirectory) 
 	{
-		
-
-		//not sure if this will need to be moved but put here for now
-
 		
 	    for (File file : rootDirectory) 
 	    {

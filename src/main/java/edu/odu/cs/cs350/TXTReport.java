@@ -4,11 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/*
- * still working on this but let me know if it should not be similar to JSONReport class
- * and will redo
- *
- */
 
 public class TXTReport {
 
