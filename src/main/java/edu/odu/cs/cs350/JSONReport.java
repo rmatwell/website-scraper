@@ -12,12 +12,11 @@ import com.cedarsoftware.util.io.JsonWriter;
 
 
 /**
- * @author Richard Atwell
- * 
  * JSON File generator which incorporates JSON-IO api.
  * Generator takes a Website object and creates a JSON
  * file that is formatted to be more "reader friendly".
- *
+ * 
+ * 
  */
 public class JSONReport implements Cloneable{
 
@@ -32,18 +31,20 @@ public class JSONReport implements Cloneable{
 	private String analysisTime;
 
 	/**
-	 * 		The formatted JSON string created from the website object.
+	 * 		The formatted JSON string created from the website
+	 * 		object.
 	 */
 	private String json;
 
 	/**
-	 * 		The file output stream that will write the formatted JSON string
-	 * 		to the file.
+	 * 		The file output stream that will write the formatted JSON
+	 *      string to the file.
 	 */
 	private FileOutputStream jsonFile;
 
 	/**
-	 * 		The website object from which the JSON file will be generated.
+	 * 		The website object from which the JSON file will be
+	 *      generated.
 	 */
 	private Website website;
 
@@ -51,7 +52,7 @@ public class JSONReport implements Cloneable{
 	/**
 	 * 		Prime number to use with hashcode function.
 	 */
-	private final int PRIME_NUM_FOR_HASHCODE = 31;
+	private static final int PRIME_NUM_FOR_HASHCODE = 31;
 
 	/**
 	 * JSONReport takes a website object and the time the analysis started
@@ -60,7 +61,7 @@ public class JSONReport implements Cloneable{
 	 * @param website
 	 * @param analysisTime
 	 */
-	public JSONReport(Website website, String analysisTime){
+	public JSONReport(Website website, String analysisTime) {
 
 		this.setWebsite(website);
 		this.setAnalysisTime(analysisTime);
@@ -71,7 +72,8 @@ public class JSONReport implements Cloneable{
 
 	/**
 	 * @param website The website object that will be used in the JSON file
-	 * @return json The JSON created from the objects of the website as a Formatted String.
+	 * @return json The JSON created from the objects of the website as a
+	 * formatted String.
 	 */
 	public String writeJSON(Website website) {
 
@@ -94,7 +96,7 @@ public class JSONReport implements Cloneable{
 	 *
 	 * @throws Exception if fileName already exists
 	 */
-	public void createJSONFile() throws IOException, FileNotFoundException  {
+	public void createJSONFile() throws IOException, FileNotFoundException {
 
 		//TODO implement try & catch sections for exceptions
 		jsonFile = new FileOutputStream(fileName, true);
@@ -113,7 +115,7 @@ public class JSONReport implements Cloneable{
 	}
 
 	/**
-	 * @return the file name, the formatted analysis time appended with .json
+	 * @return the filename, analysis time with .json.
 	 */
 	public String getFileName() {
 		return fileName;
