@@ -1,12 +1,17 @@
 package edu.odu.cs.cs350;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * still working on this but let me know if it should not be similar to JSONReport class
  * and will redo
  * 
  */
-
 
 public class TXTReport {
 	
@@ -30,11 +35,15 @@ public class TXTReport {
 		
 		txt = TxtWriter.objectToTxt(website);
 		
-		Map<String, Object> txtArgs = new Hashmap<String, Object>();
-		
-		//...
+		//TODO sort pages lexicographically
 		
 		return txt;
+		
+	}
+	
+	public void createTxtFile() throws Exception, IOException, FileNotFoundException {
+		
+		
 		
 	}
 	
@@ -48,6 +57,32 @@ public class TXTReport {
 		
 		return fname;
 		
+	}
+	
+	@Override
+	public String toString() {
+		
+		return txt;
+	}
+	
+	public Website getWebsite() {
+		
+		return website;
+	}
+	
+	public void setWebsite(Website website) {
+		
+		this.website = website;
+	}
+	
+	public String getAnalysisTime() {
+		
+		return analysisTime;
+	}
+	
+	public void setAnalysisTime() {
+		
+		this.analysisTime = analysisTime;
 	}
 	
 }
