@@ -130,16 +130,16 @@ public class TestWebsiteAnalysis
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
 		testAnalysis.setUserFilePath("testing\\notTest");
 		
-		String goodURL1 = "https://www.test.com/testing/test/test1";
-		String goodURL2 = "https://www.test.com/testing/test/test2";
+		String badURL1 = "https://www.test.com/testing/test/test1";
+		String badURL2 = "https://www.test.com/testing/test/test2";
 
-		String[] goodURLs = {goodURL1,goodURL2};
+		String[] badURLs = {badURL1,badURL2};
 		
-		HashSet<File> goodURLsHash = new HashSet<File>();
+		HashSet<File> badURLsHash = new HashSet<File>();
 		try
 		{
-			goodURLsHash.add(new File(new URL(goodURL1).getPath().replaceFirst("/", "") ) );
-			goodURLsHash.add(new File(new URL(goodURL2).getPath().replaceFirst("/", "") ) );
+			badURLsHash.add(new File(new URL(badURL1).getPath().replaceFirst("/", "") ) );
+			badURLsHash.add(new File(new URL(badURL2).getPath().replaceFirst("/", "") ) );
 		}
 		catch(MalformedURLException e)
 		{
@@ -149,10 +149,43 @@ public class TestWebsiteAnalysis
 		//actual test
 		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
 		
+		testAnalysis.setUserURLs(badURLs);
+		
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
+	}
+	
+	@Test
+	public void TestSetUserURLsNonExistant()
+	{
+		//setup
+		WebsiteAnalysis testAnalysis = new WebsiteAnalysis();
+		testAnalysis.setUserFilePath("testing/test");
+		
+		String badURL1 = "https://www.test.com/testing/test/test3";
+		String badURL2 = "https://www.test.com/testing/test/test4";
+
+		String[] goodURLs = {badURL1,badURL2};
+		
+		HashSet<File> badURLsHash = new HashSet<File>();
+		try
+		{
+			badURLsHash.add(new File(new URL(badURL1).getPath().replaceFirst("/", "") ) );
+			badURLsHash.add(new File(new URL(badURL2).getPath().replaceFirst("/", "") ) );
+		}
+		catch(MalformedURLException e)
+		{
+			
+		}
+	
+		//actual test
+		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
+		
+		testAnalysis.setUserFilePath("testing/test");
 		testAnalysis.setUserURLs(goodURLs);
 		
 		assertThat(testAnalysis.getTranslatedUserURLs(), is(new HashSet<String>() ) );
 	}
+	
 	
 	
 	

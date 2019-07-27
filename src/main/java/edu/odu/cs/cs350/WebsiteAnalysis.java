@@ -147,6 +147,7 @@ public class WebsiteAnalysis
 		HashSet<File> translatedSet = new HashSet<File>();
 		
 		List<URL> outOfScopeSet = new ArrayList<URL>();
+		List<URL> nonexistantSet = new ArrayList<URL>();
 		
 		Iterator<URL> inputItr = input.iterator();
 		
@@ -166,7 +167,15 @@ public class WebsiteAnalysis
 			
 			if(translatedPath.toString().startsWith(userFilePath.toString() ) )
 			{
-				translatedSet.add(translatedPath);
+				if(translatedPath.exists() )
+				{
+					translatedSet.add(translatedPath);
+				}
+				else
+				{
+					nonexistantSet.add(inputURL);
+				}
+
 			}
 			else
 			{
@@ -182,6 +191,14 @@ public class WebsiteAnalysis
 			for(int i = 0 ; i < outOfScopeSet.size(); i++)
 			{
 				System.out.println("        " + outOfScopeSet.get(i) );
+			}
+		}
+		if(nonexistantSet.size() > 0)
+		{
+			System.out.println("ERROR: The following URLs do not exist in '" + fullUserFilePathName + "' and cannot be analyzed:  ");
+			for(int i = 0 ; i < nonexistantSet.size(); i++)
+			{
+				System.out.println("        " + nonexistantSet.get(i) );
 			}
 		}
 		
