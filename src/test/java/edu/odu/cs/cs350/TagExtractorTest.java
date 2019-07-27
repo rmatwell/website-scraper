@@ -1,0 +1,82 @@
+package edu.odu.cs.cs350;
+
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashSet;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+/**
+ * 	Test Case for TagExtractor Class.
+ *
+ */
+public class TagExtractorTest {
+
+	TagExtractor testExtractor;
+
+	private String rootDirectory = "/c/directory/location/";
+
+	private String url1 = "https://www.test.com/test1";
+	private String url2 = "https://www.test.com/test2";
+
+	private HashSet<URL> urls = new HashSet<>();
+
+	@Before
+	public void setUp() {
+		try
+		{
+			urls.add(new URL(url1) );
+			urls.add(new URL(url2) );
+		}
+		catch(MalformedURLException e) {}
+		testExtractor = new TagExtractor(rootDirectory, urls);
+	}
+
+	@Test
+	public void testTagExtractor() {
+
+		File file = new File("src/test/resources/edu/odu/cs/cs350/image.jpg");
+
+		double fileSize = testExtractor.calculateMiB(file);
+
+		assertThat(fileSize, is(closeTo(1.21, .01)));
+
+		String formatSize = testExtractor.formatFileSize(fileSize);
+
+		assertThat(formatSize, containsString("1.21 MiB"));
+
+		assertThat(testExtractor.getAnalysisTime(),
+				containsString("-summary"));
+		assertThat(testExtractor.toString(),
+				containsString("/c/directory/location/ , "
+						+ "[https://www.test.com/test2, "
+						+ "https://www.test.com/test1"));
+		assertThat(testExtractor, equalTo(testExtractor));
+	}
+
+	@Test
+	public void testClone() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCalculateMiB() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFormatFileSize() {
+		fail("Not yet implemented");
+	}
+
+}

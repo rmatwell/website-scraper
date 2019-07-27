@@ -104,7 +104,7 @@ public class TagExtractor implements Cloneable {
 	 * @param userURLs
 	 */
 	public void setUserURLs(HashSet<URL> userURLs) {
-		userURLs = userURLs;
+		this.userURLs = userURLs;
 	}
 
 	/**
@@ -118,13 +118,14 @@ public class TagExtractor implements Cloneable {
 	 * @param rootDirectory
 	 */
 	public void setRootDirectory(String rootDirectory) {
-		rootDirectory = rootDirectory;
+		this.rootDirectory = rootDirectory;
 	}
 
 	/**
 	 * @return "0" just to compile before implementation.
 	 */
-	public int hashcode() {
+	@Override
+	public int hashCode() {
 		//TODO implementation
 		return 0;
 	}
@@ -144,6 +145,48 @@ public class TagExtractor implements Cloneable {
 	@Override
 	public boolean equals(Object rhs) {
 		return true;
+	}
+
+	/**
+	 * Takes the size of a file in Bytes and converts to MiB.
+	 * 
+	 * @param fileSize
+	 * @return The file size in Mebibytes(MiB)
+	 */
+	public double calculateMiB(File file) {
+
+		long fileSize = file.length();
+
+		//One MiB is approximately (Byte/(1.04858e6))
+		double sizeInMiB = fileSize/(1.04858*Math.pow(10,6));
+
+		return sizeInMiB;
+
+	}
+
+	/**
+	 * Takes the double type file size in MiB and rounds to the nearest
+	 * two digits as well as appending "MiB" to the end.
+	 * 
+	 * @param fileSize
+	 * @return
+	 */
+	public String formatFileSize(double fileSize) {
+
+		String mebibyte = "MiB";
+
+		double roundedSize = Math.round(fileSize * 100.0) / 100.0;
+
+		return Double.toString(roundedSize) + " " + mebibyte;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String string = rootDirectory + " , " + userURLs.toString();
+		return string;
 	}
 
 }
