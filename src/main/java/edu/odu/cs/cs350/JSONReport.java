@@ -51,7 +51,7 @@ public class JSONReport implements Cloneable{
 	/**
 	 * 		Prime number to use with hashcode function.
 	 */
-	private static final int PRIME_NUM_FOR_HASHCODE = 31;
+	private static final int PRIME_NUM_HASH = 31;
 
 	/**
 	 * JSONReport takes a website object and the time the analysis started
@@ -190,11 +190,11 @@ public class JSONReport implements Cloneable{
 
 		JSONReport rhs = (JSONReport) obj;
 
-		boolean isEqual = (analysisTime.equals(rhs.analysisTime)&&
-				(fileName.equals(rhs.fileName)) &&
-				(json.equals(rhs.json))&&
-				(jsonFile.equals(rhs.jsonFile)) &&
-				(website.equals(rhs.website)));
+		boolean isEqual = analysisTime.equals(rhs.analysisTime)&&
+				fileName.equals(rhs.fileName) &&
+				json.equals(rhs.json)&&
+				jsonFile.equals(rhs.jsonFile) &&
+				website.equals(rhs.website);
 
 		return isEqual;
 	}
@@ -207,7 +207,7 @@ public class JSONReport implements Cloneable{
 		int jsonHash = json.hashCode();
 		int fileNameHash = fileName.hashCode();
 
-		return PRIME_NUM_FOR_HASHCODE * (jsonHash + fileNameHash);
+		return PRIME_NUM_HASH * (jsonHash + fileNameHash);
 	}
 
 

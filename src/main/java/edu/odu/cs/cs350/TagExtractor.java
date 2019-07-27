@@ -5,6 +5,7 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.TimeZone;
 
 
@@ -26,7 +27,7 @@ public class TagExtractor implements Cloneable {
 	/**
 	 *	The variations of possible URL's for the same Website.
 	 */
-	private HashSet<URI> userURLs;
+	private Set<URI> userURLs = new HashSet<URI>();
 
 	/**
 	 *	Initializes the tag extractor with the starting root directory along
@@ -35,7 +36,7 @@ public class TagExtractor implements Cloneable {
 	 * @param rootDirectory
 	 * @param userURLs
 	 */
-	public TagExtractor(String rootDirectory, HashSet<URI> userURLs ) {
+	public TagExtractor(String rootDirectory, Set<URI> userURLs ) {
 		this.setRootDirectory(rootDirectory);
 		this.setUserURLs(userURLs);
 
@@ -79,8 +80,8 @@ public class TagExtractor implements Cloneable {
 		String date = "yyyyMMdd-hhmmss'-summary'";
 		SimpleDateFormat timeStamp = new SimpleDateFormat(date);
 
-		TimeZone EST = TimeZone.getTimeZone("US/Eastern");
-		timeStamp.setTimeZone(EST);
+		TimeZone est = TimeZone.getTimeZone("US/Eastern");
+		timeStamp.setTimeZone(est);
 
 		analysisTime = timeStamp.format(new Date());
 
@@ -96,14 +97,14 @@ public class TagExtractor implements Cloneable {
 	/**
 	 * @return the user entered URL variations for the Website.
 	 */
-	public HashSet<URI> getUserURLs() {
+	public Set<URI> getUserURLs() {
 		return userURLs;
 	}
 
 	/**
 	 * @param userURLs
 	 */
-	public void setUserURLs(HashSet<URI> userURLs) {
+	public void setUserURLs(Set<URI> userURLs) {
 		this.userURLs = userURLs;
 	}
 

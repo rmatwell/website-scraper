@@ -36,7 +36,7 @@ public class Resource implements Cloneable {
 	/**
 	 *  Prime number to use with hashcode function.
 	 */
-	private static final int PRIME_NUM_FOR_HASHCODE = 31;
+	private static final int PRIME_NUM_HASH = 31;
 
 	/**
 	 *
@@ -150,7 +150,7 @@ public class Resource implements Cloneable {
 		Double newHash = new  Double(fileSize);
 		int hashValue = newHash.hashCode();
 
-		return PRIME_NUM_FOR_HASHCODE * (hashValue + url.hashCode()
+		return PRIME_NUM_HASH * (hashValue + url.hashCode()
 		+ typeOfLink.hashCode() + pageFoundOn.hashCode());
 	}
 
