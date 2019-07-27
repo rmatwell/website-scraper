@@ -69,14 +69,5 @@ public class TagExtractorTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testCalculateMiB() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFormatFileSize() {
-		fail("Not yet implemented");
-	}
 
 }

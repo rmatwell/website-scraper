@@ -1,6 +1,7 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,12 +9,17 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * 	HTML element extractor that utilizes Jsoup api to scrape and parse files.
  *
  */
 public class TagExtractor implements Cloneable {
+
 	/**
 	 * 	The time the analysis begins in a formatted string.
 	 */
@@ -46,28 +52,56 @@ public class TagExtractor implements Cloneable {
 
 	}
 
+
 	/**
-	 * 	Starts at the root directory of the local Website and parses all files,
+	 * Extracts image elements from HTML document.
+	 * 
+	 * @param document
+	 */
+	public void extractImage(Document document) {
+
+		Resource resource = new Resource();
+		Elements links = document.select("img");
+
+		for (Element link : links) {
+			String path = link.attr("src");
+			resource.setUrl(path);
+		}
+
+	}
+
+
+	/**
+	 * 	Starts at the root directory of the local Website and parses all files
 	 *  including the files of sub-directories.
 	 * 	Method to extract resources from file will be called in else branch of
 	 *  method when available.
-	 * 
-	 * @param rootDirectory
+	 *  @param rootDirectory
+	 * @throws IOException
 	 */
-	public void traverseFiles(File[] rootDirectory)
+	public void traverseFiles(File[] rootDirectory) throws IOException
 	{
 		for (File file : rootDirectory)
 		{
 			if (file.isDirectory())
 			{
-				// Calls method again if current "file" is a directory
+				//Calls method again if current "file" is a directory to
+				//traverse sub-directory.
 				traverseFiles(file.listFiles());
 			} else
 			{
-				//TODO method to extract resources from file
+				//Current file is converted to parsed JSoup document
+				Document document;
+				document = Jsoup.parse(file,"UTF-8");
+
+				//TODO create extractResource method that will include
+				//various extract methods for specific resources as well
+				//as their member variables such as path, size, foundOn.
+				extractImage(document);
 			}
 		}
 	}
+
 	/**
 	 * 
 	 * Creates a formatted String with the date the analysis started
@@ -86,6 +120,8 @@ public class TagExtractor implements Cloneable {
 		analysisTime = timeStamp.format(new Date());
 
 	}
+
+
 
 	/**
 	 * @return the formatted time of when the Website Analysis began.
@@ -132,11 +168,14 @@ public class TagExtractor implements Cloneable {
 	}
 
 	/*
-	 *  TODO implementation
+	 *  Generates a copy of a TagExtractor object.
 	 */
 	@Override
-	public Object clone() {
-		TagExtractor aCopy = new TagExtractor(rootDirectory, userURLs);
+	public TagExtractor clone() throws CloneNotSupportedException {
+		TagExtractor aCopy = (TagExtractor) super.clone();
+		aCopy.analysisTime = analysisTime;
+		aCopy.rootDirectory = rootDirectory;
+		aCopy.userURLs = userURLs;
 		return aCopy;
 	}
 
@@ -170,7 +209,7 @@ public class TagExtractor implements Cloneable {
 	 * two digits as well as appending "MiB" to the end.
 	 * 
 	 * @param fileSize
-	 * @return
+	 * @return The formatted file size
 	 */
 	public String formatFileSize(double fileSize) {
 
