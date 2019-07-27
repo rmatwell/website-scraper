@@ -10,7 +10,6 @@ import java.util.Map;
 import com.cedarsoftware.util.io.JsonWriter;
 
 
-
 /**
  * JSON File generator which incorporates JSON-IO api.
  * Generator takes a Website object and creates a JSON
@@ -159,17 +158,20 @@ public class JSONReport implements Cloneable{
 		this.analysisTime = analysisTime;
 	}
 
-
-
-
 	/*
 	 * Creates an identical copy of the JSONReport object
 	 * 
 	 */
 	@Override
-	public Object clone() {
+	public JSONReport clone() throws CloneNotSupportedException{
 
-		JSONReport aCopy = new JSONReport(website, analysisTime);
+		JSONReport aCopy = (JSONReport)super.clone();
+
+		aCopy.analysisTime = analysisTime;
+		aCopy.fileName = fileName;
+		aCopy.json = json;
+		aCopy.jsonFile = jsonFile;
+		aCopy.website = website;
 
 		return aCopy;
 	}
@@ -179,10 +181,22 @@ public class JSONReport implements Cloneable{
 	 * 
 	 */
 	@Override
-	public boolean equals(Object rhs) {
+	public boolean equals(Object obj) {
 
-		//TODO implementation
-		return true;
+		if (!(obj instanceof JSONReport))
+		{
+			return false;
+		}
+
+		JSONReport rhs = (JSONReport) obj;
+
+		boolean isEqual = (analysisTime.equals(rhs.analysisTime)&&
+				(fileName.equals(rhs.fileName)) &&
+				(json.equals(rhs.json))&&
+				(jsonFile.equals(rhs.jsonFile)) &&
+				(website.equals(rhs.website)));
+
+		return isEqual;
 	}
 
 	/*
