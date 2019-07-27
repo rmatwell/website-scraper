@@ -1,7 +1,7 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
-import java.net.URL;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class TagExtractor implements Cloneable {
 	/**
 	 *	The variations of possible URL's for the same Website.
 	 */
-	private HashSet<URL> userURLs;
+	private HashSet<URI> userURLs;
 
 	/**
 	 *	Initializes the tag extractor with the starting root directory along
@@ -35,7 +35,7 @@ public class TagExtractor implements Cloneable {
 	 * @param rootDirectory
 	 * @param userURLs
 	 */
-	public TagExtractor(String rootDirectory, HashSet<URL> userURLs ) {
+	public TagExtractor(String rootDirectory, HashSet<URI> userURLs ) {
 		this.setRootDirectory(rootDirectory);
 		this.setUserURLs(userURLs);
 
@@ -96,14 +96,14 @@ public class TagExtractor implements Cloneable {
 	/**
 	 * @return the user entered URL variations for the Website.
 	 */
-	public HashSet<URL> getUserURLs() {
+	public HashSet<URI> getUserURLs() {
 		return userURLs;
 	}
 
 	/**
 	 * @param userURLs
 	 */
-	public void setUserURLs(HashSet<URL> userURLs) {
+	public void setUserURLs(HashSet<URI> userURLs) {
 		this.userURLs = userURLs;
 	}
 

@@ -8,8 +8,8 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 
 import org.junit.Before;
@@ -29,16 +29,16 @@ public class TagExtractorTest {
 	private String url1 = "https://www.test.com/test1";
 	private String url2 = "https://www.test.com/test2";
 
-	private HashSet<URL> urls = new HashSet<>();
+	private HashSet<URI> urls = new HashSet<>();
 
 	@Before
-	public void setUp() {
-		try
-		{
-			urls.add(new URL(url1) );
-			urls.add(new URL(url2) );
-		}
-		catch(MalformedURLException e) {}
+	public void setUp() throws URISyntaxException {
+
+
+		urls.add(new URI(url1) );
+		urls.add(new URI(url2) );
+
+
 		testExtractor = new TagExtractor(rootDirectory, urls);
 	}
 
