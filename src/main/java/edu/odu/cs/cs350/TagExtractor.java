@@ -35,6 +35,23 @@ public class TagExtractor implements Cloneable {
 	 */
 	private Set<URI> userURLs = new HashSet<URI>();
 
+
+	/**
+	 * One MiB is approximately (Byte/(1.04858e6)).
+	 */
+	private final static double BYTE_TO_MEBIBYTE = (1.04858*Math.pow(10,6));
+
+
+	/**
+	 * Used for rounding and formatting file size.
+	 */
+	private final static int ONE_HUNDRED = 100;
+
+	/**
+	 * 		Prime number to use with hashcode function.
+	 */
+	private static final int PRIME_NUM_HASH = 31;
+
 	/**
 	 *	Initializes the tag extractor with the starting root directory along
 	 *	with user supplied URLs.
@@ -121,8 +138,6 @@ public class TagExtractor implements Cloneable {
 
 	}
 
-
-
 	/**
 	 * @return the formatted time of when the Website Analysis began.
 	 */
@@ -159,12 +174,16 @@ public class TagExtractor implements Cloneable {
 	}
 
 	/**
-	 * @return "0" just to compile before implementation.
+	 * Creates hashcode based on sum of member variables hashcodes.
 	 */
 	@Override
 	public int hashCode() {
-		//TODO implementation
-		return 0;
+		int analysisTimeHash = analysisTime.hashCode();
+		int rootDirectoryHash = rootDirectory.hashCode();
+		int userURLsHash = userURLs.hashCode();
+
+		return PRIME_NUM_HASH * (analysisTimeHash + rootDirectoryHash +
+				userURLsHash);
 	}
 
 	/*
@@ -180,11 +199,23 @@ public class TagExtractor implements Cloneable {
 	}
 
 	/*
-	 * TODO implementation
+	 * Checks to see if two TagExtractor objects are equal based on
+	 * their member variables.
 	 */
 	@Override
-	public boolean equals(Object rhs) {
-		return true;
+	public boolean equals(Object obj) {
+		if (!(obj instanceof TagExtractor))
+		{
+			return false;
+		}
+
+		TagExtractor rhs = (TagExtractor) obj;
+
+		boolean isEqual = analysisTime.equals(rhs.analysisTime)&&
+				rootDirectory.equals(rhs.rootDirectory) &&
+				userURLs.equals(rhs.userURLs);
+
+		return isEqual;
 	}
 
 	/**
@@ -197,8 +228,7 @@ public class TagExtractor implements Cloneable {
 
 		long fileSize = file.length();
 
-		//One MiB is approximately (Byte/(1.04858e6))
-		double sizeInMiB = fileSize/(1.04858*Math.pow(10,6));
+		double sizeInMiB = fileSize/BYTE_TO_MEBIBYTE;
 
 		return sizeInMiB;
 
@@ -215,7 +245,7 @@ public class TagExtractor implements Cloneable {
 
 		String mebibyte = "MiB";
 
-		double roundedSize = Math.round(fileSize * 100.0) / 100.0;
+		double roundedSize = Math.round(fileSize * ONE_HUNDRED) / ONE_HUNDRED;
 
 		return Double.toString(roundedSize) + " " + mebibyte;
 	}

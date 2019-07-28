@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.net.URI;
@@ -65,8 +64,17 @@ public class TagExtractorTest {
 	}
 
 	@Test
-	public void testClone() {
-		fail("Not yet implemented");
+	public void testClone() throws CloneNotSupportedException {
+		TagExtractor aCopy = testExtractor.clone();
+
+		assertThat(aCopy.getAnalysisTime(), equalTo(testExtractor.getAnalysisTime()));
+		assertThat(aCopy.getRootDirectory(), equalTo(testExtractor.getRootDirectory()));
+		assertThat(aCopy.getUserURLs(), equalTo(testExtractor.getUserURLs()));
+
+		assertThat(aCopy.hashCode(), equalTo(testExtractor.hashCode()));
+		assertThat(aCopy, equalTo(testExtractor));
+		assertThat(aCopy.toString(), equalTo(testExtractor.toString()));
+
 	}
 
 
