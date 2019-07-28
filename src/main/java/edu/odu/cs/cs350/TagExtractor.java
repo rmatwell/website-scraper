@@ -45,7 +45,7 @@ public class TagExtractor implements Cloneable {
 	/**
 	 * Used for rounding and formatting file size.
 	 */
-	private final static int ONE_HUNDRED = 100;
+	private final static double ONE_HUNDRED = 100.0;
 
 	/**
 	 * 		Prime number to use with hashcode function.
