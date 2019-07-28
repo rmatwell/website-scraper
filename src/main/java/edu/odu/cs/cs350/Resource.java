@@ -31,7 +31,7 @@ public class Resource implements Cloneable {
 	/**
 	 * 	The webpage url that the resource is found on.
 	 */
-	private String pageFoundOn;
+	private String usedOn;
 
 	/**
 	 *  Prime number to use with hashcode function.
@@ -50,7 +50,7 @@ public class Resource implements Cloneable {
 		fileSize = 0;
 		typeOfLink = "";
 		url = "";
-		pageFoundOn = "";
+		usedOn = "";
 
 	}
 
@@ -58,15 +58,15 @@ public class Resource implements Cloneable {
 	 * @param fileSize Size of the file
 	 * @param typeOfLink External, Internal, or intra-page link
 	 * @param url
-	 * @param pageFoundOn
+	 * @param usedOn
 	 */
 	public Resource(double fileSize, String typeOfLink,
-			String url, String pageFoundOn) {
+			String url, String usedOn) {
 
 		this.fileSize = fileSize;
 		this.typeOfLink = typeOfLink;
 		this.url = url;
-		this.pageFoundOn = pageFoundOn;
+		this.usedOn = usedOn;
 
 	}
 
@@ -125,20 +125,20 @@ public class Resource implements Cloneable {
 
 
 	/**
-	 * @return pageFoundOn
+	 * @return usedOn
 	 * the page the resource is found on
 	 */
-	public String getPageFoundOn() {
-		return pageFoundOn;
+	public String getUsedOn() {
+		return usedOn;
 	}
 
 	/**
 	 * Sets the url of the page the resource is found on.
 	 * 
-	 * @param pageFoundOn
+	 * @param usedOn
 	 */
-	public void setPageFoundOn(String pageFoundOn) {
-		this.pageFoundOn = pageFoundOn;
+	public void setUsedOn(String usedOn) {
+		this.usedOn = usedOn;
 	}
 
 
@@ -151,7 +151,7 @@ public class Resource implements Cloneable {
 		int hashValue = newHash.hashCode();
 
 		return PRIME_NUM_HASH * (hashValue + url.hashCode()
-		+ typeOfLink.hashCode() + pageFoundOn.hashCode());
+		+ typeOfLink.hashCode() + usedOn.hashCode());
 	}
 
 
@@ -180,7 +180,7 @@ public class Resource implements Cloneable {
 		return Double.compare(fileSize, resource.fileSize) == 0
 				&& resource.typeOfLink.equals(typeOfLink)
 				&& resource.url.equals(url)
-				&& resource.pageFoundOn.equals(pageFoundOn);
+				&& resource.usedOn.equals(usedOn);
 
 
 	}
@@ -188,16 +188,20 @@ public class Resource implements Cloneable {
 
 	/**
 	 * Creates identical copy of Resource object.
+	 * @throws CloneNotSupportedException
 	 *
 	 */
 	@Override
-	public Object clone()
+	public Resource clone() throws CloneNotSupportedException
 	{
-		Resource clone = new Resource(fileSize,
-				typeOfLink, url, pageFoundOn);
+		Resource aCopy = (Resource) super.clone();
 
+		aCopy.fileSize = fileSize;
+		aCopy.typeOfLink = typeOfLink;
+		aCopy.url = url;
+		aCopy.usedOn = usedOn;
 
-		return clone;
+		return aCopy;
 	}
 
 	/**
@@ -210,7 +214,7 @@ public class Resource implements Cloneable {
 	public String toString()
 	{
 		String string = Double.toString(fileSize) + "," + typeOfLink
-				+ "," + url + "," + pageFoundOn;
+				+ "," + url + "," + usedOn;
 		return string;
 	}
 

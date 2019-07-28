@@ -15,7 +15,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /**
- * 	HTML element extractor that utilizes Jsoup api to scrape and parse files.
+ * 	HTML element extractor that utilizes Jsoup api to parse files and scrape.
  *
  */
 public class TagExtractor implements Cloneable {
@@ -34,6 +34,23 @@ public class TagExtractor implements Cloneable {
 	 *	The variations of possible URL's for the same Website.
 	 */
 	private Set<URI> userURLs = new HashSet<URI>();
+
+
+	/**
+	 * 	Set used to store image resources found by extractor.
+	 */
+	private Set<Resource> images = new HashSet<Resource>();
+
+	/**
+	 * 	Set used to store CSS resources found by extractor.
+	 */
+	private Set<Resource> stylesheets = new HashSet<Resource>();
+
+	/**
+	 * 	Set used to store CSS resources found by extractor.
+	 */
+	private Set<Resource> scripts = new HashSet<Resource>();
+
 
 
 	/**
@@ -71,11 +88,46 @@ public class TagExtractor implements Cloneable {
 
 
 	/**
-	 * Extracts image elements from HTML document.
+	 * Extracts JS elements from HTML document.
 	 * 
 	 * @param document
 	 */
-	public void extractImage(Document document) {
+	public void extractScriptTags(Document document) {
+
+		Resource resource = new Resource();
+		Elements links = document.select("script");
+
+		for (Element link : links) {
+			String path = link.attr("src");
+			resource.setUrl(path);
+			scripts.add(resource);
+		}
+
+	}
+
+	/**
+	 * Extracts CSS elements from HTML document.
+	 * 
+	 * @param document
+	 */
+	public void extractLinkTags(Document document) {
+
+		Resource resource = new Resource();
+		Elements links = document.select("link");
+
+		for (Element link : links) {
+			String path = link.attr("href");
+			resource.setUrl(path);
+			stylesheets.add(resource);
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param document
+	 */
+	public void extractImageTags(Document document) {
 
 		Resource resource = new Resource();
 		Elements links = document.select("img");
@@ -83,6 +135,7 @@ public class TagExtractor implements Cloneable {
 		for (Element link : links) {
 			String path = link.attr("src");
 			resource.setUrl(path);
+			images.add(resource);
 		}
 
 	}
@@ -114,7 +167,7 @@ public class TagExtractor implements Cloneable {
 				//TODO create extractResource method that will include
 				//various extract methods for specific resources as well
 				//as their member variables such as path, size, foundOn.
-				extractImage(document);
+				extractImageTags(document);
 			}
 		}
 	}

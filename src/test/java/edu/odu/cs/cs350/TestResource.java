@@ -33,12 +33,12 @@ public class TestResource {
 
 	private String url = "/image.jpg";
 
-	private String pageFoundOn = "/root/desktop/directory";
+	private String usedOn = "/root/desktop/directory";
 
 	@Before
 	public void setUp() {
 		defaultConstruct = new Resource();
-		testConstructor = new Resource(fileSize, typeOfLink, url, pageFoundOn);
+		testConstructor = new Resource(fileSize, typeOfLink, url, usedOn);
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class TestResource {
 		assertThat(defaultConstruct.getFileSize(), is(closeTo(0, .1)));
 		assertThat(defaultConstruct.getTypeOfLink(), is(""));
 		assertThat(defaultConstruct.getUrl(), is(""));
-		assertThat(defaultConstruct.getPageFoundOn(), is(""));
+		assertThat(defaultConstruct.getUsedOn(), is(""));
 		assertThat(defaultConstruct.toString(), containsString("0,,,"));
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
@@ -57,7 +57,7 @@ public class TestResource {
 		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
 		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
 		assertThat(testConstructor.getUrl(), is(url));
-		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.getUsedOn(), is(usedOn));
 		assertThat(testConstructor.toString(), containsString("1.7,external,/image.jpg,/root/desktop/directory"));
 		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 
@@ -76,7 +76,7 @@ public class TestResource {
 
 		assertThat(defaultConstruct.getTypeOfLink(), is(""));
 		assertThat(defaultConstruct.getUrl(), is(""));
-		assertThat(defaultConstruct.getPageFoundOn(), is(""));
+		assertThat(defaultConstruct.getUsedOn(), is(""));
 		assertThat(defaultConstruct.toString(), containsString("4.7,,,"));
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
@@ -91,7 +91,7 @@ public class TestResource {
 
 		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
 		assertThat(testConstructor.getUrl(), is(url));
-		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.getUsedOn(), is(usedOn));
 		assertThat(testConstructor.toString(), containsString("-34.7,external,/image.jpg,/root/desktop/directory"));
 		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 	}
@@ -113,7 +113,7 @@ public class TestResource {
 
 		assertThat(defaultConstruct.getFileSize(), is(closeTo(0, .1)));
 		assertThat(defaultConstruct.getUrl(), is(""));
-		assertThat(defaultConstruct.getPageFoundOn(), is(""));
+		assertThat(defaultConstruct.getUsedOn(), is(""));
 		assertThat(defaultConstruct.toString(), containsString("0,internal,,"));
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
@@ -131,7 +131,7 @@ public class TestResource {
 
 		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
 		assertThat(testConstructor.getUrl(), is(url));
-		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.getUsedOn(), is(usedOn));
 		assertThat(testConstructor.toString(), containsString("1.7,intrapage,/image.jpg,/root/desktop/directory"));
 		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 
@@ -150,7 +150,7 @@ public class TestResource {
 
 		assertThat(defaultConstruct.getFileSize(), is(closeTo(0, .01)));
 		assertThat(defaultConstruct.getTypeOfLink(), is(""));
-		assertThat(defaultConstruct.getPageFoundOn(), is(""));
+		assertThat(defaultConstruct.getUsedOn(), is(""));
 		assertThat(defaultConstruct.toString(), containsString("0,,script.js,"));
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
 
@@ -165,19 +165,19 @@ public class TestResource {
 
 		assertThat(testConstructor.getFileSize(), is(closeTo(1.7, .01)));
 		assertThat(testConstructor.getTypeOfLink(), is(typeOfLink));
-		assertThat(testConstructor.getPageFoundOn(), is(pageFoundOn));
+		assertThat(testConstructor.getUsedOn(), is(usedOn));
 		assertThat(testConstructor.toString(), containsString("1.7,external,archive.gz,/root/desktop/directory"));
 		assertThat(defaultConstruct, not(equalTo(testConstructor)));
 	}
 
 	@Test
-	public void testSetPageFoundOn() {
+	public void testSetUsedOn() {
 
 		// testing default
 		int initialHash = defaultConstruct.hashCode();
 
-		defaultConstruct.setPageFoundOn("/desktop/folder");
-		assertThat(defaultConstruct.getPageFoundOn(), is("/desktop/folder"));
+		defaultConstruct.setUsedOn("/desktop/folder");
+		assertThat(defaultConstruct.getUsedOn(), is("/desktop/folder"));
 
 		int finalHash = defaultConstruct.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
@@ -191,8 +191,8 @@ public class TestResource {
 		// testing nonDefault
 		initialHash = testConstructor.hashCode();
 
-		testConstructor.setPageFoundOn("e:/OneDrive");
-		assertThat(testConstructor.getPageFoundOn(), is("e:/OneDrive"));
+		testConstructor.setUsedOn("e:/OneDrive");
+		assertThat(testConstructor.getUsedOn(), is("e:/OneDrive"));
 
 		finalHash = testConstructor.hashCode();
 		assertThat(initialHash, is(not(finalHash)));
@@ -206,19 +206,19 @@ public class TestResource {
 	}
 
 	@Test
-	public void testClone() {
+	public void testClone() throws CloneNotSupportedException {
 
 		defaultConstruct.setFileSize(10.2);
 		defaultConstruct.setTypeOfLink("internal");
 		defaultConstruct.setUrl("style.css");
 		defaultConstruct.setUrl("c:/");
 
-		Resource aCopy = (Resource) defaultConstruct.clone();
+		Resource aCopy = defaultConstruct.clone();
 
 		assertThat(aCopy.getFileSize(), equalTo(defaultConstruct.getFileSize()));
 		assertThat(aCopy.getTypeOfLink(), equalTo(defaultConstruct.getTypeOfLink()));
 		assertThat(aCopy.getUrl(), equalTo(defaultConstruct.getUrl()));
-		assertThat(aCopy.getPageFoundOn(), equalTo(defaultConstruct.getPageFoundOn()));
+		assertThat(aCopy.getUsedOn(), equalTo(defaultConstruct.getUsedOn()));
 
 		assertThat(aCopy.hashCode(), equalTo(defaultConstruct.hashCode()));
 		assertThat(aCopy, equalTo(defaultConstruct));
