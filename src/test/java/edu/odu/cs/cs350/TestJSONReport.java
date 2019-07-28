@@ -12,8 +12,7 @@ import org.junit.Test;
 
 public class TestJSONReport {
 	
-	JSONReport defaultConstruct;
-	JSONReport testConstructor;
+	JSONReport testReport;
 	
 	private String analysisTime = "20190725-103257-summary.json";
 	private Website website;
@@ -21,8 +20,7 @@ public class TestJSONReport {
 	@Before
 	public void setUp() {
 		
-		defaultConstruct = new JSONReport();
-		testConstructor = new JSONReport(website, analysisTime);
+		testReport = new JSONReport(website, analysisTime);
 		
 	}
 	
