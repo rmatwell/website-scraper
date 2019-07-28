@@ -16,12 +16,13 @@ public class TestJSONReport {
 	JSONReport testConstructor;
 	
 	private String analysisTime = "20190725-103257-summary.json";
+	private Website website;
 	
 	@Before
 	public void setUp() {
 		
 		defaultConstruct = new JSONReport();
-		testConstructor = new JSONReport();
+		testConstructor = new JSONReport(website, analysisTime);
 		
 	}
 	
