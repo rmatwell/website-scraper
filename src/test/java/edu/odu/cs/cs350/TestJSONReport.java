@@ -12,7 +12,7 @@ public class TestJSONReport {
 	public void setUp() {
 		
 		defaultConstruct = new JSONReport();
-		testConstructor = new JSONReport()
+		testConstructor = new JSONReport();
 		
 	}
 	
