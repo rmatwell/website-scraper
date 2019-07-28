@@ -27,7 +27,7 @@ public class TestJSONReport {
 	@Test
 	public void testJSONReport() {
 		
-		assertThat(defaultConstruct.getFileName(), is(""));
+		assertThat(testReport.getFileName(), is(""));
 		//still working on, will continue tonight
 		
 	}
