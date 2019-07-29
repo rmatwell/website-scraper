@@ -37,7 +37,6 @@ public class TestJSONReport {
 	@Test
 	public void testSetFileName() {
 		
-		JSONReport report = (JSONReport) testJSON.clone();
 		int oldHashCode = testJSON.hashCode();
 		
 		testJSON.setFileName("20190725-103257-summary.json");
