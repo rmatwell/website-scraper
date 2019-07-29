@@ -1,5 +1,7 @@
 package edu.odu.cs.cs350;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -28,7 +30,13 @@ public class TestJSONReport {
 	@Test
 	public void testJSONReport() {
 
-		assertThat(testJSON.getFileName(), is(""));
+		assertThat(testJSON.getAnalysisTime(), is("20190725-103257-summary"));
+
+		testJSON.setFileName(analysisTime);
+		assertThat(testJSON.getFileName(), is("20190725-103257-summary.json"));
+		assertThat(testJSON.toString(), containsString(""));
+		assertThat(testJSON.getWebsite(), is(website));
+
 
 	}
 
@@ -42,6 +50,22 @@ public class TestJSONReport {
 		assertEquals("20190725-103257-summary.json", testJSON.getFileName());
 
 		assertNotEquals(oldHashCode, testJSON.hashCode());
+
+	}
+
+	@Test
+	public void testClone() throws CloneNotSupportedException {
+
+		testJSON.setFileName(analysisTime);
+		JSONReport aCopy = testJSON.clone();
+
+		assertThat(aCopy.getAnalysisTime(), equalTo(testJSON.getAnalysisTime()));
+		assertThat(aCopy.getFileName(), equalTo(testJSON.getFileName()));
+		assertThat(aCopy.getWebsite(), equalTo(testJSON.getWebsite()));
+
+		assertThat(aCopy.hashCode(), equalTo(testJSON.hashCode()));
+		assertThat(aCopy, equalTo(testJSON));
+		assertThat(aCopy.toString(), equalTo(testJSON.toString()));
 
 	}
 

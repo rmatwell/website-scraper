@@ -78,7 +78,6 @@ public class JSONReport implements Cloneable{
 		this.setAnalysisTime(analysisTime);
 		json="";
 		fileName="";
-
 	}
 
 	/**
@@ -204,9 +203,7 @@ public class JSONReport implements Cloneable{
 
 		boolean isEqual = analysisTime.equals(rhs.analysisTime)&&
 				fileName.equals(rhs.fileName) &&
-				json.equals(rhs.json)&&
-				jsonFile.equals(rhs.jsonFile) &&
-				website.equals(rhs.website);
+				json.equals(rhs.json);
 
 		return isEqual;
 	}
