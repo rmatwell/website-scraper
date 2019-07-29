@@ -159,6 +159,10 @@ public class TagExtractor implements Cloneable {
 				traverseFiles(file.listFiles());
 			} else
 			{
+
+				//TODO determine if file is non-text, i.e. binary so that
+				//it is ignored.
+
 				//Current file is converted to parsed JSoup document
 				Document document;
 				document = Jsoup.parse(file,"UTF-8");
@@ -309,6 +313,30 @@ public class TagExtractor implements Cloneable {
 	public String toString() {
 		String string = rootDirectory + " , " + userURLs.toString();
 		return string;
+	}
+
+	/**
+	 * 	Returns the set of stylesheets.
+	 * @return the set of stylesheets
+	 */
+	public Set<Resource> getLinks(){
+		return stylesheets;
+	}
+
+	/**
+	 * Returns the set of scripts.
+	 * @return the set of scripts
+	 */
+	public Set<Resource> getScripts(){
+		return scripts;
+	}
+
+	/**
+	 * Returns the set of images.
+	 * @return the set of images.
+	 */
+	public Set<Resource> getImages(){
+		return images;
 	}
 
 }

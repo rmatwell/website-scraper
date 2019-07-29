@@ -6,13 +6,18 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Iterator;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,14 +28,24 @@ import org.junit.Test;
  */
 public class TagExtractorTest {
 
-	TagExtractor testExtractor;
+	private File file = new File("src/test/resources/edu/odu/cs/cs350/test.html");
 
-	private String rootDirectory = "/c/directory/location/";
+	TagExtractor testExtractor, anotherExtractor;
+
+	private String rootDirectory = "/src/test/resources/edu/odu/cs/cs350/";
+
+	private String anotherRoot = "/home/system/directory/";
 
 	private String url1 = "https://www.test.com/test1";
+
 	private String url2 = "https://www.test.com/test2";
 
+	private String url3 = "https://www.test.com/test3";
+
 	private HashSet<URI> urls = new HashSet<>();
+
+	private HashSet<URI> anotherURL = new HashSet<>();
+
 
 	@Before
 	public void setUp() throws URISyntaxException {
@@ -39,8 +54,16 @@ public class TagExtractorTest {
 		urls.add(new URI(url1) );
 		urls.add(new URI(url2) );
 
+		anotherURL.add(new URI(url3));
 
 		testExtractor = new TagExtractor(rootDirectory, urls);
+
+		anotherExtractor = new TagExtractor(anotherRoot, anotherURL);
+	}
+
+	@Test
+	public void testEqualsNull() {
+		assertFalse (testExtractor.equals(null));
 	}
 
 	@Test
@@ -62,7 +85,7 @@ public class TagExtractorTest {
 		assertThat(testExtractor.getAnalysisTime(),
 				containsString("-summary"));
 		assertThat(testExtractor.toString(),
-				containsString("/c/directory/location/ , "
+				containsString("/src/test/resources/edu/odu/cs/cs350/ , "
 						+ "[https://www.test.com/test2, "
 						+ "https://www.test.com/test1"));
 		assertThat(testExtractor, equalTo(testExtractor));
@@ -72,7 +95,64 @@ public class TagExtractorTest {
 		assertThat(hash, not(equalTo(finalHash)));
 
 		assertThat(testExtractor, instanceOf(TagExtractor.class));
+
 	}
+
+	@Test
+	public void testNotEqualExtractors() {
+		assertFalse(testExtractor.equals(anotherExtractor));
+	}
+
+	@Test
+	public void testExtractImageTags() throws CloneNotSupportedException, IOException {
+
+		Document document;
+		document = Jsoup.parse(file,"UTF-8");
+
+		testExtractor.extractImageTags(document);
+
+		Iterator<Resource> itr = testExtractor.getImages().iterator();
+
+
+		String string = itr.next().toString();
+		assertThat(string, containsString("pic.jpg"));
+
+	}
+
+	@Test
+	public void testExtractLinkTags() throws CloneNotSupportedException, IOException {
+
+		Document document;
+		document = Jsoup.parse(file,"UTF-8");
+
+		testExtractor.extractLinkTags(document);
+
+		Iterator<Resource> itr = testExtractor.getLinks().iterator();
+
+
+		String string = itr.next().getUrl();
+		assertThat(string, containsString("https://maxcdn.bootstrapcdn.com/"
+				+ "bootstrap/3.3.5/css/bootstrap.min.css"));
+
+	}
+
+	@Test
+	public void testExtractScriptTags() throws CloneNotSupportedException, IOException {
+
+		Document document;
+		document = Jsoup.parse(file,"UTF-8");
+
+		testExtractor.extractScriptTags(document);
+
+		Iterator<Resource> itr = testExtractor.getScripts().iterator();
+
+		String string = itr.next().getUrl();
+		assertThat(string, containsString("https://maxcdn.bootstrapcdn.com"
+				+ "/bootstrap/3.3.5/js/bootstrap.min.js"));
+
+	}
+
+
 
 	@Test
 	public void testClone() throws CloneNotSupportedException {
