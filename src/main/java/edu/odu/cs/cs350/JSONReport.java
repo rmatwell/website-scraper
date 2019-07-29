@@ -15,7 +15,6 @@ import com.cedarsoftware.util.io.JsonWriter;
  * Generator takes a Website object and creates a JSON
  * file that is formatted to be more "reader friendly".
  * 
- * 
  */
 public class JSONReport implements Cloneable{
 
@@ -53,6 +52,19 @@ public class JSONReport implements Cloneable{
 	 */
 	private static final int PRIME_NUM_HASH = 31;
 
+
+
+	/**
+	 *  The empty JSON Report.
+	 */
+	public JSONReport() {
+
+		analysisTime="";
+		json="";
+		fileName="";
+
+	}
+
 	/**
 	 * JSONReport takes a website object and the time the analysis started
 	 * to created a formatted JSON file.
@@ -64,8 +76,8 @@ public class JSONReport implements Cloneable{
 
 		this.setWebsite(website);
 		this.setAnalysisTime(analysisTime);
-
-		setFileName(analysisTime);
+		json="";
+		fileName="";
 
 	}
 
@@ -105,9 +117,9 @@ public class JSONReport implements Cloneable{
 	}
 
 	/**
+	 * Sets the file name with the formatted analysis time appended with .json.
 	 * @param analysisTime The formatted time that the analysis starts
 	 *
-	 *  Takes the analysisTime and appends .json to the end.
 	 */
 	public void setFileName(String analysisTime) {
 		fileName = analysisTime + ".json";

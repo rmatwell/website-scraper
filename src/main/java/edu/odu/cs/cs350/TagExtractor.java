@@ -79,8 +79,7 @@ public class TagExtractor implements Cloneable {
 	public TagExtractor(String rootDirectory, Set<URI> userURLs ) {
 		this.setRootDirectory(rootDirectory);
 		this.setUserURLs(userURLs);
-
-		timeOfAnalysis();
+		analysisTime="";
 
 		//TODO incomplete implementation
 

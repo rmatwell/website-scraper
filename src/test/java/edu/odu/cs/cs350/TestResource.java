@@ -18,12 +18,12 @@ import org.junit.Test;
 public class TestResource {
 
 	/**
-	 *
+	 *	The default, unparameterized constructor.
 	 */
 	Resource defaultConstruct;
 
 	/**
-	 *
+	 *	A constructor with variable members set.
 	 */
 	Resource testConstructor;
 

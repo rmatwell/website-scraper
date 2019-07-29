@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
@@ -44,6 +45,8 @@ public class TagExtractorTest {
 	@Test
 	public void testTagExtractor() {
 
+		double hash = testExtractor.hashCode();
+
 		File file = new File("src/test/resources/edu/odu/cs/cs350/image.jpg");
 
 		double fileSize = testExtractor.calculateMiB(file);
@@ -54,6 +57,7 @@ public class TagExtractorTest {
 
 		assertThat(formatSize, containsString("1.21 MiB"));
 
+		testExtractor.timeOfAnalysis();
 		assertThat(testExtractor.getAnalysisTime(),
 				containsString("-summary"));
 		assertThat(testExtractor.toString(),
@@ -61,10 +65,16 @@ public class TagExtractorTest {
 						+ "[https://www.test.com/test2, "
 						+ "https://www.test.com/test1"));
 		assertThat(testExtractor, equalTo(testExtractor));
+
+		double finalHash = testExtractor.hashCode();
+
+		assertThat(hash, not(equalTo(finalHash)));
 	}
 
 	@Test
 	public void testClone() throws CloneNotSupportedException {
+
+		testExtractor.timeOfAnalysis();
 		TagExtractor aCopy = testExtractor.clone();
 
 		assertThat(aCopy.getAnalysisTime(), equalTo(testExtractor.getAnalysisTime()));
