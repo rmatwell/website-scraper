@@ -167,7 +167,6 @@ public class TagExtractorTest {
 		assertThat(aCopy.hashCode(), equalTo(testExtractor.hashCode()));
 		assertThat(aCopy, equalTo(testExtractor));
 		assertThat(aCopy.toString(), equalTo(testExtractor.toString()));
-
 	}
 
 
