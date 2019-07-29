@@ -48,7 +48,7 @@ public class TestJSONReport {
 		assertThat(testJSON.getFileName(), is("20190725-103257-summary.json"));
 		assertThat(testJSON.toString(), containsString(""));
 		assertThat(testJSON.getWebsite(), is(website));
-		assertThat(testJSON, instanceOf(JSONReport.class));
+		assertThat(testJSON,  instanceOf(JSONReport.class));
 		assertThat(analysisTime, not(instanceOf(JSONReport.class)));
 		assertNotEquals(testJSON, testDefault);
 
