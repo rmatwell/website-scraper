@@ -1,6 +1,7 @@
 
 package edu.odu.cs.cs350;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -49,6 +50,9 @@ public class TestResource {
 		assertThat(defaultConstruct.getUsedOn(), is(""));
 		assertThat(defaultConstruct.toString(), containsString("0,,,"));
 		assertThat(defaultConstruct, equalTo(defaultConstruct));
+
+		assertThat(defaultConstruct, instanceOf(Resource.class));
+
 
 	}
 

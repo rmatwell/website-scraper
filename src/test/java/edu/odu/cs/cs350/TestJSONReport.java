@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -15,7 +16,7 @@ import org.junit.Test;
 
 public class TestJSONReport {
 
-	JSONReport testJSON;
+	JSONReport testJSON, testDefault;
 
 	private String analysisTime = "20190725-103257-summary";
 	private Website website;
@@ -23,7 +24,17 @@ public class TestJSONReport {
 	@Before
 	public void setUp() {
 
+		testDefault = new JSONReport();
 		testJSON = new JSONReport(website, analysisTime);
+
+	}
+
+	@Test
+	public void testResource() {
+		assertThat(testDefault.getAnalysisTime(), is(""));
+		assertThat(testDefault.getFileName(), is(""));
+		assertThat(testDefault.toString(), containsString(""));
+		assertThat(testDefault, equalTo(testDefault));
 
 	}
 
@@ -36,7 +47,8 @@ public class TestJSONReport {
 		assertThat(testJSON.getFileName(), is("20190725-103257-summary.json"));
 		assertThat(testJSON.toString(), containsString(""));
 		assertThat(testJSON.getWebsite(), is(website));
-
+		assertThat(testJSON, instanceOf(JSONReport.class));
+		assertNotEquals(testJSON, testDefault);
 
 	}
 

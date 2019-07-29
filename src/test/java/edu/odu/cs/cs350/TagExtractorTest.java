@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -69,6 +70,8 @@ public class TagExtractorTest {
 		double finalHash = testExtractor.hashCode();
 
 		assertThat(hash, not(equalTo(finalHash)));
+
+		assertThat(testExtractor, instanceOf(TagExtractor.class));
 	}
 
 	@Test
