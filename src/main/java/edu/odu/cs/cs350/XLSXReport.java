@@ -19,11 +19,28 @@ public class XLSXReport {
 
 	}
 
+
+	/**
+	 * 
+	 */
+	public XLSXReport() {
+
+		filename = "";
+		analysisTime ="";
+		xlsx = "";
+
+	}
+
+
+	/**
+	 * @param website
+	 * @param analysisTime
+	 */
 	public XLSXReport(Website website, String analysisTime) {
 
 		this.setWebsite(website);
 		this.setAnalysisTime(analysisTime);
-		setFilename(analysisTime);
+		this.setFileName(analysisTime);
 
 	}
 
@@ -41,12 +58,12 @@ public class XLSXReport {
 
 	}
 
-	public void setFilename(String analysisTime) {
+	public void setFileName(String analysisTime) {
 
-		this.filename = analysisTime + ".xlsx";
+		filename = analysisTime + ".xlsx";
 	}
 
-	public String getFilename() {
+	public String getFileName() {
 
 		return filename;
 	}

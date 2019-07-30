@@ -30,6 +30,10 @@ public class TagExtractorTest {
 
 	private File file = new File("src/test/resources/edu/odu/cs/cs350/test.html");
 
+	private File root = new File("src/test/resources/edu/odu/cs/cs350/");
+
+	private File subDirectoryTest= new File("src/test/resources/edu/odu/cs/");
+
 	TagExtractor testExtractor, anotherExtractor;
 
 	private String rootDirectory = "/src/test/resources/edu/odu/cs/cs350/";
@@ -169,5 +173,32 @@ public class TagExtractorTest {
 		assertThat(aCopy.toString(), equalTo(testExtractor.toString()));
 	}
 
+	@Test
+	public void testTraverseFiles() throws CloneNotSupportedException, IOException {
+
+		File[] files = root.listFiles();
+
+		testExtractor.traverseFiles(files);
+
+		String string = testExtractor.getImages().toString();
+
+		assertThat(string, containsString("pic.jpg"));
+
+	}
+
+
+	@Test
+	public void testTraverseSubDirectories()
+			throws CloneNotSupportedException, IOException {
+
+		File[] files = subDirectoryTest.listFiles();
+
+		testExtractor.traverseFiles(files);
+
+		String string = testExtractor.getImages().toString();
+
+		assertThat(string, containsString("pic.jpg"));
+
+	}
 
 }
