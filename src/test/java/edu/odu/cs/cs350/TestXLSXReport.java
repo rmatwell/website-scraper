@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class TestXLSXReport {
 	
-	XLSXReport testXLSX, testDefault;
+	XLSXReport testXLSX, testDefaultC;
 	
 	private String analysisTime = "20190729-082547-summary";
 	private Website website;
@@ -22,7 +22,7 @@ public class TestXLSXReport {
 	@Before
 	public void setUp() {
 		
-		testDefault = new XLSXReport();
+		testDefaultC = new XLSXReport();
 		testXLSX = new XLSXReport(website, analysisTime);
 		
 	}
@@ -30,10 +30,10 @@ public class TestXLSXReport {
 	@Test
 	public void testResource() {
 		
-		assertThat(testDefault.getAnalysisTime(), is(""));
-		assertThat(testDefault.getFileName(), is(""));
-		assertThat(testDefault.toString(), containsString(""));
-		assertThat(testDefault, equalTo(testDefault));
+		assertThat(testDefaultC.getAnalysisTime(), is(""));
+		assertThat(testDefaultC.getFileName(), is(""));
+		assertThat(testDefaultC.toString(), containsString(""));
+		assertThat(testDefaultC, equalTo(testDefaultC));
 		
 	}
 	
@@ -48,7 +48,7 @@ public class TestXLSXReport {
 		assertThat(testXLSX.getWebsite(), is(website));
 		assertThat(testXLSX, instanceOf(XLSXReport.class));
 		assertThat(analysisTime, not(instanceOf(XLSXReport.class)));
-		assertNotEquals(testXLSX, testDefault);
+		assertNotEquals(testXLSX, testDefaultC);
 		
 		
 	}
