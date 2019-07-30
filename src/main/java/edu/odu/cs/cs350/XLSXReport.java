@@ -85,5 +85,20 @@ public class XLSXReport implements Cloneable {
 
 		this.analysisTime = analysisTime;
 	}
+	
+	@Override
+	public XLSXReport clone() throws CloneNotSupportedException{
+
+		XLSXReport aCopy = (XLSXReport)super.clone();
+
+		
+		aCopy.analysisTime = analysisTime;
+		aCopy.fileName = fileName;
+		aCopy.xlsx = xlsx;
+		aCopy.xlsxFile = xlsxFile;
+		aCopy.website = website;
+
+		return aCopy;
+	}
 
 }
