@@ -16,6 +16,7 @@ public class XLSXReport {
 		filename = "";
 		xlsx = "";
 		analysisTime = "";
+		
 
 	}
 
