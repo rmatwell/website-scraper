@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
 
+import org.apache.tika.Tika;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,7 +52,10 @@ public class TagExtractor implements Cloneable {
 	 */
 	private Set<Resource> scripts = new HashSet<Resource>();
 
-
+	/**
+	 * Tika object to determine MIME type.
+	 */
+	Tika tika = new Tika();
 
 	/**
 	 * One MiB is approximately (Byte/(1.04858e6)).
@@ -80,8 +84,40 @@ public class TagExtractor implements Cloneable {
 		this.setRootDirectory(rootDirectory);
 		this.setUserURLs(userURLs);
 		analysisTime="";
+	}
 
-		//TODO incomplete implementation
+
+	/**
+	 * Parses and strips HTML resources from file regardless of the file
+	 * extension.
+	 * 
+	 * @param file
+	 * @throws IOException
+	 */
+	public void extractResources(File file) throws IOException {
+
+		String mimeType = tika.detect(file);
+
+		//Determines if file is non-text, i.e. binary so that
+		//it is ignored.
+		if(mimeType.contains("text")) {
+			Document document;
+			document = Jsoup.parse(file,"UTF-8");
+
+			extractImageTags(document);
+			extractScriptTags(document);
+			extractLinkTags(document);
+		}
+	}
+
+
+	/**
+	 *	TODO Implement method to extract from "a" tags and classify as
+	 *	video, audio, archive, and other. Possibly using tika.detect().
+	 *
+	 * @param document
+	 */
+	public void extractHTMLTags(Document document) {
 
 	}
 
@@ -143,8 +179,7 @@ public class TagExtractor implements Cloneable {
 	/**
 	 * 	Starts at the root directory of the local Website and parses all files
 	 *  including the files of sub-directories.
-	 * 	Method to extract resources from file will be called in else branch of
-	 *  method when available.
+	 * 
 	 *  @param rootDirectory
 	 * @throws IOException
 	 */
@@ -159,18 +194,7 @@ public class TagExtractor implements Cloneable {
 				traverseFiles(file.listFiles());
 			} else
 			{
-
-				//TODO determine if file is non-text, i.e. binary so that
-				//it is ignored.
-
-				//Current file is converted to parsed JSoup document
-				Document document;
-				document = Jsoup.parse(file,"UTF-8");
-
-				//TODO create extractResource method that will include
-				//various extract methods for specific resources as well
-				//as their member variables such as path, size, foundOn.
-				extractImageTags(document);
+				extractResources(file);
 			}
 		}
 	}
