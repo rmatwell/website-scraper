@@ -46,13 +46,13 @@ public class TXTReport {
 
 	}
 
-	public void setFname(String analysisTime) {
+	public void setFileName(String analysisTime) {
 
 		this.fileName = analysisTime + ".txt";
 
 	}
 
-	public String getFname() {
+	public String getFileName() {
 
 		return fileName;
 
