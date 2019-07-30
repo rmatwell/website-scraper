@@ -51,5 +51,18 @@ public class TestXLSXReport {
 
 
 	}
+	
+	@Test
+	public void testSetFileName() {
+		
+		int oldHashCode = testXLSX.hashCode();
+
+		testXLSX.setFileName("20190729-082547-summary");
+
+		assertEquals("20190729-082547-summary.xlsx", testXLSX.getFileName());
+
+		assertNotEquals(oldHashCode, testXLSX.hashCode());
+		
+	}
 
 }
