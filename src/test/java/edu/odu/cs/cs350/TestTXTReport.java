@@ -16,10 +16,11 @@ public class TestTXTReport {
 	
 	TXTReport testTXT, testDefault;
 	
-	private String analysisTime = "20190724-113553-summary"
+	private String analysisTime = "20190724-113553-summary";
 	private Website website;
 	
-	@Before setUp() {
+	@Before 
+	public void setUp() {
 		
 		testDefault = new TXTReport();
 		testTXT = new TXTReport(website, analysisTime);
