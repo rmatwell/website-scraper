@@ -43,7 +43,7 @@ public class TestXLSXReport {
 		assertThat(testXLSX.getAnalysisTime(), is("20190729-082547-summary"));
 		
 		testXLSX.setFilename(analysisTime);
-		assertThat(testXLSX.getFileName(), is("20190729-082547-summary.xlsx"));
+		assertThat(testXLSX.getFilename(), is("20190729-082547-summary.xlsx"));
 		assertThat(testXLSX.toString(), containsString(""));
 		assertThat(testXLSX.getWebsite(), is(website));
 		assertThat(testXLSX, instanceOf(XLSXReport.class));
