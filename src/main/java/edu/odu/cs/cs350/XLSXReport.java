@@ -10,6 +10,14 @@ public class XLSXReport {
 	private String xlsx;
 	private FileOutputStream xlsxFile;
 	private Website website;
+	
+	public XLSXReport() {
+
+		filename = "";
+		xlsx = "";
+		analysisTime = "";
+
+	}
 
 	public XLSXReport(Website website, String analysisTime) {
 
