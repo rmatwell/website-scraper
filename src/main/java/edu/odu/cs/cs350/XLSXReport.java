@@ -3,7 +3,7 @@ package edu.odu.cs.cs350;
 import java.io.FileOutputStream;
 
 
-public class XLSXReport {
+public class XLSXReport implements Cloneable {
 
 	private String filename;
 	private String analysisTime;
