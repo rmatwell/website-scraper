@@ -10,11 +10,18 @@ public class WebsiteAnalysis
 	
 	//variables
 	
-	File userFilePath;
-	String fullUserFilePathName;
+	private File userFilePath;
+	private String fullUserFilePathName;
 	
-	HashSet<File> translatedUserURLs = new HashSet<File>();
-	String analysisTime;
+	private Website analysisSubject = new Website();
+	//TagExtractor extractor = new TagExtractor();
+	
+	private TXTReport txtWriter = new TXTReport();
+	private XLSXReport xlsxWriter = new XLSXReport();
+	private JSONReport jsonWriter = new JSONReport();
+	
+	private HashSet<File> translatedUserURLs = new HashSet<File>();
+	private String analysisTime;
 	
 	//constructors
 	
@@ -40,13 +47,13 @@ public class WebsiteAnalysis
 	
 	public void setUserFilePath(String input)
 	{
-
 		File inputPath = new File(input); 
 		
 		if(IsValidFilePath(inputPath) )
 		{
 			userFilePath = inputPath;
-			try {
+			try 
+			{
 				fullUserFilePathName = inputPath.getCanonicalPath();
 			} 
 			catch (IOException e) 
@@ -61,13 +68,14 @@ public class WebsiteAnalysis
 	}
 	
 	//determines whether the user's file path is valid (correctly formatted, exists)
-	public boolean IsValidFilePath(File path)
+	private boolean IsValidFilePath(File path)
 	{
-		
+		//if the path exists, we will use it
 		if(path.exists() && path.isDirectory() ) 
 		{
 			return true;	
 		}
+		//if the path does not exist, we won't use it, and we'll give the user an appropriate warning depending on the situation
 		else
 		{
 			if(!path.exists() )
@@ -76,9 +84,10 @@ public class WebsiteAnalysis
 			}
 			else if(!path.isDirectory() )
 			{
-			System.out.println("ERROR: '" + path.toString() + "' is not a directory. Please input a directory (not a file). ");
+				System.out.println("ERROR: '" + path.toString() + "' is not a directory. Please input a directory (not a file). ");
 			}
-		return false;
+			
+			return false;
 		}
 	}
 	
@@ -114,22 +123,24 @@ public class WebsiteAnalysis
 	
 	private HashSet<URL> removeBadURLs(String[] input)
 	{
-		List<String> badURLset = new ArrayList<String>();
+		List<String> badURLset = new ArrayList<String>(); //set of URLs that are not properly formatted and will not be included in analysis
 		
-		HashSet<URL> validSet = new HashSet<URL>();
+		HashSet<URL> validSet = new HashSet<URL>(); //set of properly formatted URLS
 		
+		//for each input
 		for(int i = 0 ; i < input.length ; i++)
 		{
 			try
 			{
-				validSet.add(new URL(input[i]) );
+				validSet.add(new URL(input[i]) ); //try to create a URL object from it and add it to the set
 			}
 			catch (MalformedURLException e)
 			{
-				badURLset.add(input[i] );
+				badURLset.add(input[i] ); //if it fails, do not include it in the set
 			}
 		}
 		
+		//warn the user about the malformed URLs
 		if(badURLset.size() > 0)
 		{
 			System.out.println("ERROR: The following URLs are malformed and will not be analyzed: ");
@@ -139,51 +150,49 @@ public class WebsiteAnalysis
 			}
 		}		
 		
+		//return the rest
 		return validSet;
 	}
 	
-	public HashSet<File> translateURLsToPath(HashSet<URL> input)
+	private HashSet<File> translateURLsToPath(HashSet<URL> input)
 	{
-		HashSet<File> translatedSet = new HashSet<File>();
+		HashSet<File> translatedSet = new HashSet<File>(); //the set of paths we will return at the end of the translation process 
 		
-		List<URL> outOfScopeSet = new ArrayList<URL>();
-		List<URL> nonexistantSet = new ArrayList<URL>();
+		List<URL> outOfScopeSet = new ArrayList<URL>(); //the set of paths that are outside of the directory the user specified
+		List<URL> nonexistantSet = new ArrayList<URL>(); //the set of paths that do not exist
 		
 		Iterator<URL> inputItr = input.iterator();
 		
+		//while there are still URLs to translate...
 		while(inputItr.hasNext())
 		{
 			URL inputURL = inputItr.next();
 			File translatedPath = convertURLToCanonicalPath(inputURL); 
-			
-			/*
-			try {
-				System.out.println(fullUserFilePathName + " " + translatedPath.getCanonicalPath() );
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			*/
-			
+		
+			//if that translated URL is in 'our' path
 			if(translatedPath.toString().startsWith(userFilePath.toString() ) )
 			{
+				//...and it exists..
 				if(translatedPath.exists() )
 				{
+					//add it to the set it return
 					translatedSet.add(translatedPath);
 				}
 				else
 				{
+					//if it doesn't exist, add it to the list we will warn the user about
 					nonexistantSet.add(inputURL);
 				}
-
 			}
 			else
 			{
+				//if its out of scope, add it to the OTHER list we will warn the user about
 				outOfScopeSet.add(inputURL);
 			}
 			
 		}
 		
+		//aformentioned user warnings
 		if(outOfScopeSet.size() > 0 )
 		{
 	
@@ -205,7 +214,7 @@ public class WebsiteAnalysis
 		return translatedSet;
 	}
 	
-	public File convertURLToCanonicalPath(URL input)
+	private File convertURLToCanonicalPath(URL input)
 	{
 		return new File(input.getPath().replaceFirst("/", "") );
 	}
@@ -232,6 +241,8 @@ public class WebsiteAnalysis
 	}
 	public void generateReports()
 	{
-		//take our resources and make the report writers use them
+		//txtWriter.doWriteFunction
+		//jsonWriter.doWriteFunction
+		//xlsxWriter.doWriteFunction
 	}
 }
