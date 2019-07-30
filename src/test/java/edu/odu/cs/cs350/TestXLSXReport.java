@@ -16,7 +16,7 @@ public class TestXLSXReport {
 	
 	XLSXReport testXLSX, testDefault;
 	
-	private String analysisTime;
+	private String analysisTime = "20190729-082547-summary";
 	private Website website;
 	
 	@Before
@@ -34,6 +34,22 @@ public class TestXLSXReport {
 		assertThat(testDefault.getFileName(), is(""));
 		assertThat(testDefault.toString(), containsString(""));
 		assertThat(testDefault, equalTo(testDefault));
+		
+	}
+	
+	@Test
+	public void testXLSXReport() {
+		
+		assertThat(testXLSX.getAnalysisTime(), is("20190729-082547-summary"));
+		
+		testXLSX.setFilename(analysisTime);
+		assertThat(testXLSX.getFileName(), is("20190729-082547-summary.xlsx"));
+		assertThat(testXLSX.toString(), containsString(""));
+		assertThat(testXLSX.getWebsite(), is(website));
+		assertThat(testXLSX, instanceOf(XLSXReport.class));
+		assertThat(analysisTime, not(instanceOf(XLSXReport.class)));
+		assertNotEquals(testXLSX, testDefault);
+		
 		
 	}
 	
