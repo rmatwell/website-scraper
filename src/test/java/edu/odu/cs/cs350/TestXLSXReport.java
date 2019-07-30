@@ -65,5 +65,20 @@ public class TestXLSXReport {
 		assertNotEquals(oldHashCode, testXLSX.hashCode());
 		
 	}
+	
+	@Test
+	public void testClone() throws CloneNotSupportedException {
+
+		testXLSX.setFileName(analysisTime);
+		XLSXReport aCopy = testXLSX.clone();
+
+		assertThat(aCopy.getAnalysisTime(), equalTo(testXLSX.getAnalysisTime()));
+		assertThat(aCopy.getFileName(), equalTo(testXLSX.getFileName()));
+		assertThat(aCopy.getWebsite(), equalTo(testXLSX.getWebsite()));
+		assertThat(aCopy.hashCode(), equalTo(testXLSX.hashCode()));
+		assertThat(aCopy, equalTo(testXLSX));
+		assertThat(aCopy.toString(), equalTo(testXLSX.toString()));
+
+	}
 
 }
