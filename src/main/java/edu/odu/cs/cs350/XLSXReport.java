@@ -93,7 +93,7 @@ public class XLSXReport implements Cloneable {
 
 		
 		aCopy.analysisTime = analysisTime;
-		aCopy.fileName = fileName;
+		aCopy.filename = filename;
 		aCopy.xlsx = xlsx;
 		aCopy.xlsxFile = xlsxFile;
 		aCopy.website = website;
