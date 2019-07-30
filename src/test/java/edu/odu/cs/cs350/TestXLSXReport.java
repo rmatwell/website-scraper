@@ -79,6 +79,7 @@ public class TestXLSXReport {
 		assertThat(aCopy, equalTo(testXLSX));
 		assertThat(aCopy.toString(), equalTo(testXLSX.toString()));
 
+		
 	}
 
 }
