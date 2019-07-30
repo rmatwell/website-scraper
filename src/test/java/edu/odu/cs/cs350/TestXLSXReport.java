@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
@@ -50,6 +51,19 @@ public class TestXLSXReport {
 		assertNotEquals(testXLSX, testDefaultC);
 
 
+	}
+	
+	@Test
+	public void testSetFileName() {
+		
+		int oldHashCode = testXLSX.hashCode();
+
+		testXLSX.setFileName("20190729-082547-summary");
+
+		assertEquals("20190729-082547-summary.xlsx", testXLSX.getFileName());
+
+		assertNotEquals(oldHashCode, testXLSX.hashCode());
+		
 	}
 
 }
