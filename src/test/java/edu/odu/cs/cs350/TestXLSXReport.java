@@ -31,7 +31,7 @@ public class TestXLSXReport {
 	public void testResource() {
 		
 		assertThat(testDefaultC.getAnalysisTime(), is(""));
-		assertThat(testDefaultC.getFileName(), is(""));
+		assertThat(testDefaultC.getFilename(), is(""));
 		assertThat(testDefaultC.toString(), containsString(""));
 		assertThat(testDefaultC, equalTo(testDefaultC));
 		
