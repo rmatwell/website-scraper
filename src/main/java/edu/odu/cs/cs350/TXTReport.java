@@ -7,19 +7,26 @@ import java.io.IOException;
 
 public class TXTReport {
 
-	// name of txt file
-	private String fname;
-	// time report was generated (for file name)
+	
+	private String fileName;
 	private String analysisTime;
 	private String txt;
 	private FileOutputStream txtFile;
 	private Website website;
+	
+	public TXTReport() {
+
+		fileName = "";
+		analysisTime ="";
+		txt = "";
+
+	}
 
 	public TXTReport(Website website, String analysisTime) {
 
 		this.setWebsite(website);
 		this.setAnalysisTime(analysisTime);
-		setFname(analysisTime);
+		setFileName(analysisTime);
 
 	}
 
@@ -41,13 +48,13 @@ public class TXTReport {
 
 	public void setFname(String analysisTime) {
 
-		this.fname = analysisTime + ".txt";
+		this.fileName = analysisTime + ".txt";
 
 	}
 
 	public String getFname() {
 
-		return fname;
+		return fileName;
 
 	}
 
@@ -75,6 +82,21 @@ public class TXTReport {
 	public void setAnalysisTime(String analysisTime) {
 
 		this.analysisTime = analysisTime;
+	}
+	
+	@Override
+	public TXTReport clone() throws CloneNotSupportedException{
+
+		TXTReport aCopy = (TXTReport)super.clone();
+
+		
+		aCopy.analysisTime = analysisTime;
+		aCopy.fileName = fileName;
+		aCopy.txt = txt;
+		aCopy.txtFile = txtFile;
+		aCopy.website = website;
+
+		return aCopy;
 	}
 
 }
