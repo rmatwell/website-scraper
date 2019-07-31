@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
 
-import org.apache.tika.Tika;
+import org.apache.tika;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,11 +24,7 @@ public class TagExtractor implements Cloneable {
 	/**
 	 * 	The time the analysis begins in a formatted string.
 	 */
-	private String analysisTime;
 
-	/**
-	 * 	The root directory of the Website.
-	 */
 	private String rootDirectory;
 
 	/**
