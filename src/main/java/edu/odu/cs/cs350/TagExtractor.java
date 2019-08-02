@@ -70,12 +70,12 @@ public class TagExtractor implements Cloneable {
     /**
      * One MiB is approximately (Byte/(1.04858e6)).
      */
-    private final static double BYTE_TO_MEBIBYTE = 1.04858*Math.pow(10,6);
+    private final double BYTE_TO_MEBIBYTE = 1.04858 * Math.pow(10, 6);
 
     /**
      * Used for rounding and formatting file size.
      */
-    private final static double ONE_HUNDRED = 100.0;
+    private final double ONE_HUNDRED = 100.0;
 
     /**
      * Prime number to use with hashcode function.
@@ -85,21 +85,22 @@ public class TagExtractor implements Cloneable {
     /**
      *  Initializes the tag extractor with the starting root directory along
      *  with user supplied URLs.
-     * 
+     *
      * @param rootDirectory
      * @param userURLs
      */
-    public TagExtractor(String rootDirectory, Set<URI> userURLs ) {
+    public TagExtractor(String rootDirectory, Set<URI> userURLs) {
         this.setRootDirectory(rootDirectory);
         this.setUserURLs(userURLs);
-        analysisTime="";
+        analysisTime = "";
     }
 
 
     /**
      * Parses and strips HTML resources from file regardless of the file
      * extension.
-     * 
+     *
+     * @param page
      * @param file
      * @throws IOException
      */
@@ -108,9 +109,9 @@ public class TagExtractor implements Cloneable {
         String mimeType = tika.detect(file);
 
         //Determines if this is a text file, all other types are ignored.
-        if(mimeType.contains("text")) {
+        if (mimeType.contains("text")) {
             Document document;
-            document = Jsoup.parse(file,"UTF-8");
+            document = Jsoup.parse(file, "UTF-8");
 
             extractImageTags(document);
             extractScriptTags(document);
@@ -127,7 +128,7 @@ public class TagExtractor implements Cloneable {
      *  TODO Implement method to extract from "a" tags and classify as
      *  video, audio, archive, and other. Possibly using tika.detect().
      *
-     * @param document
+     *@param document
      */
     public void extractAnchorTags(Document document) {
         Resource resource = new Resource();
@@ -161,7 +162,7 @@ public class TagExtractor implements Cloneable {
     /**
      * Extracts CSS elements from HTML document.
      * 
-     * @param document
+     *@param document
      */
     public void extractLinkTags(Document document) {
 
@@ -177,8 +178,8 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * 
-     * @param document
+     *
+     *@param document
      */
     public void extractImageTags(Document document) {
 
@@ -199,8 +200,8 @@ public class TagExtractor implements Cloneable {
      *  Starts at the root directory of the local Website and parses all files
      *  including the files of sub-directories.
      * 
-     *  @param rootDirectory
-     * @throws IOException
+     *@param rootDirectory
+     *@throws IOException
      */
     public void traverseFiles(File[] rootDirectory) throws IOException
     {
@@ -285,8 +286,8 @@ public class TagExtractor implements Cloneable {
         int rootDirectoryHash = rootDirectory.hashCode();
         int userURLsHash = userURLs.hashCode();
 
-        return PRIME_NUM_HASH * (analysisTimeHash + rootDirectoryHash +
-                userURLsHash);
+        return PRIME_NUM_HASH * (analysisTimeHash + rootDirectoryHash
+                + userURLsHash);
     }
 
     /*
@@ -314,24 +315,24 @@ public class TagExtractor implements Cloneable {
 
         TagExtractor rhs = (TagExtractor) obj;
 
-        boolean isEqual = analysisTime.equals(rhs.analysisTime)&&
-                rootDirectory.equals(rhs.rootDirectory) &&
-                userURLs.equals(rhs.userURLs);
+        boolean isEqual = analysisTime.equals(rhs.analysisTime)
+                && rootDirectory.equals(rhs.rootDirectory)
+                && userURLs.equals(rhs.userURLs);
 
         return isEqual;
     }
 
     /**
      * Takes the size of a file in Bytes and converts to MiB.
-     * 
-     * @param fileSize
+     *
+     *@param file
      * @return The file size in Mebibytes(MiB)
      */
     public double calculateMiB(File file) {
 
         long fileSize = file.length();
 
-        double sizeInMiB = fileSize/BYTE_TO_MEBIBYTE;
+        double sizeInMiB = fileSize / BYTE_TO_MEBIBYTE;
 
         return sizeInMiB;
 
@@ -340,8 +341,8 @@ public class TagExtractor implements Cloneable {
     /**
      * Takes the double type file size in MiB and rounds to the nearest
      * two digits as well as appending "MiB" to the end.
-     * 
-     * @param fileSize
+     *
+     *@param fileSize
      * @return The formatted file size
      */
     public String formatFileSize(double fileSize) {
@@ -366,7 +367,7 @@ public class TagExtractor implements Cloneable {
      *  Returns the set of stylesheets.
      * @return the set of stylesheets
      */
-    public Set<Resource> getLinks(){
+    public Set<Resource> getLinks() {
         return stylesheets;
     }
 
@@ -374,7 +375,7 @@ public class TagExtractor implements Cloneable {
      * Returns the set of scripts.
      * @return the set of scripts
      */
-    public Set<Resource> getScripts(){
+    public Set<Resource> getScripts() {
         return scripts;
     }
 
@@ -382,7 +383,7 @@ public class TagExtractor implements Cloneable {
      * Returns the set of images.
      * @return the set of images.
      */
-    public Set<Resource> getImages(){
+    public Set<Resource> getImages() {
         return images;
     }
 
@@ -396,7 +397,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Sets the set of data from anchors.
-     * @param anchors
+     *@param anchors
      */
     public void setAnchors(Set<Resource> anchors) {
         this.anchors = anchors;
