@@ -70,12 +70,12 @@ public class TagExtractor implements Cloneable {
     /**
      * One MiB is approximately (Byte/(1.04858e6)).
      */
-    private final double BYTE_TO_MEBIBYTE = 1.04858 * Math.pow(10, 6);
+    private static final double BYTE_TO_MEBIBYTE = 1.04858 * Math.pow(10, 6);
 
     /**
      * Used for rounding and formatting file size.
      */
-    private final double ONE_HUNDRED = 100.0;
+    private static final double ONE_HUNDRED = 100.0;
 
     /**
      * Prime number to use with hashcode function.
@@ -86,8 +86,9 @@ public class TagExtractor implements Cloneable {
      *  Initializes the tag extractor with the starting root directory along
      *  with user supplied URLs.
      *
-     * @param rootDirectory
-     * @param userURLs
+     * @param rootDirectory **The local root directory of the website**
+     * @param userURLs **The user supplied url(s) of the website that
+     *                      correspond with the local root directory**
      */
     public TagExtractor(String rootDirectory, Set<URI> userURLs) {
         this.setRootDirectory(rootDirectory);
@@ -100,9 +101,9 @@ public class TagExtractor implements Cloneable {
      * Parses and strips HTML resources from file regardless of the file
      * extension.
      *
-     * @param page
-     * @param file
-     * @throws IOException
+     * @param page **The webpage object that resources will be written to**
+     * @param file **The local html file**
+     * @throws IOException **Thrown if file is not valid**
      */
     public void extractResources(File file, Webpage page) throws IOException {
 
@@ -128,7 +129,7 @@ public class TagExtractor implements Cloneable {
      *  TODO Implement method to extract from "a" tags and classify as
      *  video, audio, archive, and other. Possibly using tika.detect().
      *
-     *@param document
+     *@param document **The Jsoup document created from the local file**
      */
     public void extractAnchorTags(Document document) {
         Resource resource = new Resource();
@@ -143,8 +144,8 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts JS elements from HTML document.
-     * 
-     * @param document
+     *
+     * @param document **The Jsoup document created from the local file**
      */
     public void extractScriptTags(Document document) {
 
@@ -161,8 +162,8 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts CSS elements from HTML document.
-     * 
-     *@param document
+     *
+     *@param document **The Jsoup document created from the local file**
      */
     public void extractLinkTags(Document document) {
 
@@ -178,8 +179,8 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     *
-     *@param document
+     *  Extracts image elements from HTML document.
+     *@param document **The Jsoup document created from the local file**
      */
     public void extractImageTags(Document document) {
 
@@ -200,8 +201,8 @@ public class TagExtractor implements Cloneable {
      *  Starts at the root directory of the local Website and parses all files
      *  including the files of sub-directories.
      * 
-     *@param rootDirectory
-     *@throws IOException
+     *@param rootDirectory **The root directory of the local website**
+     *@throws IOException **Thrown if file is invalid**
      */
     public void traverseFiles(File[] rootDirectory) throws IOException
     {
@@ -224,10 +225,10 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * 
-     * Creates a formatted String with the date the analysis started
-     * "yyyyMMdd-hhmmss'-summary'"
-     * 
+     *
+     * Creates a formatted String with the date the analysis started,
+     * "yyyyMMdd-hhmmss'-summary'".
+     *
      * @author hbrow
      */
     public void timeOfAnalysis() {
@@ -257,7 +258,8 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * @param userURLs
+     * @param userURLs **The URL website paths that corresspond with the local
+     *                      root directory**
      */
     public void setUserURLs(Set<URI> userURLs) {
         this.userURLs = userURLs;
@@ -271,7 +273,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * @param rootDirectory
+     * @param rootDirectory **The root directory of the local website**
      */
     public void setRootDirectory(String rootDirectory) {
         this.rootDirectory = rootDirectory;
@@ -325,7 +327,7 @@ public class TagExtractor implements Cloneable {
     /**
      * Takes the size of a file in Bytes and converts to MiB.
      *
-     *@param file
+     *@param file **A local file**
      * @return The file size in Mebibytes(MiB)
      */
     public double calculateMiB(File file) {
@@ -342,7 +344,7 @@ public class TagExtractor implements Cloneable {
      * Takes the double type file size in MiB and rounds to the nearest
      * two digits as well as appending "MiB" to the end.
      *
-     *@param fileSize
+     *@param fileSize **The size of the local file in bytes**
      * @return The formatted file size
      */
     public String formatFileSize(double fileSize) {
@@ -397,7 +399,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Sets the set of data from anchors.
-     *@param anchors
+     *@param anchors **Resource extracted from html anchor tag**
      */
     public void setAnchors(Set<Resource> anchors) {
         this.anchors = anchors;
