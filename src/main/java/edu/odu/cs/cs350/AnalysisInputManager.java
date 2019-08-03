@@ -3,13 +3,17 @@ package edu.odu.cs.cs350;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//The purpose of this class is to: 
-//	-Take input from the user
-//	-Validate that the user input enough input (at least 2 args) and display appropriate error message
-//	-Create a WebsiteAnalysis object (which controls the actual data storage, parsing, and reporting parts of the program
+/**
+ * AnalysisInputManager that takes the users input, constructs, and drives the analysis process.
+ * Takes multiple string inputs from the user.
+ */
 
 public class AnalysisInputManager 
 {	
+	
+	/**
+	 * Main function that takes user's input and starts the analysis using it
+	 */
 	public static void main(String[] args)
 	{
 		//"If no command line arguments are provided, an appropriate usage message should be displayed."
@@ -23,6 +27,10 @@ public class AnalysisInputManager
 		}
 	}
 	
+	
+	/**
+	 * Checks to ensure that the WebsiteAnalysis has enough data to begin, and then triggers the analysis to parse files and then generate reports
+	 */
 	public static void doAnalysis(String[] args)
 	{
 		WebsiteAnalysis analysis = new WebsiteAnalysis(args, getAnalysisTime() );
@@ -39,6 +47,10 @@ public class AnalysisInputManager
 		}
 	}
 	
+	
+	/**
+	 * Records and formats the time the Analysis was run at for report naming purposes
+	 */
 	public static String getAnalysisTime()
 	{
 		return new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date() );
