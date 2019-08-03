@@ -17,7 +17,7 @@ public class XLSXReport implements Cloneable {
 	private String xlsx;
 	private FileOutputStream xlsxFile;
 	private Website website;
-
+	private Webpage page;
 
 	/**
 	 * Empty XLSX report
@@ -39,9 +39,10 @@ public class XLSXReport implements Cloneable {
 	 */
 	public XLSXReport(Website website, String analysisTime) {
 
-		this.setWebsite(website);
+		this.setPage(page);
 		this.setAnalysisTime(analysisTime);
-		this.setFileName(analysisTime);
+		xlsx = "";
+		fileName = "";
 
 	}
 
@@ -114,6 +115,21 @@ public class XLSXReport implements Cloneable {
 
 		this.website = website;
 	}
+	
+    /**
+     * @return page The webpage object
+     */
+    public Webpage getPage() {
+        return page;
+    }
+
+
+    /**
+     * @param page Sets the webpage object
+     */
+    public void setPage(Webpage page) {
+        this.page = page;
+    }
 
 	/**
      * @return the analysisTime string
@@ -169,5 +185,6 @@ public class XLSXReport implements Cloneable {
 
         return isEqual;
     }
+    
 
 }
