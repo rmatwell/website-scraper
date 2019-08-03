@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * AnalysisInputManager that takes the users input, constructs, and drives the analysis process.
+ * AnalysisInputManager that takes the users input and constructs the analysis.
  * Takes multiple string inputs from the user.
  */
 
