@@ -45,7 +45,7 @@ public class WebsiteAnalysis
 	//determines whether or not the analysis has the information necessary to begin (i.e. date time, valid user path, valid user sites)
 	public boolean isReady()
 	{
-		return ( analysisSubject.getUserFilePath() != null && analysisTime != null && !analysisSubject.getUserURLs().isEmpty() );
+		return ( analysisSubject.getUserFilePath() != null && analysisTime != null && !analysisSubject.getPages().isEmpty() );
 	}
 	
 	public void parseFiles()

@@ -12,8 +12,6 @@ public class Website
 	private HashSet<Resource> resources = new HashSet<Resource>();
 	
 	private File userFilePath;
-	
-	private HashSet<URL> userURLs = new HashSet<URL>();
 
 	public Website()
 	{
@@ -24,10 +22,10 @@ public class Website
 	public Website(String[] args)
 	{
 		setUserFilePath(args[0]); //the first argument is the path
-		setUserURLs(Arrays.copyOfRange(args, 1 ,args.length) ); //second to N-th arguments are URLs that we need to make HTMLFiles of
+		setPages(Arrays.copyOfRange(args, 1 ,args.length) ); //second to N-th arguments are URLs that we need to make HTMLFiles of
 	}
 	
-	public void setUserURLs(String[] args)	
+	public void setPages(String[] args)
 	{
 		if(userFilePath != null)
 		{
@@ -40,14 +38,30 @@ public class Website
 				} 
 				catch (MalformedURLException e) 
 				{}
-				if(inputURL != null)
+				
+				if(isValidURL(inputURL) )
 				{
-					userURLs.add(inputURL);
+					File inputPath = convertURLToCanonicalPath(inputURL);
+					pages.add(new HTMLFile(inputPath,inputURL) );
 				}
 			}
 		}
 	}
 	
+	private boolean isValidURL(URL input)
+	{
+		return ( ( input != null ) && isInScope(input) && localCopyExists(input) );
+	}
+	
+	private boolean isInScope(URL input)
+	{			
+		return convertURLToCanonicalPath(input).toString().startsWith(userFilePath.toString() );
+	}
+	
+	private boolean localCopyExists(URL input)
+	{
+		return convertURLToCanonicalPath(input).exists();
+	}
 	
 	public void setUserFilePath(String input)
 	{
@@ -62,7 +76,6 @@ public class Website
 			//do nothing (user warnings handled in IsValidFilePath)
 		}
 	}
-
 	
 	//determines whether the user's file path is valid (correctly formatted, exists)
 	private boolean IsValidFilePath(File path)
@@ -102,11 +115,4 @@ public class Website
 	{
 		return pages;
 	}
-	
-	public HashSet<URL> getUserURLs()
-	{
-		return userURLs;
-	}
-	
-	
 }
