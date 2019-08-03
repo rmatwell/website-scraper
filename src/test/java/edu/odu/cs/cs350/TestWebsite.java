@@ -67,9 +67,9 @@ public class TestWebsite
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
+		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
-		assertThat(testSite.getPages().isEmpty(), is(false) );
+		assertThat(testSite.getUserURLs().isEmpty(), is(false) );
 	}
 	
 	@Test
@@ -80,7 +80,7 @@ public class TestWebsite
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 		
-		testSite.setPages(new String[]{"testdir1//testdir2" , "com.IamNotAWebSite.www"});
+		testSite.setUserURLs(new String[]{"testdir1//testdir2" , "com.IamNotAWebSite.www"});
 	
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 	}
@@ -94,7 +94,7 @@ public class TestWebsite
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
+		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 	}
@@ -108,7 +108,7 @@ public class TestWebsite
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test3" , "https://www.test.com/testing/test/test4"});
+		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test3" , "https://www.test.com/testing/test/test4"});
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 	}	

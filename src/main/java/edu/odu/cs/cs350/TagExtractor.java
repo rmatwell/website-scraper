@@ -15,6 +15,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.net.URL;
+
 /**
  *  HTML element extractor that utilizes Jsoup api to parse files and scrape.
  *
@@ -29,12 +31,12 @@ public class TagExtractor implements Cloneable {
     /**
      *  The root directory of the Website.
      */
-    private String rootDirectory;
+    private File rootDirectory;
 
     /**
      *  The variations of possible URL's for the same Website.
      */
-    private Set<URI> userURLs = new HashSet<URI>();
+    private HashSet<URL> userURLs = new HashSet<URL>();
 
     /**
      *  Set used to store image resources found by extractor.
@@ -90,9 +92,10 @@ public class TagExtractor implements Cloneable {
      * @param userURLs **The user supplied url(s) of the website that
      *                      correspond with the local root directory**
      */
-    public TagExtractor(String rootDirectory, Set<URI> userURLs) {
-        this.setRootDirectory(rootDirectory);
-        this.setUserURLs(userURLs);
+    
+    public TagExtractor(Website input) {
+        this.setRootDirectory(input.getUserFilePath());
+        this.setUserURLs(input.getUserURLs() );
         analysisTime = "";
     }
 
@@ -253,7 +256,7 @@ public class TagExtractor implements Cloneable {
     /**
      * @return the user entered URL variations for the Website.
      */
-    public Set<URI> getUserURLs() {
+    public Set<URL> getUserURLs() {
         return userURLs;
     }
 
@@ -261,21 +264,21 @@ public class TagExtractor implements Cloneable {
      * @param userURLs **The URL website paths that corresspond with the local
      *                      root directory**
      */
-    public void setUserURLs(Set<URI> userURLs) {
+    public void setUserURLs(HashSet<URL> userURLs) {
         this.userURLs = userURLs;
     }
 
     /**
      * @return the root directory of the Website.
      */
-    public String getRootDirectory() {
+    public File getRootDirectory() {
         return rootDirectory;
     }
 
     /**
      * @param rootDirectory **The root directory of the local website**
      */
-    public void setRootDirectory(String rootDirectory) {
+    public void setRootDirectory(File rootDirectory) {
         this.rootDirectory = rootDirectory;
     }
 
