@@ -26,12 +26,12 @@ public class Resource implements Cloneable {
     private String typeOfLink;
 
     /**
-     *  The url of the resource.
+     * 	The url of the resource.
      */
     private String url;
 
     /**
-     *  The webpage urls that the resource are found on.
+     * 	The webpage urls that the resource are found on.
      */
     private Set<String> usedOn = new HashSet<String>();
 
@@ -59,8 +59,8 @@ public class Resource implements Cloneable {
     /**
      * @param fileSize Size of the file
      * @param typeOfLink External, Internal, or intra-page link
-     * @param url **The url path of the resource**
-     * @param usedOn **The Webpage path(s) that the resource is found on**
+     * @param url
+     * @param usedOn
      */
     public Resource(double fileSize, String typeOfLink,
             String url, Set<String> usedOn) {
@@ -80,7 +80,7 @@ public class Resource implements Cloneable {
     }
 
     /**
-     * @param fileSize **The size of the internal resource**
+     * @param fileSize
      */
     public void setFileSize(double fileSize) {
         this.fileSize = fileSize;
@@ -128,6 +128,7 @@ public class Resource implements Cloneable {
 
     /**
      * @return usedOn
+     * the page the resource is found on
      */
     public Set<String> getUsedOn() {
         return usedOn;
@@ -135,8 +136,8 @@ public class Resource implements Cloneable {
 
     /**
      * Sets the url of the page the resource is found on.
-     *
-     * @param usedOn **The Webpage url path that the resource is found on**
+     * 
+     * @param usedOn
      */
     public void setUsedOn(String usedOn) {
         this.usedOn.add(usedOn);
@@ -182,6 +183,8 @@ public class Resource implements Cloneable {
                 && resource.typeOfLink.equals(typeOfLink)
                 && resource.url.equals(url)
                 && resource.usedOn.equals(usedOn);
+
+
     }
 
 
@@ -205,7 +208,7 @@ public class Resource implements Cloneable {
 
     /**
      * @return string
-     *
+     * 
      * Displays the contents of the Resource.
      *
      */

@@ -23,26 +23,25 @@ public class JSONReport implements Cloneable {
      */
     private String fileName;
 
-
     /**
-     *      The formatted time that the analysis began.
+     * 		The formatted time that the analysis began.
      */
     private String analysisTime;
 
     /**
-     *      The formatted JSON string created from the website
-     *      object.
+     * 		The formatted JSON string created from the website
+     * 		object.
      */
     private String json;
 
     /**
-     *      The file output stream that will write the formatted JSON
+     * 		The file output stream that will write the formatted JSON
      *      string to the file.
      */
     private FileOutputStream jsonFile;
 
     /**
-     *      The website object from which the JSON file will be
+     * 		The website object from which the JSON file will be
      *      generated.
      */
     private Website website;
@@ -54,12 +53,12 @@ public class JSONReport implements Cloneable {
     private Webpage page;
 
     /**
-     *      Prime number to use with hashcode function.
+     * 		Prime number to use with hashcode function.
      */
     private static final int PRIME_NUM_HASH = 31;
 
     /**
-     *      The empty JSON Report.
+     *  The empty JSON Report.
      */
     public JSONReport() {
 
@@ -73,8 +72,8 @@ public class JSONReport implements Cloneable {
     /**
      * JSONReport takes a webpage object and the time the analysis started
      * to created a formatted JSON file.
-     * @param page **The webpage object that will be converted to json**
-     * @param analysisTime **This is the time that the analysis began**
+     * @param page
+     * @param analysisTime
      */
     public JSONReport(Webpage page, String analysisTime) {
 
@@ -88,8 +87,8 @@ public class JSONReport implements Cloneable {
      * JSONReport takes a website object and the time the analysis started
      * to created a formatted JSON file.
      *
-     * @param website **The webpage object that will be converted to json**
-     * @param analysisTime **This is the time that the analysis began**
+     * @param website
+     * @param analysisTime
      */
     public JSONReport(Website website, String analysisTime) {
 
@@ -101,8 +100,8 @@ public class JSONReport implements Cloneable {
 
     /**
      * Creates formatted JSON string from a webpage.
-     *
-     * @param page **The Webpage object**
+     * 
+     * @param page
      * @return The formatted json string
      */
     public String writeJSON(Webpage page) {
@@ -147,11 +146,12 @@ public class JSONReport implements Cloneable {
      * whose contents are the formatted JSON string
      * from the website object.
      *
-     * @throws IOException **If filename already exists**
-     * @throws FileNotFoundException **If file does not exist**
+     * @throws IOException
+     * @throws FileNotFoundException
      */
     public void createJSONFile() throws IOException, FileNotFoundException {
 
+        //TODO implement try & catch sections for exceptions
         jsonFile = new FileOutputStream(fileName, true);
         jsonFile.write(json.getBytes(Charset.forName("UTF-8")));
         jsonFile.close();
@@ -160,7 +160,7 @@ public class JSONReport implements Cloneable {
 
     /**
      * Sets the file name with the formatted analysis time appended with .json.
-     * @param **analysisTime The formatted time that the analysis starts**
+     * @param analysisTime The formatted time that the analysis starts
      *
      */
     public void setFileName(String analysisTime) {
@@ -191,7 +191,7 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @param website **The website object**
+     * @param website
      *
      */
     public void setWebsite(Website website) {
@@ -206,7 +206,7 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @param analysisTime **The formatted time that the analysis started**
+     * @param analysisTime
      */
     public void setAnalysisTime(String analysisTime) {
         this.analysisTime = analysisTime;
@@ -214,12 +214,12 @@ public class JSONReport implements Cloneable {
 
     /*
      * Creates an identical copy of the JSONReport object
-     *
+     * 
      */
     @Override
-    public JSONReport clone() throws CloneNotSupportedException {
+    public JSONReport clone() throws CloneNotSupportedException{
 
-        JSONReport aCopy = (JSONReport) super.clone();
+        JSONReport aCopy = (JSONReport)super.clone();
 
         aCopy.analysisTime = analysisTime;
         aCopy.fileName = fileName;
@@ -233,7 +233,7 @@ public class JSONReport implements Cloneable {
 
     /*
      * Checks to see if JSONReport objects are equal based on string contents.
-     *
+     * 
      */
     @Override
     public boolean equals(Object obj) {
@@ -275,7 +275,7 @@ public class JSONReport implements Cloneable {
 
     /**
      * Sets the webpage object.
-     * @param page **The webpage object**
+     * @param page
      */
     public void setPage(Webpage page) {
         this.page = page;
