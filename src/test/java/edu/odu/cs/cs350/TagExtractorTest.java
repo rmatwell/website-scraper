@@ -28,17 +28,17 @@ import org.junit.Test;
  */
 public class TagExtractorTest {
 
-	private File file = new File("src\\test\\resources\\edu\\odu\\cs\\cs350\\test.html");
+	private File file = new File("src/test/resources/edu/odu/cs/cs350/test.html");
 
-	private File root = new File("src\\test\\resources\\edu\\odu\\cs\\cs350\\");
+	private File root = new File("src/test/resources/edu/odu/cs/cs350/");
 
-	private File subDirectoryTest= new File("src\\test\\resources\\edu\\odu\\cs\\");
+	private File subDirectoryTest= new File("src/test/resources/edu/odu/cs/");
 
 	TagExtractor testExtractor, anotherExtractor;
 
-	private String rootDirectory = "src\\test\\resources\\edu\\odu\\cs\\cs350\\";
+	private String rootDirectory = "/src/test/resources/edu/odu/cs/cs350/";
 
-	private String anotherRoot = "home\\system\\directory\\";
+	private String anotherRoot = "/home/system/directory/";
 
 	private String url1 = "https://www.test.com/test1";
 
@@ -52,8 +52,7 @@ public class TagExtractorTest {
 
 
 	@Before
-	public void setUp() throws URISyntaxException 
-	{
+	public void setUp() throws URISyntaxException {
 
 
 		urls.add(new URI(url1) );
@@ -61,9 +60,9 @@ public class TagExtractorTest {
 
 		anotherURL.add(new URI(url3));
 
-		testExtractor = new TagExtractor(new Website(new String[] {rootDirectory, url1, url2} ) );
+		testExtractor = new TagExtractor(rootDirectory, urls);
 
-		anotherExtractor = new TagExtractor(new Website(new String[] {anotherRoot, url3 } ) );
+		anotherExtractor = new TagExtractor(anotherRoot, anotherURL);
 	}
 
 	@Test
@@ -90,7 +89,7 @@ public class TagExtractorTest {
 		assertThat(testExtractor.getAnalysisTime(),
 				containsString("-summary"));
 		assertThat(testExtractor.toString(),
-				containsString("src\\test\\resources\\edu\\odu\\cs\\cs350 , "
+				containsString("/src/test/resources/edu/odu/cs/cs350/ , "
 						+ "[https://www.test.com/test2, "
 						+ "https://www.test.com/test1"));
 		assertThat(testExtractor, equalTo(testExtractor));
@@ -104,8 +103,7 @@ public class TagExtractorTest {
 	}
 
 	@Test
-	public void testNotEqualExtractors() 
-	{
+	public void testNotEqualExtractors() {
 		assertFalse(testExtractor.equals(anotherExtractor));
 	}
 

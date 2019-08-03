@@ -15,8 +15,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.net.URL;
-
 /**
  *  HTML element extractor that utilizes Jsoup api to parse files and scrape.
  *
@@ -31,12 +29,12 @@ public class TagExtractor implements Cloneable {
     /**
      *  The root directory of the Website.
      */
-    private File rootDirectory;
+    private String rootDirectory;
 
     /**
      *  The variations of possible URL's for the same Website.
      */
-    private HashSet<URL> userURLs = new HashSet<URL>();
+    private Set<URI> userURLs = new HashSet<URI>();
 
     /**
      *  Set used to store image resources found by extractor.
@@ -91,10 +89,9 @@ public class TagExtractor implements Cloneable {
      * @param rootDirectory
      * @param userURLs
      */
-    
-    public TagExtractor(Website input) {
-        this.setRootDirectory(input.getUserFilePath());
-        this.setUserURLs(input.getUserURLs() );
+    public TagExtractor(String rootDirectory, Set<URI> userURLs) {
+        this.setRootDirectory(rootDirectory);
+        this.setUserURLs(userURLs);
         analysisTime = "";
     }
 
@@ -255,28 +252,28 @@ public class TagExtractor implements Cloneable {
     /**
      * @return the user entered URL variations for the Website.
      */
-    public Set<URL> getUserURLs() {
+    public Set<URI> getUserURLs() {
         return userURLs;
     }
 
     /**
      * @param userURLs
      */
-    public void setUserURLs(HashSet<URL> userURLs) {
+    public void setUserURLs(Set<URI> userURLs) {
         this.userURLs = userURLs;
     }
 
     /**
      * @return the root directory of the Website.
      */
-    public File getRootDirectory() {
+    public String getRootDirectory() {
         return rootDirectory;
     }
 
     /**
      * @param rootDirectory
      */
-    public void setRootDirectory(File rootDirectory) {
+    public void setRootDirectory(String rootDirectory) {
         this.rootDirectory = rootDirectory;
     }
 
