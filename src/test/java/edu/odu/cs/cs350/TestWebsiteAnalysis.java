@@ -37,22 +37,7 @@ public class TestWebsiteAnalysis
 		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, "now" ); 
 		//it should be ready
 		assertThat(testAnalysis.isReady(), is(true) ); 
-		
-		 //make an analysis with bogus information
-		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/NOTREALDIR","https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, "now" );
-		//it should not be ready 
-		assertThat(testAnalysis.isReady(),is(false) ); 
-		
-		//make an analysis with one bad URL
-		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/notreal","https://www.test.com/testing/test/test2" }, "now" ); 
-		//it should be ready
-		assertThat(testAnalysis.isReady(),is(true) ); 
-		
-		//make an analysis with two bad URLs
-		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/notreal","https://www.test.com/testing/test/alsonotreal" }, "now" ); 
-		//it should not be ready
-		assertThat(testAnalysis.isReady(),is(false) ); 
-		
+				
 		//do not pass in time, all other information is valid
 		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, null ); 
 		//it should not be ready

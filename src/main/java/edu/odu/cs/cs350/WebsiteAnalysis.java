@@ -1,10 +1,13 @@
 package edu.odu.cs.cs350;
 
+import java.net.URI;
+import java.util.HashSet;
+import java.util.Set;
 public class WebsiteAnalysis 
 {
 	//variables
 	private Website analysisSubject = new Website();
-	//TagExtractor extractor;
+	TagExtractor extractor;
 	
 	private String analysisTime;
 	
@@ -45,11 +48,13 @@ public class WebsiteAnalysis
 	//determines whether or not the analysis has the information necessary to begin (i.e. date time, valid user path, valid user sites)
 	public boolean isReady()
 	{
-		return ( analysisSubject.getUserFilePath() != null && analysisTime != null && !analysisSubject.getPages().isEmpty() );
+		return ( analysisSubject.getUserFilePath() != null && analysisTime != null && !analysisSubject.getUserURLs().isEmpty() );
 	}
 	
 	public void parseFiles()
 	{
+		
+		extractor = new TagExtractor(analysisSubject.getUserFilePath().toString() , analysisSubject.getUserURLsAsURI() );
 		//make tag extractor do things to the HTMLFiles in Website to make Resources
 	}
 	public void generateReports()
