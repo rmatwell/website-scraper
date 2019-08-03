@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class XLSXReport implements Cloneable {
 
-	private String filename;
+	private String fileName;
 	private String analysisTime;
 	private String xlsx;
 	private FileOutputStream xlsxFile;
@@ -24,7 +24,7 @@ public class XLSXReport implements Cloneable {
 	 */
 	public XLSXReport() {
 
-		filename = "";
+		fileName = "";
 		analysisTime ="";
 		xlsx = "";
 
@@ -78,7 +78,7 @@ public class XLSXReport implements Cloneable {
      */
 	public void setFileName(String analysisTime) {
 
-		filename = analysisTime + ".xlsx";
+		fileName = analysisTime + ".xlsx";
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class XLSXReport implements Cloneable {
      */
 	public String getFileName() {
 
-		return filename;
+		return fileName;
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class XLSXReport implements Cloneable {
 		this.analysisTime = analysisTime;
 	}
 
-	/**
+	/*
 	 * Creates a copy of the XLSX object.
 	 */
 	@Override
@@ -141,12 +141,33 @@ public class XLSXReport implements Cloneable {
 
 		
 		aCopy.analysisTime = analysisTime;
-		aCopy.filename = filename;
+		aCopy.fileName = fileName;
 		aCopy.xlsx = xlsx;
 		aCopy.xlsxFile = xlsxFile;
 		aCopy.website = website;
 
 		return aCopy;
 	}
+	
+    /*
+     * Checks if XLSXReport objects are equal.
+     * 
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        if (!(obj instanceof XLSXReport))
+        {
+            return false;
+        }
+
+        XLSXReport rhs = (XLSXReport) obj;
+
+        boolean isEqual = analysisTime.equals(rhs.analysisTime)
+                && fileName.equals(rhs.fileName)
+                && xlsx.equals(rhs.xlsx);
+
+        return isEqual;
+    }
 
 }
