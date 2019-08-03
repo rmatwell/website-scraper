@@ -18,6 +18,7 @@ public class XLSXReport implements Cloneable {
 	private FileOutputStream xlsxFile;
 	private Website website;
 	private Webpage page;
+	private static final int PRIME_NUM_HASH = 31;
 
 	/**
 	 * Empty XLSX report
@@ -184,6 +185,17 @@ public class XLSXReport implements Cloneable {
                 && xlsx.equals(rhs.xlsx);
 
         return isEqual;
+    }
+    
+    /*
+     * Creates hashcode 
+     */
+    @Override
+    public int hashCode() {
+        int xlsxHash = xlsx.hashCode();
+        int fileNameHash = fileName.hashCode();
+
+        return PRIME_NUM_HASH * (xlsxHash + fileNameHash);
     }
     
 
