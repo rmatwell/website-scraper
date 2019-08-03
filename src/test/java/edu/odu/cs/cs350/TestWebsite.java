@@ -67,49 +67,30 @@ public class TestWebsite
 		
 		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
 		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
+		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
-		assertThat(testSite.getPages().isEmpty(), is(false) );
+		assertThat(testSite.getUserURLs().isEmpty(), is(false) );
 	}
 	
 	@Test
-	public void TestSetUserURLsInvalid()
+	public void TestURLtoURI()
 	{
 		Website testSite = new Website();
 		testSite.setUserFilePath("testing/test");
+		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
+		HashSet<URI> testURIset = new HashSet<URI>();
+		try 
+		{
+			testURIset.add(new URI("https://www.test.com/testing/test/test1") );
+			testURIset.add(new URI("https://www.test.com/testing/test/test2") );
+		} 
+		catch (URISyntaxException e) 
+		{}
 		
-		testSite.setPages(new String[]{"testdir1//testdir2" , "com.IamNotAWebSite.www"});
-	
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
-	}
-	
-	@Test
-	public void TestSetUserURLsOutOfPath()
-	{
-		//setup
-		Website testSite = new Website();
-		testSite.setUserFilePath("testing/nottest");
-		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
-		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
-		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
-	}
+		assertThat(testSite.getUserURLsAsURI(), is(testURIset) );
 
-	@Test
-	public void TestSetUserURLsNonExistant()
-	{
-		//setup
-		Website testSite = new Website();
-		testSite.setUserFilePath("testing/test");
+
 		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
-		
-		testSite.setPages(new String[]{"https://www.test.com/testing/test/test3" , "https://www.test.com/testing/test/test4"});
-		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
-	}	
+	}
 }
