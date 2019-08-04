@@ -70,12 +70,12 @@ public class TagExtractor implements Cloneable {
     /**
      * One MiB is approximately (Byte/(1.04858e6)).
      */
-    private final double BYTE_TO_MEBIBYTE = 1.04858 * Math.pow(10, 6);
+    private static final double BYTE_TO_MEBIBYTE = 1.04858 * Math.pow(10, 6);
 
     /**
      * Used for rounding and formatting file size.
      */
-    private final double ONE_HUNDRED = 100.0;
+    private static final double ONE_HUNDRED = 100.0;
 
     /**
      * Prime number to use with hashcode function.
@@ -143,7 +143,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts JS elements from HTML document.
-     * 
+     *
      * @param document **The Jsoup document of the local file**
      */
     public void extractScriptTags(Document document) {
@@ -161,7 +161,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts CSS elements from HTML document.
-     * 
+     *
      *@param document **The Jsoup document of the local file**
      */
     public void extractLinkTags(Document document) {
@@ -213,17 +213,21 @@ public class TagExtractor implements Cloneable {
      * @return Returns either internal, intrapage, or external.
      * @throws IOException **Thrown if current file is invalid**
      */
-    public String classifyURL(File currentFile, String rootDirectory, String path) throws IOException {
-        if(path.contains(currentFile.getCanonicalPath())&&path.contains("#"))
+    public String classifyURL(File currentFile, String rootDirectory,
+            String path) throws IOException {
+        if (path.contains(currentFile.getCanonicalPath())
+                && path.contains("#"))
         {
             return "intra-page";
         }
-        else if(path.contains(rootDirectory))
+        else if (path.contains(rootDirectory))
         {
             return "internal";
         }
         else
+        {
             return "external";
+        }
 
     }
 
@@ -231,7 +235,7 @@ public class TagExtractor implements Cloneable {
     /**
      *  Starts at the root directory of the local Website and parses all files
      *  including the files of sub-directories.
-     * 
+     *
      *@param rootDirectory **The local root site**
      *@throws IOException **Thrown if file is invalid**
      */
@@ -256,10 +260,10 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * 
+     *
      * Creates a formatted String with the date the analysis started
-     * "yyyyMMdd-hhmmss'-summary'"
-     * 
+     * "yyyyMMdd-hhmmss'-summary'".
+     *
      * @author hbrow
      */
     public void timeOfAnalysis() {
