@@ -8,12 +8,12 @@ import java.util.Set;
 /**
  * Webpage object that comprised of information about resources located from a
  * local HTML file.
- * 
+ *
  */
 public class Webpage {
 
     /**
-     * 	The local path of the Webpage file.
+     * The local path of the Webpage file.
      */
     private String path;
 
@@ -61,12 +61,14 @@ public class Webpage {
 
     /**
      * Creates a Webpage object set with the url path to the local file.
+     * @param path **The url path of the webpage**
      */
     public Webpage(String path) {
         this.path = path;
     }
 
     /**
+     * Gets the amount of local and external images.
      * @return The count of local and external images.
      */
     public Map<String, Integer> getImageCount() {
@@ -74,10 +76,11 @@ public class Webpage {
     }
 
     /**
-     * @param imageCount
+     * Sets the amount of images on the webpage.
+     * @param imageCount **The total number of images, local and external**
      */
     public void setImageCount(Map<String, Integer> imageCount) {
-        this.imageCount=imageCount;
+        this.imageCount = imageCount;
     }
 
     /**

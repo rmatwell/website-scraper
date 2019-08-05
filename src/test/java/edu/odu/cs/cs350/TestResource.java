@@ -119,8 +119,8 @@ public class TestResource {
         defaultConstruct.setTypeOfLink("invalid");
         // testing that "invalid" is not a valid option for type of link
         assertThat(defaultConstruct.getTypeOfLink(), is(not("invalid")));
-        defaultConstruct.setTypeOfLink("internal");
-        assertThat(defaultConstruct.getTypeOfLink(), is("internal"));
+        defaultConstruct.setTypeOfLink("local");
+        assertThat(defaultConstruct.getTypeOfLink(), is("local"));
 
         int finalHash = defaultConstruct.hashCode();
         assertThat(initialHash, is(not(finalHash)));
@@ -129,7 +129,7 @@ public class TestResource {
         assertThat(defaultConstruct.getUrl(), is(""));
         assertThat(defaultConstruct.getUsedOn().isEmpty(),is(true));
         assertThat(defaultConstruct.toString(),
-                containsString("0,internal,,"));
+                containsString("0,local,,"));
         assertThat(defaultConstruct, equalTo(defaultConstruct));
 
         // testing nonDefault
@@ -234,7 +234,7 @@ public class TestResource {
     public void testClone() throws CloneNotSupportedException {
 
         defaultConstruct.setFileSize(10.2);
-        defaultConstruct.setTypeOfLink("internal");
+        defaultConstruct.setTypeOfLink("local");
         defaultConstruct.setUrl("style.css");
         defaultConstruct.setUrl("c:/");
 

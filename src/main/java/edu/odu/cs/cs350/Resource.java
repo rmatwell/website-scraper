@@ -101,7 +101,7 @@ public class Resource implements Cloneable {
      * sets the type of link to external, internal, or intra-page
      */
     public void setTypeOfLink(String typeOfLink) {
-        if (typeOfLink.equals("internal") || typeOfLink.equals("external")
+        if (typeOfLink.equals("local") || typeOfLink.equals("external")
                 || typeOfLink.equals("intrapage")) {
             this.typeOfLink = typeOfLink;
         }

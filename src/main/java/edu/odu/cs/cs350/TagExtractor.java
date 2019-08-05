@@ -3,9 +3,11 @@ package edu.odu.cs.cs350;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -29,12 +31,24 @@ public class TagExtractor implements Cloneable {
     /**
      *  The root directory of the Website.
      */
-    private String rootDirectory;
+    private URI rootDirectory;
+
+    /**
+     * The path to the local root directory of the website.
+     */
+    private String rootToPath;
 
     /**
      *  The variations of possible URL's for the same Website.
      */
     private Set<URI> userURLs = new HashSet<URI>();
+
+    private Iterator<URI> itr;
+
+    /**
+     * A set of one or more webpage urls that correspond to the local file.
+     */
+    private Set<URI> webpageURLs = new HashSet<URI>();
 
     /**
      *  Set used to store image resources found by extractor.
@@ -50,6 +64,13 @@ public class TagExtractor implements Cloneable {
      *  Set used to store CSS resources found by extractor.
      */
     private Set<Resource> scripts = new HashSet<Resource>();
+
+    /**
+     * A file array originating at the local root path.
+     */
+    private File[] pathToRoot;
+
+    private URI currentLocal;
 
     /**
      *  Set used to store anchor tag
@@ -87,12 +108,17 @@ public class TagExtractor implements Cloneable {
      *  with user supplied URLs.
      *
      * @param rootDirectory **The local root site**
-     * @param userURLs **The website urls that correspond to the local root**
+     * @param userURLs **The website urls that correspond to the local root
+     * @throws URISyntaxException **
      */
-    public TagExtractor(String rootDirectory, Set<URI> userURLs) {
-        this.setRootDirectory(rootDirectory);
+    public TagExtractor(String rootToPath, Set<URI> userURLs) throws URISyntaxException {
+
+        rootDirectory = new URI(rootToPath);
+
         this.setUserURLs(userURLs);
         analysisTime = "";
+        pathToRoot = new File(rootDirectory.getPath()).listFiles();
+
     }
 
 
@@ -102,9 +128,10 @@ public class TagExtractor implements Cloneable {
      *
      * @param page **The webpage file**
      * @param file **The local file containing html resources**
-     * @throws IOException **Thrown if file is invalid**
+     * @throws IOException **Thrown if file is invalid
+     * @throws URISyntaxException **
      */
-    public void extractResources(File file, Webpage page) throws IOException {
+    public void extractResources(File file, Webpage page) throws IOException, URISyntaxException {
 
         String mimeType = tika.detect(file);
 
@@ -128,25 +155,29 @@ public class TagExtractor implements Cloneable {
      *  TODO Implement method to extract from "a" tags and classify as
      *  video, audio, archive, and other. Possibly using tika.detect().
      *
-     *@param document **The Jsoup document of the local file**
+     *@param document **The Jsoup document of the local file
+     * @throws URISyntaxException **
      */
-    public void extractAnchorTags(Document document) {
+    public void extractAnchorTags(Document document) throws URISyntaxException {
         Resource resource = new Resource();
         Elements links = document.select("a");
 
         for (Element link : links) {
             String path = link.attr("href");
             resource.setUrl(path);
+            translateURL(resource);
             anchors.add(resource);
+
         }
     }
 
     /**
      * Extracts JS elements from HTML document.
      *
-     * @param document **The Jsoup document of the local file**
+     * @param document **The Jsoup document of the local file
+     * @throws URISyntaxException **
      */
-    public void extractScriptTags(Document document) {
+    public void extractScriptTags(Document document) throws URISyntaxException {
 
         Resource resource = new Resource();
         Elements links = document.select("script");
@@ -154,6 +185,7 @@ public class TagExtractor implements Cloneable {
         for (Element link : links) {
             String path = link.attr("src");
             resource.setUrl(path);
+            translateURL(resource);
             scripts.add(resource);
         }
 
@@ -162,9 +194,10 @@ public class TagExtractor implements Cloneable {
     /**
      * Extracts CSS elements from HTML document.
      *
-     *@param document **The Jsoup document of the local file**
+     *@param document **The Jsoup document of the local file
+     * @throws URISyntaxException **
      */
-    public void extractLinkTags(Document document) {
+    public void extractLinkTags(Document document) throws URISyntaxException {
 
         Resource resource = new Resource();
         Elements links = document.select("link");
@@ -172,6 +205,7 @@ public class TagExtractor implements Cloneable {
         for (Element link : links) {
             String path = link.attr("href");
             resource.setUrl(path);
+            translateURL(resource);
             stylesheets.add(resource);
         }
 
@@ -179,9 +213,10 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts image elements from HTML document.
-     *@param document **The Jsoup document of the local file**
+     *@param document **The Jsoup document of the local file
+     * @throws URISyntaxException **
      */
-    public void extractImageTags(Document document) {
+    public void extractImageTags(Document document) throws URISyntaxException {
 
         Resource resource = new Resource();
         Elements links = document.select("img");
@@ -189,6 +224,7 @@ public class TagExtractor implements Cloneable {
         for (Element link : links) {
             String path = link.attr("src");
             resource.setUrl(path);
+            translateURL(resource);
             images.add(resource);
 
         }
@@ -198,35 +234,60 @@ public class TagExtractor implements Cloneable {
     /**
      * Translates a website link url path to the local directory path.
      * @return The translated local path.
+     * @throws URISyntaxException
      */
-    public String translateURL() {
-        //TODO Implement translation of website url to local canonical path.
-        return "";
+    public void translateURL(Resource resource) throws URISyntaxException {
+
+        String path = resource.getUrl();
+
+        if(path.contains("./") || path.contains("../")) {
+            URI newPath = currentLocal.resolve(path);
+            resource.setUrl(newPath.toString());
+            resource.setTypeOfLink("local");
+        }
+        else if(path.contains("https://")) {
+            itr = userURLs.iterator();
+            while(itr.hasNext()) {
+                URI userURL = itr.next();
+
+                if(path.contains(userURL.toString())) {
+                    URI resourcePath = new URI(path);
+                    URI relative = userURL.relativize(resourcePath);
+                    resource.setUrl(currentLocal.resolve(relative).toString());
+                    resource.setTypeOfLink("local");
+                }
+
+                else {
+                    resource.setTypeOfLink("external");
+                }
+
+            }
+
+        }
+
+        else if (path.contains("#")) {
+            resource.setTypeOfLink("intrapage");
+        }
+
+        else {
+            URI newPath1 = currentLocal.resolve(path);
+            resource.setUrl(newPath1.toString());
+            resource.setTypeOfLink("local");
+        }
+
     }
 
-    /**
-     * Determines if a given extracted resource URL is internal, intra-page,
-     * or external.
-     * @param currentFile **The current webpage file**
-     * @param rootDirectory **The local site root**
-     * @param path **The url path of the extracted resource**
-     * @return Returns either internal, intrapage, or external.
-     * @throws IOException **Thrown if current file is invalid**
-     */
-    public String classifyURL(File currentFile, String rootDirectory,
-            String path) throws IOException {
-        if (path.contains(currentFile.getCanonicalPath())
-                && path.contains("#"))
-        {
-            return "intra-page";
+    public void matchWebpageWithLocal(URI currentLocal) {
+        if (!webpageURLs.isEmpty()) {
+            webpageURLs.clear();
         }
-        else if (path.contains(rootDirectory))
+        URI relative = rootDirectory.relativize(currentLocal);
+
+        itr = userURLs.iterator();
+
+        while(itr.hasNext())
         {
-            return "internal";
-        }
-        else
-        {
-            return "external";
+            webpageURLs.add((itr.next().resolve(relative)));
         }
 
     }
@@ -237,20 +298,23 @@ public class TagExtractor implements Cloneable {
      *  including the files of sub-directories.
      *
      *@param rootDirectory **The local root site**
-     *@throws IOException **Thrown if file is invalid**
+     *@throws IOException **Thrown if file is invalid
+     * @throws URISyntaxException **
      */
-    public void traverseFiles(File[] rootDirectory) throws IOException
+    public void traverseFiles(File[] pathToRoot) throws IOException, URISyntaxException
     {
-        for (File file : rootDirectory)
+        for (File file : this.pathToRoot)
         {
             if (file.isDirectory())
             {
-                //Calls method again if current "file" is a directory to
-                //traverse sub-directory.
+                //Recursive call if current location is sub-directory.
+
                 traverseFiles(file.listFiles());
             } else
             {
-                page = new Webpage(file.getAbsolutePath());
+                currentLocal = new URI(file.getPath());
+                page = new Webpage(file.getPath());
+                matchWebpageWithLocal(currentLocal);
                 extractResources(file, page);
 
                 //TODO method to push Webpage into a set contained on Website.
@@ -306,7 +370,7 @@ public class TagExtractor implements Cloneable {
      * Gets the local root site of the website.
      * @return the root directory of the Website.
      */
-    public String getRootDirectory() {
+    public URI getRootDirectory() {
         return rootDirectory;
     }
 
@@ -314,7 +378,7 @@ public class TagExtractor implements Cloneable {
      * Sets the local root site.
      * @param rootDirectory **The local root site**
      */
-    public void setRootDirectory(String rootDirectory) {
+    public void setRootDirectory(URI rootDirectory) {
         this.rootDirectory = rootDirectory;
     }
 
@@ -442,6 +506,20 @@ public class TagExtractor implements Cloneable {
      */
     public void setAnchors(Set<Resource> anchors) {
         this.anchors = anchors;
+    }
+
+
+    public Set<URI> getWebpageURLs() {
+        return webpageURLs;
+    }
+
+
+    public void setWebpageURLs(Set<URI> webpageURLs) {
+        this.webpageURLs = webpageURLs;
+    }
+
+    public File[] getPathToRoot() {
+        return pathToRoot;
     }
 
 }
