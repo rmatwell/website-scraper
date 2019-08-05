@@ -1,16 +1,17 @@
 package edu.odu.cs.cs350;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import org.junit.Test;
+//import org.junit.Before;
+
+import static org.hamcrest.Matchers.*;
+//import static org.hamcrest.Matchers.closeTo;
 
 public class TestTXTReport {
 	
@@ -28,20 +29,17 @@ public class TestTXTReport {
 	}
 	
 	@Test
-	public void testResource() {
-		
-		assertThat(testDefault.getAnalysisTime(), is(""));
-		assertThat(testDefault.getFileName(), is(""));
+	public void testDefaultConstructor() 
+	{
+		assertNull(testDefault.getFileName());
 		assertThat(testDefault.toString(), containsString(""));
 		assertThat(testDefault, equalTo(testDefault));
-		
 	}
 	
 	@Test
-	public void testTXTReport() {
+	public void testNonDefaultConstructor() 
+	{
 		
-		assertThat(testTXT.getAnalysisTime(), is("20190724-113553-summary"));
-
 		testTXT.setFileName(analysisTime);
 		assertThat(testTXT.getFileName(), is("20190724-113553-summary.txt"));
 		assertThat(testTXT.toString(), containsString(""));
@@ -53,18 +51,19 @@ public class TestTXTReport {
 	}
 	
 	@Test
-	public void testSetFileName() {
-		
-		int oldHashCode = testTXT.hashCode();
+	public void testSetFileName() 
+	{
 
+		assertThat(testTXT.getFileName(), is(analysisTime + ".txt"));
+		
 		testTXT.setFileName("20190724-113553-summary");
 
 		assertEquals("20190724-113553-summary.txt", testTXT.getFileName());
-
-		assertNotEquals(oldHashCode, testTXT.hashCode());
 		
 	}
 	
+	//removing this test, as we do not need to clone the txt writer at any point in time.
+	/*
 	@Test
 	public void testClone() throws CloneNotSupportedException {
 
@@ -79,5 +78,6 @@ public class TestTXTReport {
 		assertThat(aCopy, equalTo(testTXT));
 		
 	}
+	*/
 }
 	

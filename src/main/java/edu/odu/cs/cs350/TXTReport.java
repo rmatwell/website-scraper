@@ -4,34 +4,52 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * TXTReport handles creating the text report, which contains a list of images and their sizes.
+ */
+public class TXTReport 
+{
 
-public class TXTReport {
-
-	
+	/**
+	 * The name of the file: should be the analysis time.
+	 */
 	private String fileName;
-	private String analysisTime;
-	private String txt;
+
+	/**
+	 * Handles the writing of the TXT file.
+	 */
 	private FileOutputStream txtFile;
+	
+	/**
+	 * The Website object contains the resources (images) to be reported on
+	 */
 	private Website website;
 	
-	public TXTReport() {
-
-		fileName = "";
-		analysisTime ="";
-		txt = "";
+	/**
+	 * Default constructor
+	 */
+	public TXTReport() 
+	{
 
 	}
 
-	public TXTReport(Website website, String analysisTime) {
+	/**
+	 * Non-default constructor, used by WebsiteAnalysis
+	 */
+	public TXTReport(Website website, String analysisTime) 
+	{
 
 		this.setWebsite(website);
-		this.setAnalysisTime(analysisTime);
 		setFileName(analysisTime);
 
 	}
 
-	public String writeTXT(Website website) {
-
+	/**
+	 * Writes the data from the Website's resources to our TXT file
+	 */
+	public String writeTXT(Website website) 
+	{
+		String txt = "";
 		//TODO txt = TxtWriter.objectToTxt(website);
 
 		//TODO sort pages lexicographically
@@ -40,57 +58,78 @@ public class TXTReport {
 
 	}
 
-	public void createTxtFile() throws Exception, IOException, FileNotFoundException {
+	/**
+	 * Creates the text file we need to write to
+	 */
+	public void createTxtFile() throws Exception, IOException, FileNotFoundException 
+	{
 
 
 
 	}
 
-	public void setFileName(String analysisTime) {
+	
+	/**
+	 * Sets the filename of our txt file
+	 */
+	public void setFileName(String analysisTime) 
+	{
 
 		this.fileName = analysisTime + ".txt";
 
 	}
 
-	public String getFileName() {
+	
+	/**
+	 * Returns the filename of our txt file
+	 */
+	public String getFileName()
+	{
 
 		return fileName;
 
 	}
 
+	
+	//I see no reason that we actually need to get a toString() of the TXT reporter, so I'm commenting it out -Jason
+	/*
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 
 		return txt;
 	}
+	*/
+	
+	
+	/**
+	 * Returns the Website object we will get image resources from 
+	 */
 
-	public Website getWebsite() {
-
+	public Website getWebsite() 
+	{
 		return website;
 	}
 
-	public void setWebsite(Website website) {
-
+	
+	/**
+	 * Sets the Website object we will get image resources from 
+	 */
+	
+	public void setWebsite(Website website) 
+	{
 		this.website = website;
 	}
-
-	public String getAnalysisTime() {
-
-		return analysisTime;
-	}
-
-	public void setAnalysisTime(String analysisTime) {
-
-		this.analysisTime = analysisTime;
-	}
 	
+	//I see no reason that we actually need to clone the TXTReport object, so I'm commenting it out -Jason
+	/*
 	@Override
-	public TXTReport clone() throws CloneNotSupportedException{
+	public TXTReport clone() throws CloneNotSupportedException
+	{
 
 		TXTReport aCopy = (TXTReport)super.clone();
 
 		
-		aCopy.analysisTime = analysisTime;
 		aCopy.fileName = fileName;
 		aCopy.txt = txt;
 		aCopy.txtFile = txtFile;
@@ -98,5 +137,6 @@ public class TXTReport {
 
 		return aCopy;
 	}
+	*/
 
 }
