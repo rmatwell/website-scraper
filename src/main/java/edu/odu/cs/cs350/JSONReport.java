@@ -115,7 +115,6 @@ public class JSONReport implements Cloneable {
 
         json = JsonWriter.objectToJson(page, jsonArgs);
 
-        System.out.println(json);
 
         return json;
     }

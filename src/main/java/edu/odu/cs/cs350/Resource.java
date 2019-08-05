@@ -102,7 +102,7 @@ public class Resource implements Cloneable {
      */
     public void setTypeOfLink(String typeOfLink) {
         if (typeOfLink.equals("local") || typeOfLink.equals("external")
-                || typeOfLink.equals("intrapage")) {
+                || typeOfLink.equals("intra-page") || typeOfLink.equals("intra-site")) {
             this.typeOfLink = typeOfLink;
         }
     }

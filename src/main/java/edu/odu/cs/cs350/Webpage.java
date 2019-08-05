@@ -23,12 +23,12 @@ public class Webpage {
     private Map<String, Integer> imageCount = new HashMap<String, Integer>();
 
     /**
-     * The amount of image files classified as local or external.
+     * The amount of js files classified as local or external.
      */
     private Map<String, Integer> jsCount = new HashMap<String, Integer>();
 
     /**
-     * The amount of image files classified as local or external.
+     * The amount of css files classified as local or external.
      */
     private Map<String, Integer> cssCount = new HashMap<String, Integer>();
 
@@ -38,12 +38,12 @@ public class Webpage {
     private Set<String> imagePaths = new HashSet<String>();
 
     /**
-     * The url paths for .js files.
+     * The url paths for js files.
      */
     private Set<String> scriptPaths = new HashSet<String>();
 
     /**
-     * The url paths for .css files.
+     * The url paths for css files.
      */
     private Set<String> cssPaths = new HashSet<String>();
 
@@ -65,6 +65,30 @@ public class Webpage {
      */
     public Webpage(String path) {
         this.path = path;
+    }
+
+    public void addImageToWebpage(Resource resource) {
+        imageCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+        imagePaths.add(resource.getUrl());
+    }
+
+    public void addScriptToWebpage(Resource resource) {
+        jsCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+        scriptPaths.add(resource.getUrl());
+    }
+
+    public void addCSSToWebpage(Resource resource) {
+        cssCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+        cssPaths.add(resource.getUrl());
+    }
+
+    public void addAnchortoWebpage(Resource resource) {
+        if(resource.getTypeOfLink().contains("local")) {
+            linkCount.merge("inter-page", 1, Integer::sum);
+        }
+        else {
+            linkCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+        }
     }
 
     /**
@@ -102,16 +126,16 @@ public class Webpage {
      * Returns the quantity of local and external .js files of the Webpage.
      * @return jsCount
      */
-    public Map<String, Integer> getJsCount() {
-        return jsCount;
+    public Map<String, Integer> getjsCount() {
+        return jsCount ;
     }
 
     /**
      * Sets the quantity for local and external .js files for the Webpage.
      * @param jsCount
      */
-    public void setJsCount(Map<String, Integer> jsCount) {
-        this.jsCount = jsCount;
+    public void setJsCount(Map<String, Integer> scriptCount) {
+        jsCount = jsCount;
     }
 
     /**

@@ -34,14 +34,11 @@ public class TagExtractor implements Cloneable {
     private URI rootDirectory;
 
     /**
-     * The path to the local root directory of the website.
-     */
-    private String rootToPath;
-
-    /**
      *  The variations of possible URL's for the same Website.
      */
     private Set<URI> userURLs = new HashSet<URI>();
+
+    //private Website website;
 
     private Iterator<URI> itr;
 
@@ -86,7 +83,7 @@ public class TagExtractor implements Cloneable {
     /**
      * The Webpage object that contains the file's html extracted resources.
      */
-    private Webpage page;
+    private Webpage page = new Webpage();
 
     /**
      * One MiB is approximately (Byte/(1.04858e6)).
@@ -166,6 +163,7 @@ public class TagExtractor implements Cloneable {
             String path = link.attr("href");
             resource.setUrl(path);
             translateURL(resource);
+            page.addAnchortoWebpage(resource);
             anchors.add(resource);
 
         }
@@ -186,6 +184,7 @@ public class TagExtractor implements Cloneable {
             String path = link.attr("src");
             resource.setUrl(path);
             translateURL(resource);
+            page.addScriptToWebpage(resource);
             scripts.add(resource);
         }
 
@@ -206,6 +205,7 @@ public class TagExtractor implements Cloneable {
             String path = link.attr("href");
             resource.setUrl(path);
             translateURL(resource);
+            page.addCSSToWebpage(resource);
             stylesheets.add(resource);
         }
 
@@ -225,6 +225,7 @@ public class TagExtractor implements Cloneable {
             String path = link.attr("src");
             resource.setUrl(path);
             translateURL(resource);
+            page.addImageToWebpage(resource);
             images.add(resource);
 
         }
@@ -266,7 +267,7 @@ public class TagExtractor implements Cloneable {
         }
 
         else if (path.contains("#")) {
-            resource.setTypeOfLink("intrapage");
+            resource.setTypeOfLink("intra-page");
         }
 
         else {
@@ -287,7 +288,7 @@ public class TagExtractor implements Cloneable {
 
         while(itr.hasNext())
         {
-            webpageURLs.add((itr.next().resolve(relative)));
+            webpageURLs.add(itr.next().resolve(relative));
         }
 
     }
@@ -518,8 +519,14 @@ public class TagExtractor implements Cloneable {
         this.webpageURLs = webpageURLs;
     }
 
+
+
     public File[] getPathToRoot() {
         return pathToRoot;
+    }
+
+    public Webpage getPage() {
+        return page;
     }
 
 }

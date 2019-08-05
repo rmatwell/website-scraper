@@ -184,12 +184,51 @@ public class TagExtractorTest {
 
         testExtractor.traverseFiles(testExtractor.getPathToRoot());
 
-        String string = testExtractor.getImages().toString();
+        JSONReport report = new JSONReport();
 
-        assertThat(string, containsString("pic.jpg"));
+        String json = report.writeJSON(testExtractor.getPage());
+
+        System.out.println(json);
+
+
+
+        assertThat(json, containsString("{\n" +
+                "  \"path\":\"src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
+                "  \"imageCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"local\":1\n" +
+                "  },\n" +
+                "  \"jsCount\":{\n" +
+                "    \"external\":2,\n" +
+                "    \"local\":1\n" +
+                "  },\n" +
+                "  \"cssCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"local\":2\n" +
+                "  },\n" +
+                "  \"imagePaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
+                "    \"https://www.google.com/image.bmp\"\n" +
+                "  ],\n" +
+                "  \"scriptPaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "    \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
+                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
+                "  ],\n" +
+                "  \"cssPaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
+                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "  ],\n" +
+                "  \"linkCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"intra-page\":1,\n" +
+                "    \"inter-page\":3\n" +
+                "  }\n" +
+                "}"));
+
 
     }
-
 
     @Test
     public void testTraverseSubDirectories()
@@ -199,9 +238,48 @@ public class TagExtractorTest {
 
         testExtractor.traverseFiles(files);
 
-        String string = testExtractor.getImages().toString();
+        JSONReport report = new JSONReport();
 
-        assertThat(string, containsString("pic.jpg"));
+        String json = report.writeJSON(testExtractor.getPage());
+
+        System.out.println(json);
+
+
+
+        assertThat(json, containsString("{\n" +
+                "  \"path\":\"src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
+                "  \"imageCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"local\":1\n" +
+                "  },\n" +
+                "  \"jsCount\":{\n" +
+                "    \"external\":2,\n" +
+                "    \"local\":1\n" +
+                "  },\n" +
+                "  \"cssCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"local\":2\n" +
+                "  },\n" +
+                "  \"imagePaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
+                "    \"https://www.google.com/image.bmp\"\n" +
+                "  ],\n" +
+                "  \"scriptPaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "    \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
+                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
+                "  ],\n" +
+                "  \"cssPaths\":[\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
+                "    \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
+                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "  ],\n" +
+                "  \"linkCount\":{\n" +
+                "    \"external\":1,\n" +
+                "    \"intra-page\":1,\n" +
+                "    \"inter-page\":3\n" +
+                "  }\n" +
+                "}"));
 
     }
 
