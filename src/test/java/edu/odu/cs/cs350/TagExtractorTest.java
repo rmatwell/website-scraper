@@ -223,7 +223,7 @@ public class TagExtractorTest {
                 "  \"linkCount\":{\n" +
                 "    \"external\":1,\n" +
                 "    \"intra-page\":1,\n" +
-                "    \"inter-page\":3\n" +
+                "    \"intra-site\":3\n" +
                 "  }\n" +
                 "}"));
 
@@ -242,7 +242,7 @@ public class TagExtractorTest {
 
         String json = report.writeJSON(testExtractor.getPage());
 
-        System.out.println(json);
+        //System.out.println(json);
 
 
 
@@ -277,7 +277,7 @@ public class TagExtractorTest {
                 "  \"linkCount\":{\n" +
                 "    \"external\":1,\n" +
                 "    \"intra-page\":1,\n" +
-                "    \"inter-page\":3\n" +
+                "    \"intra-site\":3\n" +
                 "  }\n" +
                 "}"));
 
