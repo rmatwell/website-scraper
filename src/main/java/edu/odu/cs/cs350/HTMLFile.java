@@ -25,7 +25,7 @@ public class HTMLFile
 		setPageURL(inputURL);
 	}
 	
-	public void getLocalCopyPath() {
+	public File getLocalCopyPath() {
 		
 		return localCopyPath;
 	}
@@ -35,7 +35,7 @@ public class HTMLFile
 		localCopyPath = inputPath;
 	}
 	
-	public void getPageURL() {
+	public URL getPageURL() {
 		
 		return pageURL;
 	}
