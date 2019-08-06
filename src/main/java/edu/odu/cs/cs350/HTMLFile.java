@@ -18,20 +18,34 @@ public class HTMLFile
 	{
 		
 	}
+	
 	public HTMLFile(File inputPath, URL inputURL)
 	{
 		setLocalCopyPath(inputPath);
 		setPageURL(inputURL);
 	}
+	
+	public void getLocalCopyPath() {
+		
+		return localCopyPath;
+	}
+	
 	public void setLocalCopyPath(File inputPath)
 	{
 		localCopyPath = inputPath;
 	}
+	
+	public void getPageURL() {
+		
+		return pageURL;
+	}
+	
 	public void setPageURL(URL inputURL)
 	{
 		pageURL = inputURL;
 	}
 	
+	@Override
 	public String toString()
 	{
 		try {
@@ -41,7 +55,8 @@ public class HTMLFile
 			return "nope";
 		}
 	}
-	
+
+	@Override
 	public boolean equals(HTMLFile other)
 	{
 		return true;
