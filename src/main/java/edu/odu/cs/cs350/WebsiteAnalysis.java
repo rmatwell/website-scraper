@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 /**
@@ -83,9 +84,14 @@ public class WebsiteAnalysis
      */
     public void parseFiles() throws URISyntaxException
     {
-
         extractor = new TagExtractor(analysisSubject.getUserFilePath().toString() , analysisSubject.getUserURLsAsURI(), analysisSubject);
-        //make tag extractor do things to the HTMLFiles in Website to make Resources
+
+        try {
+			extractor.runExtractor();
+		} catch (IOException e) 
+        {}
+        
+        analysisSubject = extractor.getWebsite();
     }
     /**
      * Reports in multiple formats the results of the analysis
@@ -99,6 +105,11 @@ public class WebsiteAnalysis
         //xlsxWriter.createXLSXFile();
 
         JSONReport jsonWriter = new JSONReport(analysisSubject, analysisTime);
-        //jsonWriter.createJSONFile();
+        jsonWriter.writeJSON(analysisSubject);
+        try 
+        {
+			jsonWriter.createJSONFile();
+		} catch (IOException e) 
+        {}
     }
 }
