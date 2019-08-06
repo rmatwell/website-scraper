@@ -17,6 +17,15 @@ import java.util.Set;
 
 public class Website
 {
+    /**
+     * The file path the user provided that contains everything that should be analyzed
+     */
+    private File userFilePath;
+
+    /**
+     * a Hash Set containing the URLs the user input when triggering the analysis. Used to determine whether parsed links are internal or external
+     */
+    private HashSet<URL> userURLs = new HashSet<URL>();
 
     /**
      * A Hash Set HTMLFiles that were encountered during the analysis and must be reported on
@@ -28,16 +37,6 @@ public class Website
      */
 
     private transient HashSet<Resource> resources = new HashSet<Resource>();
-
-    /**
-     * The file path the user provided that contains everything that should be analyzed
-     */
-    private transient File userFilePath;
-
-    /**
-     * a Hash Set containing the URLs the user input when triggering the analysis. Used to determine whether parsed links are internal or external
-     */
-    private transient HashSet<URL> userURLs = new HashSet<URL>();
 
     /**
      * Default constructor
