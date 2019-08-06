@@ -84,7 +84,7 @@ public class Webpage {
 
     public void addAnchortoWebpage(Resource resource) {
         if(resource.getTypeOfLink().contains("local")) {
-            linkCount.merge("inter-page", 1, Integer::sum);
+            linkCount.merge("intra-site", 1, Integer::sum);
         }
         else {
             linkCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
@@ -134,8 +134,8 @@ public class Webpage {
      * Sets the quantity for local and external .js files for the Webpage.
      * @param jsCount
      */
-    public void setJsCount(Map<String, Integer> scriptCount) {
-        jsCount = jsCount;
+    public void setJsCount(Map<String, Integer> jsCount) {
+        this.jsCount = jsCount;
     }
 
     /**
