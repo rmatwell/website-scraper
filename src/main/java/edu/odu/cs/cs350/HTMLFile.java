@@ -56,7 +56,6 @@ public class HTMLFile
 		}
 	}
 
-	@Override
 	public boolean equals(HTMLFile other)
 	{
 		return true;
