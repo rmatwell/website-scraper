@@ -300,6 +300,10 @@ public class TagExtractor implements Cloneable {
     }
 
 
+    /**
+     * @throws IOException
+     * @throws URISyntaxException
+     */
     public void runExtractor() throws IOException, URISyntaxException {
         traverseFiles(getPathToRoot());
     }
@@ -523,26 +527,40 @@ public class TagExtractor implements Cloneable {
     }
 
 
+    /**
+     * @return
+     */
     public Set<URI> getWebpageURLs() {
         return webpageURLs;
     }
 
 
+    /**
+     * @param webpageURLs
+     */
     public void setWebpageURLs(Set<URI> webpageURLs) {
         this.webpageURLs = webpageURLs;
     }
 
 
-
+    /**
+     * @return
+     */
     public File[] getPathToRoot() {
-        pathToRoot = new File(rootDirectory.getPath()).listFiles();
+        pathToRoot = new File(rootDirectory.getPath()).listFiles().clone();
         return pathToRoot;
     }
 
+    /**
+     * @return
+     */
     public Webpage getPage() {
         return page;
     }
 
+    /**
+     * @return
+     */
     public Website getWebsite() {
         return website;
     }
