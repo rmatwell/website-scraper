@@ -130,21 +130,21 @@ public class TagExtractor implements Cloneable {
      */
     public void extractResources(File file, Webpage page) throws IOException, URISyntaxException {
 
-        String mimeType = tika.detect(file);
+        //String mimeType = tika.detect(file);
 
         //Determines if this is a text file, all other types are ignored.
-        if (mimeType.contains("text")) {
-            Document document;
-            document = Jsoup.parse(file, "UTF-8");
+        //if (mimeType.contains("text")) {
+        Document document;
+        document = Jsoup.parse(file, "UTF-8");
 
-            extractImageTags(document);
-            extractScriptTags(document);
-            extractLinkTags(document);
-            extractAnchorTags(document);
+        extractImageTags(document);
+        extractScriptTags(document);
+        extractLinkTags(document);
+        extractAnchorTags(document);
 
-            //TODO methods from Webpage to categorize extracted data.
+        //TODO methods from Webpage to categorize extracted data.
 
-        }
+        //}
     }
 
 
@@ -313,13 +313,17 @@ public class TagExtractor implements Cloneable {
                 traverseFiles(file.listFiles());
             } else
             {
-                currentLocal = new URI(file.getPath());
-                page = new Webpage(file.getPath());
-                matchWebpageWithLocal(currentLocal);
-                extractResources(file, page);
+                String mimeType = tika.detect(file);
 
-                //TODO method to push Webpage into a set contained on Website.
 
+                if (mimeType.contains("text")) {
+                    currentLocal = new URI(file.getPath());
+                    page = new Webpage(file.getPath());
+                    matchWebpageWithLocal(currentLocal);
+                    extractResources(file, page);
+
+                    //TODO method to push Webpage into a set contained on Website.
+                }
             }
         }
     }
