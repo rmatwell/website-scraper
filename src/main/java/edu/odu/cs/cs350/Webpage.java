@@ -67,21 +67,33 @@ public class Webpage {
         this.path = path;
     }
 
+    /**
+     * @param resource
+     */
     public void addImageToWebpage(Resource resource) {
         imageCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         imagePaths.add(resource.getUrl());
     }
 
+    /**
+     * @param resource
+     */
     public void addScriptToWebpage(Resource resource) {
         jsCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         scriptPaths.add(resource.getUrl());
     }
 
+    /**
+     * @param resource
+     */
     public void addCSSToWebpage(Resource resource) {
         cssCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         cssPaths.add(resource.getUrl());
     }
 
+    /**
+     * @param resource
+     */
     public void addAnchortoWebpage(Resource resource) {
         if(resource.getTypeOfLink().contains("local")) {
             linkCount.merge("intra-site", 1, Integer::sum);
