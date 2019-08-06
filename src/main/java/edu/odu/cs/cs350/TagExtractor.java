@@ -120,7 +120,6 @@ public class TagExtractor implements Cloneable {
 
         this.setUserURLs(userURLs);
         analysisTime = "";
-        pathToRoot = new File(rootDirectory.getPath()).listFiles();
         this.website=website;
 
     }
@@ -300,6 +299,10 @@ public class TagExtractor implements Cloneable {
 
     }
 
+
+    public void runExtractor() throws IOException, URISyntaxException {
+        traverseFiles(getPathToRoot());
+    }
 
     /**
      *  Starts at the root directory of the local Website and parses all files
@@ -532,6 +535,7 @@ public class TagExtractor implements Cloneable {
 
 
     public File[] getPathToRoot() {
+        pathToRoot = new File(rootDirectory.getPath()).listFiles();
         return pathToRoot;
     }
 

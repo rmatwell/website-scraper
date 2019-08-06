@@ -186,7 +186,7 @@ public class TagExtractorTest {
     public void testTraverseFiles() throws CloneNotSupportedException, IOException, URISyntaxException {
 
 
-        testExtractor.traverseFiles(testExtractor.getPathToRoot());
+        testExtractor.runExtractor();
 
         JSONReport report = new JSONReport();
 
