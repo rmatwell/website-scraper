@@ -37,7 +37,7 @@ public class TagExtractorTest {
 
     private URI root2;
 
-    private String rootToSource = "src/test/resources/edu/odu/cs/cs350";
+    private String rootToSource = "./src/test/resources/edu/odu/cs/cs350/";
 
     private String anotherRoot = "/home/system/directory/";
 
@@ -51,9 +51,13 @@ public class TagExtractorTest {
 
     private HashSet<URI> anotherURL = new HashSet<>();
 
+    private Website website;
+
 
     @Before
     public void setUp() throws URISyntaxException {
+
+        website = new Website();
 
         rootDirectory = new URI(rootToSource);
 
@@ -65,9 +69,9 @@ public class TagExtractorTest {
 
         anotherURL.add(new URI(url3));
 
-        testExtractor = new TagExtractor(rootToSource, urls);
+        testExtractor = new TagExtractor(rootToSource, urls, website);
 
-        anotherExtractor = new TagExtractor(anotherRoot, anotherURL);
+        anotherExtractor = new TagExtractor(anotherRoot, anotherURL, website);
     }
 
     @Test
@@ -186,7 +190,7 @@ public class TagExtractorTest {
 
         JSONReport report = new JSONReport();
 
-        String json = report.writeJSON(testExtractor.getPage());
+        String json = report.writeJSON(testExtractor.getWebsite());
 
         System.out.println(json);
 
@@ -247,38 +251,76 @@ public class TagExtractorTest {
 
 
         assertThat(json, containsString("{\n" +
-                "  \"path\":\"src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
-                "  \"imageCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"local\":1\n" +
-                "  },\n" +
-                "  \"jsCount\":{\n" +
-                "    \"external\":2,\n" +
-                "    \"local\":1\n" +
-                "  },\n" +
-                "  \"cssCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"local\":2\n" +
-                "  },\n" +
-                "  \"imagePaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
-                "    \"https://www.google.com/image.bmp\"\n" +
-                "  ],\n" +
-                "  \"scriptPaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
-                "    \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
-                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
-                "  ],\n" +
-                "  \"cssPaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
-                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
-                "  ],\n" +
-                "  \"linkCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"intra-page\":1,\n" +
-                "    \"intra-site\":3\n" +
-                "  }\n" +
+                "  \"pages\":[\n" +
+                "    {\n" +
+                "      \"path\":\"./src/test/resources/edu/odu/cs/cs350/test1.html\",\n" +
+                "      \"imageCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"local\":1\n" +
+                "      },\n" +
+                "      \"jsCount\":{\n" +
+                "        \"external\":2,\n" +
+                "        \"local\":1\n" +
+                "      },\n" +
+                "      \"cssCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"local\":2\n" +
+                "      },\n" +
+                "      \"imagePaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/image.jpg\",\n" +
+                "        \"https://www.google.com/image2.bmp\"\n" +
+                "      ],\n" +
+                "      \"scriptPaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
+                "      ],\n" +
+                "      \"cssPaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "      ],\n" +
+                "      \"linkCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"intra-page\":1,\n" +
+                "        \"intra-site\":3\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"path\":\"./src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
+                "      \"imageCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"local\":1\n" +
+                "      },\n" +
+                "      \"jsCount\":{\n" +
+                "        \"external\":2,\n" +
+                "        \"local\":1\n" +
+                "      },\n" +
+                "      \"cssCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"local\":2\n" +
+                "      },\n" +
+                "      \"imagePaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
+                "        \"https://www.google.com/image.bmp\"\n" +
+                "      ],\n" +
+                "      \"scriptPaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
+                "      ],\n" +
+                "      \"cssPaths\":[\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
+                "        \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "      ],\n" +
+                "      \"linkCount\":{\n" +
+                "        \"external\":1,\n" +
+                "        \"intra-page\":1,\n" +
+                "        \"intra-site\":3\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
                 "}"));
 
     }

@@ -38,8 +38,14 @@ public class TagExtractor implements Cloneable {
      */
     private Set<URI> userURLs = new HashSet<URI>();
 
-    //private Website website;
+    /**
+     * The website object container.
+     */
+    private Website website = new Website();
 
+    /**
+     * A URI iterator.
+     */
     private Iterator<URI> itr;
 
     /**
@@ -108,13 +114,14 @@ public class TagExtractor implements Cloneable {
      * @param userURLs **The website urls that correspond to the local root
      * @throws URISyntaxException **
      */
-    public TagExtractor(String rootToPath, Set<URI> userURLs) throws URISyntaxException {
+    public TagExtractor(String rootToPath, Set<URI> userURLs, Website website) throws URISyntaxException {
 
         rootDirectory = new URI(rootToPath);
 
         this.setUserURLs(userURLs);
         analysisTime = "";
         pathToRoot = new File(rootDirectory.getPath()).listFiles();
+        this.website=website;
 
     }
 
@@ -298,13 +305,13 @@ public class TagExtractor implements Cloneable {
      *  Starts at the root directory of the local Website and parses all files
      *  including the files of sub-directories.
      *
-     *@param rootDirectory **The local root site**
+     *@param files **The local root site**
      *@throws IOException **Thrown if file is invalid
      * @throws URISyntaxException **
      */
-    public void traverseFiles(File[] pathToRoot) throws IOException, URISyntaxException
+    public void traverseFiles(File[] files) throws IOException, URISyntaxException
     {
-        for (File file : this.pathToRoot)
+        for (File file : files)
         {
             if (file.isDirectory())
             {
@@ -321,8 +328,7 @@ public class TagExtractor implements Cloneable {
                     page = new Webpage(file.getPath());
                     matchWebpageWithLocal(currentLocal);
                     extractResources(file, page);
-
-                    //TODO method to push Webpage into a set contained on Website.
+                    website.addWebpage(page);
                 }
             }
         }
@@ -533,4 +539,7 @@ public class TagExtractor implements Cloneable {
         return page;
     }
 
+    public Website getWebsite() {
+        return website;
+    }
 }
