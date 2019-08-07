@@ -71,12 +71,12 @@ public class TXTReport
 			while(pageItr.hasNext())			
 			{
 				Webpage nextPage = (Webpage) pageItr.next();
-				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     " + nextPage.getLocalPath(website.getUserFilePath() ) ) ;
+				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     ./" + nextPage.getLocalPath(website.getUserFilePath() ) ) ;
 				totalSize += nextPage.getSumOfImageSizes();
 			}
-			writer.println(String.format("%.2f", totalSize) + " MiB     ");
+			writer.println(String.format("%.2f", totalSize) + " MiB     .");
 			writer.close();
-			
+			System.out.println(fileName);
 		} catch (FileNotFoundException | UnsupportedEncodingException e) 
 		{}
 	}
