@@ -109,9 +109,9 @@ public class WebsiteAnalysis
         try
         {
             jsonWriter.createJSONFile();
-            System.out.println("works");
+
         } catch (IOException e)
         {}
-        System.out.println("end");
+
     }
 }

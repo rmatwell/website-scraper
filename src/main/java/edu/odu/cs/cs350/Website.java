@@ -20,12 +20,17 @@ public class Website
     /**
      * The file path the user provided that contains everything that should be analyzed
      */
-    private File userFilePath;
+    private File basePath;
+
+    /**
+     *  Set containing the user supplied URLs as Strings.
+     */
+    private Set<String> urls = new HashSet<String>();
 
     /**
      * a Hash Set containing the URLs the user input when triggering the analysis. Used to determine whether parsed links are internal or external
      */
-    private HashSet<URL> userURLs = new HashSet<URL>();
+    private transient HashSet<URL> userURLs = new HashSet<URL>();
 
     /**
      * A Hash Set HTMLFiles that were encountered during the analysis and must be reported on
@@ -54,6 +59,8 @@ public class Website
     {
         setUserFilePath(args[0]); //the first argument is the path
         setUserURLs(Arrays.copyOfRange(args, 1 ,args.length) ); //second to N-th arguments are URLs that we need to make HTMLFiles of
+
+        urls.add(userURLs.toString());
     }
 
 
@@ -63,7 +70,7 @@ public class Website
      */
     public void setUserURLs(String[] args)
     {
-        if(userFilePath != null)
+        if(basePath != null)
         {
             for(int i = 0 ; i < args.length ; i++)
             {
@@ -91,7 +98,7 @@ public class Website
 
         if(IsValidFilePath(inputPath) )
         {
-            userFilePath = inputPath;
+            basePath = inputPath;
         }
         else
         {
@@ -135,7 +142,7 @@ public class Website
      */
     public File getUserFilePath()
     {
-        return userFilePath;
+        return basePath;
     }
 
     /**
@@ -177,5 +184,15 @@ public class Website
 
     public void addWebpage(Webpage page) {
         pages.add(page);
+    }
+
+
+    public Set<String> getUrls() {
+        return urls;
+    }
+
+
+    public void setUrls(Set<String> urls) {
+        this.urls = urls;
     }
 }
