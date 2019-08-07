@@ -35,6 +35,8 @@ public class TXTReport
 
 	/**
 	 * Non-default constructor, used by WebsiteAnalysis
+	 * @param website
+	 * @param analysisTime
 	 */
 	public TXTReport(Website website, String analysisTime) 
 	{
@@ -46,6 +48,8 @@ public class TXTReport
 
 	/**
 	 * Writes the data from the Website's resources to our TXT file
+	 * @param website
+	 * @return txt
 	 */
 	public String writeTXT(Website website) 
 	{
@@ -71,6 +75,7 @@ public class TXTReport
 	
 	/**
 	 * Sets the filename of our txt file
+	 * @param analysisTime
 	 */
 	public void setFileName(String analysisTime) 
 	{
@@ -82,6 +87,7 @@ public class TXTReport
 	
 	/**
 	 * Returns the filename of our txt file
+	 * @return fileName
 	 */
 	public String getFileName()
 	{
@@ -104,6 +110,7 @@ public class TXTReport
 	
 	/**
 	 * Returns the Website object we will get image resources from 
+	 * @return website
 	 */
 
 	public Website getWebsite() 
@@ -114,6 +121,7 @@ public class TXTReport
 	
 	/**
 	 * Sets the Website object we will get image resources from 
+	 * @param website
 	 */
 	
 	public void setWebsite(Website website) 
