@@ -102,7 +102,7 @@ public class WebsiteAnalysis
     public void generateReports() throws FileNotFoundException, IOException
     {
         TXTReport txtWriter = new TXTReport(analysisSubject, analysisTime);
-        //txtWriter.createTxtFile();
+        txtWriter.writeTXT();
 
         XLSXReport xlsxWriter = new XLSXReport(analysisSubject, analysisTime);
         xlsxWriter.createXLSXFile();
