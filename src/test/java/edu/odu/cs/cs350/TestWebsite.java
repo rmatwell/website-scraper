@@ -65,7 +65,7 @@ public class TestWebsite
 		Website testSite = new Website();
 		testSite.setUserFilePath("testing/test");
 		
-		assertThat(testSite.getPages(), is(new HashSet<HTMLFile>() ) );
+		assertThat(testSite.getPages(), is(new HashSet<Webpage>() ) );
 		
 		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
