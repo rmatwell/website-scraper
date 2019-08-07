@@ -53,6 +53,7 @@ public class Website
 
     /**
      * constructor used by WebsiteAnalysis: takes string arguments and creates File and URL objects from them
+     * @param args
      */
     public Website(String[] args)
     {
@@ -64,6 +65,7 @@ public class Website
 
     /**
      * For each argument, checks to ensure its a valid uRL before adding it to the list of URLs
+     * @param args
      */
     public void setUserURLs(String[] args)
     {
@@ -88,6 +90,7 @@ public class Website
 
     /**
      * Checks to ensure the file path the user is valid and sets it if so
+     * @param input
      */
     public void setUserFilePath(String input)
     {
@@ -105,6 +108,7 @@ public class Website
 
     /**
      * Logic to determine that a file path exists
+     * @param path
      */
     private boolean IsValidFilePath(File path)
     {
@@ -136,6 +140,7 @@ public class Website
      */
     /**
      * Returns the filepath the user input in File form
+     * @return basePath
      */
     public File getUserFilePath()
     {
@@ -144,6 +149,7 @@ public class Website
 
     /**
      * Returns the HTMLFiles that must be reported on
+     * @return pages
      */
     public HashSet<Webpage> getPages()
     {
@@ -152,6 +158,7 @@ public class Website
     
     /**
      * Returns the URLs the user provided as part of the input as URL objects
+     * @return userURLs
      */
     public HashSet<URL> getUserURLs()
     {
@@ -160,6 +167,7 @@ public class Website
     
     /**
      * Returns the URLs the user provided as part of the input as URI objects
+     * @return uriSet
      */
     public Set<URI> getUserURLsAsURI()
     {
