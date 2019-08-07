@@ -3,6 +3,7 @@ package edu.odu.cs.cs350;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * AnalysisInputManager that takes the users input and constructs the analysis.
@@ -58,6 +59,13 @@ public class AnalysisInputManager
      */
     public static String getAnalysisTime()
     {
-        return new SimpleDateFormat("yyyymmdd-hhmmss'-summary'").format(new Date() );
+        String date = "yyyyMMdd-hhmmss'-summary'";
+        SimpleDateFormat timeStamp = new SimpleDateFormat(date);
+
+        TimeZone est = TimeZone.getTimeZone("US/Eastern");
+        timeStamp.setTimeZone(est);
+
+
+        return timeStamp.format(new Date());
     }
 }
