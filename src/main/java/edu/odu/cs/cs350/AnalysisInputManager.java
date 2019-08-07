@@ -40,8 +40,10 @@ public class AnalysisInputManager
 
         if(analysis.isReady() )
         {
+            System.out.println("doing reports");
             analysis.parseFiles();
             analysis.generateReports();
+            System.out.println("done");
         }
         else
         {

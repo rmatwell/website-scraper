@@ -137,6 +137,9 @@ public class JSONReport implements Cloneable {
 
         json = JsonWriter.objectToJson(website, jsonArgs);
 
+        System.out.println(json);
+
+
         return json;
     }
 
@@ -150,9 +153,11 @@ public class JSONReport implements Cloneable {
      */
     public void createJSONFile() throws IOException, FileNotFoundException {
 
-        //TODO implement try & catch sections for exceptions
+        setFileName(analysisTime);
         jsonFile = new FileOutputStream(fileName, true);
         jsonFile.write(json.getBytes(Charset.forName("UTF-8")));
+        System.out.println(fileName);
+
         jsonFile.close();
 
     }

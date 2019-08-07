@@ -87,10 +87,10 @@ public class WebsiteAnalysis
         extractor = new TagExtractor(analysisSubject.getUserFilePath().toString() , analysisSubject.getUserURLsAsURI(), analysisSubject);
 
         try {
-			extractor.runExtractor();
-		} catch (IOException e) 
+            extractor.runExtractor();
+        } catch (IOException e)
         {}
-        
+
         analysisSubject = extractor.getWebsite();
     }
     /**
@@ -106,10 +106,12 @@ public class WebsiteAnalysis
 
         JSONReport jsonWriter = new JSONReport(analysisSubject, analysisTime);
         jsonWriter.writeJSON(analysisSubject);
-        try 
+        try
         {
-			jsonWriter.createJSONFile();
-		} catch (IOException e) 
+            jsonWriter.createJSONFile();
+            System.out.println("works");
+        } catch (IOException e)
         {}
+        System.out.println("end");
     }
 }
