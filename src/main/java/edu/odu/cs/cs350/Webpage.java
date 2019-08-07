@@ -18,6 +18,11 @@ public class Webpage {
     private String path;
 
     /**
+     * The sum of all image sizes on this page
+     */
+    private double sumOfImageSizes = 0.0;
+    
+    /**
      * The amount of image files classified as local or external.
      */
     private Map<String, Integer> imageCount = new HashMap<String, Integer>();
@@ -81,6 +86,7 @@ public class Webpage {
         imageCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         imagePaths.add(resource.getUrl());
         sumImages++;
+        sumOfImageSizes += resource.getFileSize();
     }
 
     /**
@@ -293,6 +299,11 @@ public class Webpage {
 
     public void setSumIntrapage(int sumIntrapage) {
         this.sumIntrapage = sumIntrapage;
+    }
+    
+    public double getSumOfImageSizes()
+    {
+    	return sumOfImageSizes;
     }
 
 }
