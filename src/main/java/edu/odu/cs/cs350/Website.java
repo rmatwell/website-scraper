@@ -60,7 +60,11 @@ public class Website
         setUserFilePath(args[0]); //the first argument is the path
         setUserURLs(Arrays.copyOfRange(args, 1 ,args.length) ); //second to N-th arguments are URLs that we need to make HTMLFiles of
 
-        urls.add(userURLs.toString());
+        Iterator<URL> itr = userURLs.iterator();
+
+        while(itr.hasNext()) {
+            urls.add(itr.next().toString());
+        }
     }
 
     /**
@@ -155,7 +159,7 @@ public class Website
     {
         return pages;
     }
-    
+
     /**
      * Returns the URLs the user provided as part of the input as URL objects
      * @return userURLs
@@ -164,7 +168,7 @@ public class Website
     {
         return userURLs;
     }
-    
+
     /**
      * Returns the URLs the user provided as part of the input as URI objects
      * @return uriSet

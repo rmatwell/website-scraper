@@ -52,6 +52,13 @@ public class Webpage {
      */
     private Map<String, Integer> linkCount = new HashMap<String, Integer>();;
 
+    private transient int sumImages = 0;
+    private transient int sumJS = 0;
+    private transient int sumCSS = 0;
+    private transient int sumLocal = 0;
+    private transient int sumExternal = 0;
+    private transient int sumIntrapage = 0;
+
     /**
      * Creates an empty Webpage object.
      */
@@ -73,6 +80,7 @@ public class Webpage {
     public void addImageToWebpage(Resource resource) {
         imageCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         imagePaths.add(resource.getUrl());
+        sumImages++;
     }
 
     /**
@@ -81,6 +89,7 @@ public class Webpage {
     public void addScriptToWebpage(Resource resource) {
         jsCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         scriptPaths.add(resource.getUrl());
+        sumJS++;
     }
 
     /**
@@ -89,6 +98,7 @@ public class Webpage {
     public void addCSSToWebpage(Resource resource) {
         cssCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
         cssPaths.add(resource.getUrl());
+        sumCSS++;
     }
 
     /**
@@ -97,9 +107,15 @@ public class Webpage {
     public void addAnchortoWebpage(Resource resource) {
         if(resource.getTypeOfLink().contains("local")) {
             linkCount.merge("intra-site", 1, Integer::sum);
+            sumLocal++;
+        }
+        else if(resource.getTypeOfLink().contains("external")){
+            linkCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+            sumExternal++;
         }
         else {
             linkCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
+            sumIntrapage++;
         }
     }
 
@@ -229,6 +245,54 @@ public class Webpage {
      */
     public void setLinkCount(Map<String, Integer> linkCount) {
         this.linkCount = linkCount;
+    }
+
+    public int getSumImages() {
+        return sumImages;
+    }
+
+    public void setSumImages(int sumImages) {
+        this.sumImages = sumImages;
+    }
+
+    public int getSumJS() {
+        return sumJS;
+    }
+
+    public void setSumJS(int sumJS) {
+        this.sumJS = sumJS;
+    }
+
+    public int getSumCSS() {
+        return sumCSS;
+    }
+
+    public void setSumCSS(int sumCSS) {
+        this.sumCSS = sumCSS;
+    }
+
+    public int getSumLocal() {
+        return sumLocal;
+    }
+
+    public void setSumLocal(int sumLocal) {
+        this.sumLocal = sumLocal;
+    }
+
+    public int getSumExternal() {
+        return sumExternal;
+    }
+
+    public void setSumExternal(int sumExternal) {
+        this.sumExternal = sumExternal;
+    }
+
+    public int getSumIntrapage() {
+        return sumIntrapage;
+    }
+
+    public void setSumIntrapage(int sumIntrapage) {
+        this.sumIntrapage = sumIntrapage;
     }
 
 }

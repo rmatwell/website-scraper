@@ -1,5 +1,7 @@
 package edu.odu.cs.cs350;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,8 +18,10 @@ public class AnalysisInputManager
     /**
      * Main function that takes user's input and starts the analysis using it
      * @throws URISyntaxException
+     * @throws IOException
+     * @throws FileNotFoundException
      */
-    public static void main(String[] args) throws URISyntaxException
+    public static void main(String[] args) throws URISyntaxException, FileNotFoundException, IOException
     {
         //"If no command line arguments are provided, an appropriate usage message should be displayed."
         if(args.length <= 1)
@@ -34,8 +38,10 @@ public class AnalysisInputManager
     /**
      * Checks to ensure that the WebsiteAnalysis has enough data to begin, and then triggers the analysis to parse files and then generate reports
      * @throws URISyntaxException
+     * @throws IOException
+     * @throws FileNotFoundException
      */
-    public static void doAnalysis(String[] args) throws URISyntaxException
+    public static void doAnalysis(String[] args) throws URISyntaxException, FileNotFoundException, IOException
     {
         WebsiteAnalysis analysis = new WebsiteAnalysis(args, getAnalysisTime() );
 

@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -95,14 +96,16 @@ public class WebsiteAnalysis
     }
     /**
      * Reports in multiple formats the results of the analysis
+     * @throws IOException
+     * @throws FileNotFoundException
      */
-    public void generateReports()
+    public void generateReports() throws FileNotFoundException, IOException
     {
         TXTReport txtWriter = new TXTReport(analysisSubject, analysisTime);
         //txtWriter.createTxtFile();
 
         XLSXReport xlsxWriter = new XLSXReport(analysisSubject, analysisTime);
-        //xlsxWriter.createXLSXFile();
+        xlsxWriter.createXLSXFile();
 
         JSONReport jsonWriter = new JSONReport(analysisSubject, analysisTime);
         jsonWriter.writeJSON(analysisSubject);
