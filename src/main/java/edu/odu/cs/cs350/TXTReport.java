@@ -1,29 +1,42 @@
 package edu.odu.cs.cs350;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 /**
  * TXTReport handles creating the text report, which contains a list of images and their sizes.
  */
 public class TXTReport 
 {
-
 	/**
 	 * The name of the file: should be the analysis time.
 	 */
 	private String fileName;
-
 	/**
 	 * Handles the writing of the TXT file.
 	 */
 	private FileOutputStream txtFile;
-	
 	/**
 	 * The Website object contains the resources (images) to be reported on
 	 */
 	private Website website;
+	/**
+	 * The images we will be reporting sizes of
+	 */
+	private Set<Resource> images;
 	
 	/**
 	 * Default constructor
@@ -32,101 +45,107 @@ public class TXTReport
 	{
 
 	}
-
 	/**
 	 * Non-default constructor, used by WebsiteAnalysis
-	 * @param website
-	 * @param analysisTime
 	 */
 	public TXTReport(Website website, String analysisTime) 
 	{
-
-		this.setWebsite(website);
+		setWebsite(website);
 		setFileName(analysisTime);
-
 	}
 
 	/**
 	 * Writes the data from the Website's resources to our TXT file
-	 * @param website
-	 * @return txt
 	 */
-	public String writeTXT(Website website) 
+	public void writeTXT() 
 	{
-		String txt = "";
-		//TODO txt = TxtWriter.objectToTxt(website);
-
-		//TODO sort pages lexicographically
-
-		return txt;
-
+		PrintWriter writer; //actually makes the file
+		
+		List<Webpage> pages = generateLexicographicList(); //the list we will be iterating over
+		double totalSize = 0.0;	//the total filesize, added to in the 'while' loop below, we will be reporting
+		Iterator pageItr = pages.iterator(); //an iterator
+		try 
+		{
+			writer = new PrintWriter(fileName, "UTF-8");
+			
+			while(pageItr.hasNext())			
+			{
+				Webpage nextPage = (Webpage) pageItr.next();
+				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     " + generateLocalPath(nextPage) ) ;
+				totalSize += nextPage.getSumOfImageSizes();
+			}
+			writer.println(String.format("%.2f", totalSize) + " MiB     ");
+			writer.close();
+			
+		} catch (FileNotFoundException | UnsupportedEncodingException e) 
+		{}
 	}
 
-	/**
-	 * Creates the text file we need to write to
-	 */
-	public void createTxtFile() throws Exception, IOException, FileNotFoundException 
-	{
-
-
-
-	}
-
-	
 	/**
 	 * Sets the filename of our txt file
-	 * @param analysisTime
 	 */
 	public void setFileName(String analysisTime) 
 	{
-
 		this.fileName = analysisTime + ".txt";
-
 	}
-
-	
 	/**
 	 * Returns the filename of our txt file
-	 * @return fileName
 	 */
 	public String getFileName()
 	{
-
 		return fileName;
-
 	}
-
-	
-	//I see no reason that we actually need to get a toString() of the TXT reporter, so I'm commenting it out -Jason
-	/*
-	@Override
-	public String toString() 
-	{
-
-		return txt;
-	}
-	*/
-	
-	
 	/**
-	 * Returns the Website object we will get image resources from 
-	 * @return website
+	 * Returns the Website object we will get pages from
 	 */
-
 	public Website getWebsite() 
 	{
 		return website;
-	}
-
-	
+	}	
 	/**
-	 * Sets the Website object we will get image resources from 
-	 * @param website
+	 * Sets the Website object we will get pages from
 	 */
 	
 	public void setWebsite(Website website) 
 	{
 		this.website = website;
+	}
+	
+	/**
+	 * Sets the image set we will get sizes from
+	 */
+	public void setImages(Set<Resource> input)
+	{
+		images = input;
+	}
+	/**
+	 * Gets the image set we will get sizes from
+	 */
+	public Set<Resource> getImages()
+	{
+		return images;
+	}
+	
+	/**
+	 * Converts our HashSet of images to a sorted List for reporting
+	 */
+	private List<Webpage> generateLexicographicList()
+	{
+		List<Webpage> sortedList = new ArrayList<Webpage>(website.getPages());
+		
+		Collections.sort(sortedList, new Comparator<Webpage>(){
+			public int compare (Webpage page1, Webpage page2)
+			{
+				return page2.getPath().compareTo(page1.getPath());
+			}
+		});
+		
+		return sortedList;
+	}
+
+	private String generateLocalPath(Webpage input)
+	{
+		return website.getUserFilePath().toURI().relativize(new File(input.getPath()).toURI()).getPath();
 	}
 	
 	//I see no reason that we actually need to clone the TXTReport object, so I'm commenting it out -Jason
@@ -146,5 +165,14 @@ public class TXTReport
 		return aCopy;
 	}
 	*/
+	
+	//I see no reason that we actually need to get a toString() of the TXT reporter, so I'm commenting it out -Jason
+	/*
+	@Override
+	public String toString() 
+	{
 
+		return txt;
+	}
+	*/
 }
