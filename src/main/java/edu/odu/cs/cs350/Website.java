@@ -51,7 +51,6 @@ public class Website
 
     }
 
-
     /**
      * constructor used by WebsiteAnalysis: takes string arguments and creates File and URL objects from them
      */
@@ -60,13 +59,8 @@ public class Website
         setUserFilePath(args[0]); //the first argument is the path
         setUserURLs(Arrays.copyOfRange(args, 1 ,args.length) ); //second to N-th arguments are URLs that we need to make HTMLFiles of
 
-        Iterator<URL> itr = userURLs.iterator();
-        while(itr.hasNext()) {
-            urls.add(itr.next().toString());
-        }
+        urls.add(userURLs.toString());
     }
-
-
 
     /**
      * For each argument, checks to ensure its a valid uRL before adding it to the list of URLs
@@ -155,6 +149,7 @@ public class Website
     {
         return pages;
     }
+    
     /**
      * Returns the URLs the user provided as part of the input as URL objects
      */
@@ -162,6 +157,7 @@ public class Website
     {
         return userURLs;
     }
+    
     /**
      * Returns the URLs the user provided as part of the input as URI objects
      */
@@ -185,16 +181,28 @@ public class Website
 
     }
 
+    /**
+     * Add pages to webpage object
+     * @param page
+     */
     public void addWebpage(Webpage page) {
         pages.add(page);
     }
 
 
+    /**
+     * The website url
+     * @return urls
+     */
     public Set<String> getUrls() {
         return urls;
     }
 
 
+    /**
+     * Sets the website url
+     * @param urls
+     */
     public void setUrls(Set<String> urls) {
         this.urls = urls;
     }
