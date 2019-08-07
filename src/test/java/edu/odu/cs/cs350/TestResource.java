@@ -138,8 +138,8 @@ public class TestResource {
         testConstructor.setTypeOfLink("invalid");
         // testing that "invalid" is not a valid option for type of link
         assertThat(testConstructor.getTypeOfLink(), is(not("invalid")));
-        testConstructor.setTypeOfLink("intrapage");
-        assertThat(testConstructor.getTypeOfLink(), is("intrapage"));
+        testConstructor.setTypeOfLink("intra-page");
+        assertThat(testConstructor.getTypeOfLink(), is("intra-page"));
 
         finalHash = testConstructor.hashCode();
         assertThat(initialHash, is(not(finalHash)));
@@ -148,7 +148,7 @@ public class TestResource {
         assertThat(testConstructor.getUrl(), is(url));
         assertThat(testConstructor.getUsedOn(), is(usedOn));
         assertThat(testConstructor.toString(),
-                containsString("1.7,intrapage,/image.jpg,"
+                containsString("1.7,intra-page,/image.jpg,"
                         + "[/root/desktop/directory]"));
         assertThat(defaultConstruct, not(equalTo(testConstructor)));
 

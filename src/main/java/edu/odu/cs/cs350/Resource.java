@@ -29,6 +29,11 @@ public class Resource implements Cloneable {
      * 	The url of the resource.
      */
     private String url;
+    
+    /**
+     * the absolute url of the resource
+     */
+    private transient String absoluteUrl;
 
     /**
      * 	The webpage urls that the resource are found on.
@@ -113,7 +118,8 @@ public class Resource implements Cloneable {
      * the url of the resource
      */
     public String getUrl() {
-        return url;
+
+    	return url;
     }
 
 
@@ -122,7 +128,8 @@ public class Resource implements Cloneable {
      * sets the url of the resource
      */
     public void setUrl(String url) {
-        this.url = url;
+    	
+        	this.url = url;
     }
 
 
@@ -218,6 +225,15 @@ public class Resource implements Cloneable {
         String string = Double.toString(fileSize) + "," + typeOfLink
                 + "," + url + "," + usedOn;
         return string;
+    }
+    
+    public void setAbsoluteUrl(String input)
+    {
+    	absoluteUrl = input;
+    }
+    public String getAbsoluteUrl()
+    {
+    	return absoluteUrl;
     }
 
 }

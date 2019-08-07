@@ -71,7 +71,7 @@ public class TXTReport
 			while(pageItr.hasNext())			
 			{
 				Webpage nextPage = (Webpage) pageItr.next();
-				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     ./" + nextPage.getLocalPath(website.getUserFilePath() ) ) ;
+				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     " + nextPage.getPath() );
 				totalSize += nextPage.getSumOfImageSizes();
 			}
 			writer.println(String.format("%.2f", totalSize) + " MiB     .");
@@ -136,7 +136,7 @@ public class TXTReport
 		Collections.sort(sortedList, new Comparator<Webpage>(){
 			public int compare (Webpage page1, Webpage page2)
 			{
-				return page2.getPath().compareTo(page1.getPath());
+				return page2.getAbsolutePath().compareTo(page1.getAbsolutePath());
 			}
 		});
 		

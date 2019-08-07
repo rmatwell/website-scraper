@@ -231,7 +231,7 @@ public class TagExtractor implements Cloneable {
 
             if(resource.getTypeOfLink().contains("local"))
             {
-                File file = new File(resource.getUrl());
+                File file = new File(resource.getAbsoluteUrl().replaceFirst("file:",""));
                 double fileSize = calculateMiB(file);
                 resource.setFileSize(fileSize);
             }
@@ -253,7 +253,8 @@ public class TagExtractor implements Cloneable {
 
         if(path.contains("./") || path.contains("../")) {
             URI newPath = currentLocal.resolve(path);
-            resource.setUrl(newPath.toString());
+            resource.setUrl(createRelativeDirectoryAsString(newPath) );
+            resource.setAbsoluteUrl(newPath.toString());
             resource.setTypeOfLink("local");
         }
         else if(path.contains("https://")) {
@@ -282,11 +283,17 @@ public class TagExtractor implements Cloneable {
 
         else {
             URI newPath1 = currentLocal.resolve(path);
-            resource.setUrl(newPath1.toString());
+            resource.setUrl(createRelativeDirectoryAsString(newPath1) );
+            resource.setAbsoluteUrl(newPath1.toString());
             resource.setTypeOfLink("local");
         }
 
     }
+    private String createRelativeDirectoryAsString(URI input)
+    {
+        return rootDirectory.relativize(new File((input.toString().replaceFirst("file:/",""))).toURI() ).getPath();
+    }
+
 
     public void matchWebpageWithLocal(URI currentLocal) {
         if (!webpageURLs.isEmpty()) {
@@ -335,7 +342,7 @@ public class TagExtractor implements Cloneable {
 
 
                 if (mimeType.contains("text")) {
-                    currentLocal = file.toURI();// new URI(file.toString());
+                    currentLocal = file.toURI();//old: new URI(file.toString());
                     page = new Webpage(file.getPath());
                     matchWebpageWithLocal(currentLocal);
                     extractResources(file, page);
@@ -457,10 +464,11 @@ public class TagExtractor implements Cloneable {
      */
     public double calculateMiB(File file) {
 
+    	//System.out.println("Path: " + file);
         long fileSize = file.length();
-
+       // System.out.println("Long: " + fileSize);
         double sizeInMiB = fileSize / BYTE_TO_MEBIBYTE;
-
+        //System.out.println("Double: " + sizeInMiB);
         return sizeInMiB;
 
     }

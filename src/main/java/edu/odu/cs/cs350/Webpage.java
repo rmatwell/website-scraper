@@ -14,14 +14,17 @@ import java.util.Set;
 public class Webpage {
 
     /**
+     * The absolute path of the Webpage file.
+     */
+    private transient String absolutePath;
+    /**
      * The local path of the Webpage file.
      */
     private String path;
-
     /**
      * The sum of all image sizes on this page
      */
-    private double sumOfImageSizes = 0.0;
+    private transient double sumOfImageSizes = 0.0;
     
     /**
      * The amount of image files classified as local or external.
@@ -145,7 +148,7 @@ public class Webpage {
     /**
      * @return
      */
-    public String getPath() {
+    public String getAbsolutePath() {
         return path;
     }
 
@@ -153,7 +156,7 @@ public class Webpage {
      * Sets the local url path of the Webpage.
      * @param path
      */
-    public void setPath(String path) {
+    public void setAbsolutePath(String path) {
         this.path = path;
     }
 
@@ -307,9 +310,13 @@ public class Webpage {
     	return sumOfImageSizes;
     }
     
-	public String getLocalPath(File root)
+    public void setPath(File root)
+    {
+    	path ="./" + root.toURI().relativize(new File(path).toURI()).getPath();
+    }
+    
+	public String getPath()
 	{
-		return root.toURI().relativize(new File(path).toURI()).getPath();
+		return path;
 	}
-
 }

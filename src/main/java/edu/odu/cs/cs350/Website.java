@@ -198,7 +198,8 @@ public class Website
      * @param page
      */
     public void addWebpage(Webpage page) {
-        pages.add(page);
+        page.setPath(this.getUserFilePath());
+    	pages.add(page);
     }
 
 
