@@ -117,7 +117,7 @@ public class TagExtractor implements Cloneable {
     public TagExtractor(File rootToPath, Set<URI> userURLs, Website website) throws URISyntaxException {
 
 
-        rootDirectory = new URI(rootToPath.toString());
+        rootDirectory = rootToPath.toURI();
 
 
         this.setUserURLs(userURLs);
@@ -228,16 +228,15 @@ public class TagExtractor implements Cloneable {
             resource.setUrl(path);
             resource.setUsedOn(currentLocal.toString());
             translateURL(resource);
-            page.addImageToWebpage(resource);
+
             if(resource.getTypeOfLink().contains("local"))
             {
                 File file = new File(resource.getUrl());
                 double fileSize = calculateMiB(file);
                 resource.setFileSize(fileSize);
-
             }
             images.add(resource);
-
+            page.addImageToWebpage(resource);
 
         }
 
@@ -336,7 +335,7 @@ public class TagExtractor implements Cloneable {
 
 
                 if (mimeType.contains("text")) {
-                    currentLocal = new URI(file.toString());
+                    currentLocal = file.toURI();// new URI(file.toString());
                     page = new Webpage(file.getPath());
                     matchWebpageWithLocal(currentLocal);
                     extractResources(file, page);
