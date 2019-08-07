@@ -37,9 +37,9 @@ public class TagExtractorTest {
 
     private URI root2;
 
-    private String rootToSource = "./src/test/resources/edu/odu/cs/cs350/";
+    private File rootToSource = new File( "/src/test/resources/edu/odu/cs/cs350/");
 
-    private String anotherRoot = "/home/system/directory/";
+    private File anotherRoot = new File( "/home/system/directory/");
 
     private String url1 = "https://www.test1.com/test1";
 
@@ -59,9 +59,9 @@ public class TagExtractorTest {
 
         website = new Website();
 
-        rootDirectory = new URI(rootToSource);
+        rootDirectory = rootToSource.toURI();
 
-        root2 = new URI(anotherRoot);
+        root2 = anotherRoot.toURI();
 
         urls.add(new URI(url1) );
 

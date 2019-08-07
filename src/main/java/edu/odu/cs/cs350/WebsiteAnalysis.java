@@ -84,7 +84,7 @@ public class WebsiteAnalysis
      */
     public void parseFiles() throws URISyntaxException
     {
-        extractor = new TagExtractor(analysisSubject.getUserFilePath().toString() , analysisSubject.getUserURLsAsURI(), analysisSubject);
+        extractor = new TagExtractor(analysisSubject.getUserFilePath() , analysisSubject.getUserURLsAsURI(), analysisSubject);
 
         try {
             extractor.runExtractor();

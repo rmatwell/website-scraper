@@ -65,7 +65,9 @@ jar {
     manifest {
         attributes 'Main-Class': 'edu.odu.cs.cs350.AnalysisInputManager'
     }
-    
+      from configurations.runtime.collect {zipTree(it)}
+      
+      exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
 test {

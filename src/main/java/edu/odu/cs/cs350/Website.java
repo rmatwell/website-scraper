@@ -165,7 +165,7 @@ public class Website
         {
             try
             {
-                uriSet.add(new URI(urlItr.next().toString() ) );
+                uriSet.add(urlItr.next().toURI() );
             }
             catch (URISyntaxException e)
             { }
