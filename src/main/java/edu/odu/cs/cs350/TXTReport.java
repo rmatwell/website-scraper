@@ -71,7 +71,7 @@ public class TXTReport
 			while(pageItr.hasNext())			
 			{
 				Webpage nextPage = (Webpage) pageItr.next();
-				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     " + generateLocalPath(nextPage) ) ;
+				writer.println(String.format("%.2f", nextPage.getSumOfImageSizes() ) + " MiB     " + nextPage.getLocalPath(website.getUserFilePath() ) ) ;
 				totalSize += nextPage.getSumOfImageSizes();
 			}
 			writer.println(String.format("%.2f", totalSize) + " MiB     ");
@@ -141,11 +141,6 @@ public class TXTReport
 		});
 		
 		return sortedList;
-	}
-
-	private String generateLocalPath(Webpage input)
-	{
-		return website.getUserFilePath().toURI().relativize(new File(input.getPath()).toURI()).getPath();
 	}
 	
 	//I see no reason that we actually need to clone the TXTReport object, so I'm commenting it out -Jason

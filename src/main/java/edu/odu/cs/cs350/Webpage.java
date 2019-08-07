@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -305,5 +306,10 @@ public class Webpage {
     {
     	return sumOfImageSizes;
     }
+    
+	public String getLocalPath(File root)
+	{
+		return root.toURI().relativize(new File(path).toURI()).getPath();
+	}
 
 }
