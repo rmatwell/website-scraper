@@ -297,7 +297,8 @@ public class TagExtractor implements Cloneable {
      */
     private String createRelativeDirectoryAsString(URI input)
     {
-        return rootDirectory.relativize(new File((input.toString().replaceFirst("file:/",""))).toURI() ).getPath();
+    	//System.out.println("root directory: " + rootDirectory.toString() + " - input: " + input.toString());
+        return rootDirectory.relativize(input).getPath();
     }
 
     /**
