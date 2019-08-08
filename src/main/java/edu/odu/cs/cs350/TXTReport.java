@@ -45,8 +45,11 @@ public class TXTReport
 	{
 
 	}
+	
 	/**
 	 * Non-default constructor, used by WebsiteAnalysis
+	 * @param website
+	 * @param analysisTime
 	 */
 	public TXTReport(Website website, String analysisTime) 
 	{
@@ -83,29 +86,35 @@ public class TXTReport
 
 	/**
 	 * Sets the filename of our txt file
+	 * @param analysisTime
 	 */
 	public void setFileName(String analysisTime) 
 	{
 		this.fileName = analysisTime + ".txt";
 	}
+	
 	/**
 	 * Returns the filename of our txt file
+	 * @return fileName
 	 */
 	public String getFileName()
 	{
 		return fileName;
 	}
+	
 	/**
 	 * Returns the Website object we will get pages from
+	 * @return website
 	 */
 	public Website getWebsite() 
 	{
 		return website;
-	}	
+	}
+	
 	/**
 	 * Sets the Website object we will get pages from
+	 * @param website
 	 */
-	
 	public void setWebsite(Website website) 
 	{
 		this.website = website;
@@ -113,6 +122,7 @@ public class TXTReport
 	
 	/**
 	 * Sets the image set we will get sizes from
+	 * @param input
 	 */
 	public void setImages(Set<Resource> input)
 	{
@@ -120,6 +130,7 @@ public class TXTReport
 	}
 	/**
 	 * Gets the image set we will get sizes from
+	 * @return images
 	 */
 	public Set<Resource> getImages()
 	{
@@ -128,6 +139,7 @@ public class TXTReport
 	
 	/**
 	 * Converts our HashSet of images to a sorted List for reporting
+	 * @return sortedList
 	 */
 	private List<Webpage> generateLexicographicList()
 	{
