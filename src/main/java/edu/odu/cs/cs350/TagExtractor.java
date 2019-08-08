@@ -550,6 +550,7 @@ public class TagExtractor implements Cloneable {
 
 
     /**
+     * Returns webpage urls
      * @return webpageURLs
      */
     public Set<URI> getWebpageURLs() {
@@ -558,6 +559,7 @@ public class TagExtractor implements Cloneable {
 
 
     /**
+     * Sets webpage urls
      * @param webpageURLs
      */
     public void setWebpageURLs(Set<URI> webpageURLs) {
@@ -566,6 +568,7 @@ public class TagExtractor implements Cloneable {
 
 
     /**
+     * Returns path to root directory
      * @return pathToRoot
      */
     public File[] getPathToRoot() {
@@ -574,6 +577,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
+     * Returns page object
      * @return page
      */
     public Webpage getPage() {
@@ -581,6 +585,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
+     * Returns website object
      * @return website
      */
     public Website getWebsite() {
