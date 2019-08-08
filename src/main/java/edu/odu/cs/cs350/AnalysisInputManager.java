@@ -17,6 +17,7 @@ public class AnalysisInputManager
 
     /**
      * Main function that takes user's input and starts the analysis using it
+     * @param args
      * @throws URISyntaxException
      * @throws IOException
      * @throws FileNotFoundException
@@ -37,6 +38,7 @@ public class AnalysisInputManager
 
     /**
      * Checks to ensure that the WebsiteAnalysis has enough data to begin, and then triggers the analysis to parse files and then generate reports
+     * @param args
      * @throws URISyntaxException
      * @throws IOException
      * @throws FileNotFoundException
@@ -62,6 +64,7 @@ public class AnalysisInputManager
 
     /**
      * Records and formats the time the Analysis was run at for report naming purposes
+     * @return timeStamp
      */
     public static String getAnalysisTime()
     {
