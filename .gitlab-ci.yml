@@ -20,7 +20,8 @@ build-job:
     # Make entire build directory available
     # for the deploy portion of the job
     paths:
-      - ./build - ./build/libs/WebAnalysis.jar
+      - ./build
+      - ./build/libs/WebAnalysis.jar
 
 deploy-job:
   tags:
