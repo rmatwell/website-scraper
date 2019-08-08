@@ -1,0 +1,16 @@
+{
+  "basePath":{
+    "path":"src/test/resources/edu/odu/cs/cs350"
+  },
+  "urls":[
+    "https://www.test1.com/test1",
+    "https://www.test2.com/test2"
+  ],
+  "pages":[],
+  "files":{
+    "archive":[],
+    "video":[],
+    "audio":[],
+    "other":[]
+  }
+}
