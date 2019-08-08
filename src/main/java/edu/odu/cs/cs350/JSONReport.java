@@ -24,24 +24,24 @@ public class JSONReport implements Cloneable {
     private String fileName;
 
     /**
-     * 		The formatted time that the analysis began.
+     *      The formatted time that the analysis began.
      */
     private String analysisTime;
 
     /**
-     * 		The formatted JSON string created from the website
-     * 		object.
+     *      The formatted JSON string created from the website
+     *      object.
      */
     private String json;
 
     /**
-     * 		The file output stream that will write the formatted JSON
+     *      The file output stream that will write the formatted JSON
      *      string to the file.
      */
     private FileOutputStream jsonFile;
 
     /**
-     * 		The website object from which the JSON file will be
+     *      The website object from which the JSON file will be
      *      generated.
      */
     private Website website;
@@ -53,7 +53,7 @@ public class JSONReport implements Cloneable {
     private Webpage page;
 
     /**
-     * 		Prime number to use with hashcode function.
+     *      Prime number to use with hashcode function.
      */
     private static final int PRIME_NUM_HASH = 31;
 
@@ -206,7 +206,7 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @param analysisTime
+     * @param analysisTime **The time the report began**
      */
     public void setAnalysisTime(String analysisTime) {
         this.analysisTime = analysisTime;
@@ -275,7 +275,7 @@ public class JSONReport implements Cloneable {
 
     /**
      * Sets the webpage object.
-     * @param page
+     * @param page **The webpage**
      */
     public void setPage(Webpage page) {
         this.page = page;
