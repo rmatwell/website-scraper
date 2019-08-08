@@ -36,7 +36,7 @@ deploy-job:
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$RSYNC_KEY")
 
-    - rsync -auvz -e "ssh" build/docs build/reports/ build/jacoco build/libs artifacts archivratwell@atria.cs.odu.edu:./
+    - rsync -auvz -e "ssh" build/docs build/reports/ build/jacoco build/libs artifacts ratwell@atria.cs.odu.edu:./
 
     - ssh-agent -k
  
