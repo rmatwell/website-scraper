@@ -84,6 +84,7 @@ public class Webpage {
     }
 
     /**
+     * Adds image to resource object
      * @param resource
      */
     public void addImageToWebpage(Resource resource) {
@@ -94,6 +95,7 @@ public class Webpage {
     }
 
     /**
+     * Adds scripts to resource object
      * @param resource
      */
     public void addScriptToWebpage(Resource resource) {
@@ -103,6 +105,7 @@ public class Webpage {
     }
 
     /**
+     * Adds CSS to resource object
      * @param resource
      */
     public void addCSSToWebpage(Resource resource) {
@@ -112,6 +115,7 @@ public class Webpage {
     }
 
     /**
+     * Adds anchor links to resource object
      * @param resource
      */
     public void addAnchortoWebpage(Resource resource) {
@@ -146,7 +150,8 @@ public class Webpage {
     }
 
     /**
-     * @return
+     * Gets the local url path of the webpage
+     * @return path
      */
     public String getAbsolutePath() {
         return path;
@@ -257,6 +262,10 @@ public class Webpage {
         this.linkCount = linkCount;
     }
 
+    /**
+     * Gets the sum of all images on page
+     * @return sumImages
+     */
     public int getSumImages() {
         return sumImages;
     }
