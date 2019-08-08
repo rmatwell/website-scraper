@@ -83,8 +83,7 @@ public class XLSXReport implements Cloneable {
         while(itr.hasNext()) {
             pages.add(itr.next());
         }
-
-
+        
 
         Sheet sheet = workbook.createSheet("summary");
         Font headerFont = workbook.createFont();
@@ -159,7 +158,8 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
-     * @return filename as analysis time with .xlsx
+     * Returns fileName as analysis time with .xlsx
+     * @return fileName 
      */
     public String getFileName() {
 
@@ -167,7 +167,8 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
-     * @return the formatted xlsx string
+     * Returns the formatted xlsx string
+     * @return xlsx
      */
     @Override
     public String toString() {
@@ -176,7 +177,8 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
-     * @return the website object
+     * Returns the website object
+     * @return website
      */
     public Website getWebsite() {
 
@@ -184,8 +186,8 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
+     * Sets the website object
      * @param website
-     *
      */
     public void setWebsite(Website website) {
 
@@ -193,22 +195,24 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
-     * @return page The webpage object
+     * Returns the webpage object
+     * @return page
      */
     public Webpage getPage() {
         return page;
     }
 
-
     /**
-     * @param page Sets the webpage object
+     * Sets the webpage object
+     * @param page
      */
     public void setPage(Webpage page) {
         this.page = page;
     }
 
     /**
-     * @return the analysisTime string
+     * Returns the analysisTime string
+     * @return analysisTime
      */
     public String getAnalysisTime() {
 
@@ -216,6 +220,7 @@ public class XLSXReport implements Cloneable {
     }
 
     /**
+     * Sets the analysisTime string
      * @param analysisTime
      */
     public void setAnalysisTime(String analysisTime) {
@@ -263,7 +268,7 @@ public class XLSXReport implements Cloneable {
     }
 
     /*
-     * Creates hashcode
+     * Creates hashcode based on xlsx and fileName strings
      */
     @Override
     public int hashCode() {
