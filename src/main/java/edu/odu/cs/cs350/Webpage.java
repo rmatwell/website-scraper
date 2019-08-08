@@ -270,60 +270,116 @@ public class Webpage {
         return sumImages;
     }
 
+    /**
+     * Sets sum of all images on page
+     * @param sumImages
+     */
     public void setSumImages(int sumImages) {
         this.sumImages = sumImages;
     }
 
+    /**
+     * Returns sum of javascripts
+     * @return sumJS
+     */
     public int getSumJS() {
         return sumJS;
     }
 
+    /**
+     * Sets sum of javascripts
+     * @param sumJS
+     */
     public void setSumJS(int sumJS) {
         this.sumJS = sumJS;
     }
 
+    /**
+     * Returns sum of CSS
+     * @return sumCSS
+     */
     public int getSumCSS() {
         return sumCSS;
     }
 
+    /**
+     * Sets sum of CSS
+     * @param sumCSS
+     */
     public void setSumCSS(int sumCSS) {
         this.sumCSS = sumCSS;
     }
 
+    /**
+     * Returns sum of local files
+     * @return sumLocal
+     */
     public int getSumLocal() {
         return sumLocal;
     }
 
+    /**
+     * Sets sum of local files
+     * @param sumLocal
+     */
     public void setSumLocal(int sumLocal) {
         this.sumLocal = sumLocal;
     }
 
+    /**
+     * Returns sum of external files
+     * @return sumExternal
+     */
     public int getSumExternal() {
         return sumExternal;
     }
 
+    /**
+     * Sets sum of external files
+     * @param sumExternal
+     */
     public void setSumExternal(int sumExternal) {
         this.sumExternal = sumExternal;
     }
 
+    /**
+     * Returns sum of intra-page links
+     * @return sumIntrapage
+     */
     public int getSumIntrapage() {
         return sumIntrapage;
     }
 
+    /**
+     * Sets sum of intra-page links
+     * @param sumIntrapage
+     */
     public void setSumIntrapage(int sumIntrapage) {
         this.sumIntrapage = sumIntrapage;
     }
     
+    /**
+     * Returns sum of image sizes
+     * @return sumOfImageSizes
+     */
     public double getSumOfImageSizes()
     {
     	return sumOfImageSizes;
     }
     
+    /**
+     * Sets root path
+     * @param root
+     */
     public void setPath(File root)
     {
     	path ="./" + root.toURI().relativize(new File(path).toURI()).getPath();
     }
     
+    /**
+     * Returns root path
+     * @return path
+     */
 	public String getPath()
 	{
 		return path;
