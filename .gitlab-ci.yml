@@ -23,8 +23,8 @@ build-job:
       - ./build
       - ./build/libs/WebAnalysis.jar
       - ./*.json
-      	./*.txt
-      	./*.xlsx
+      - ./*.txt
+      - ./*.xlsx
 
 deploy-job:
   tags:
