@@ -34,8 +34,11 @@ public class WebsiteAnalysis
     {
 
     }
+    
     /**
      * Constructor that takes arguments and a string for the report names: used by AnalysisInputManager
+     * @param args
+     * @param analysisTime
      */
     public WebsiteAnalysis(String[] args, String analysisTime)
     {
@@ -45,27 +48,34 @@ public class WebsiteAnalysis
 
     /**
      * Returns the string containing the analysis time
+     * @return analysisTime
      */
     public String getAnalysisTime()
     {
         return analysisTime;
     }
+    
     /**
      * Sets the string containing the analysis time
+     * @param input
      */
     public void setAnalysisTime(String input)
     {
         analysisTime = input;
     }
+    
     /**
      * Returns the website to be analyzed
+     * @return analysisSubject
      */
     public Website getAnalysisSubject()
     {
         return analysisSubject;
     }
+    
     /**
      * Sets the website to be analyzed
+     * @param args
      */
     public void setAnalysisSubject(String[] args)
     {
@@ -79,6 +89,7 @@ public class WebsiteAnalysis
     {
         return ( analysisSubject.getUserFilePath() != null && analysisTime != null && !analysisSubject.getUserURLs().isEmpty() );
     }
+    
     /**
      * Triggers the tag extractor to do what it needs to do to parse files and generate resources
      * @throws URISyntaxException
@@ -94,6 +105,7 @@ public class WebsiteAnalysis
 
         analysisSubject = extractor.getWebsite();
     }
+    
     /**
      * Reports in multiple formats the results of the analysis
      * @throws IOException

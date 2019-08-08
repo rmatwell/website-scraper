@@ -112,6 +112,7 @@ public class TagExtractor implements Cloneable {
      *
      * @param rootDirectory **The local root site**
      * @param userURLs **The website urls that correspond to the local root
+     * @param website **The website object
      * @throws URISyntaxException **
      */
     public TagExtractor(File rootToPath, Set<URI> userURLs, Website website) throws URISyntaxException {
@@ -125,7 +126,6 @@ public class TagExtractor implements Cloneable {
         this.website=website;
 
     }
-
 
     /**
      * Parses and strips HTML resources from file regardless of the file
@@ -149,12 +149,11 @@ public class TagExtractor implements Cloneable {
 
     }
 
-
     /**
      *  TODO Implement method to extract from "a" tags and classify as
      *  video, audio, archive, and other. Possibly using tika.detect().
      *
-     *@param document **The Jsoup document of the local file
+     * @param document **The Jsoup document of the local file
      * @throws URISyntaxException **
      */
     public void extractAnchorTags(Document document) throws URISyntaxException {
@@ -195,7 +194,7 @@ public class TagExtractor implements Cloneable {
     /**
      * Extracts CSS elements from HTML document.
      *
-     *@param document **The Jsoup document of the local file
+     * @param document **The Jsoup document of the local file
      * @throws URISyntaxException **
      */
     public void extractLinkTags(Document document) throws URISyntaxException {
@@ -215,7 +214,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Extracts image elements from HTML document.
-     *@param document **The Jsoup document of the local file
+     * @param document **The Jsoup document of the local file
      * @throws URISyntaxException **
      */
     public void extractImageTags(Document document) throws URISyntaxException, IOException {
@@ -244,8 +243,9 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Translates a website link url path to the local directory path.
-     * @return The translated local path.
+     * @param resource
      * @throws URISyntaxException
+     * @return The translated local path.
      */
     public void translateURL(Resource resource) throws URISyntaxException {
 
@@ -289,12 +289,21 @@ public class TagExtractor implements Cloneable {
         }
 
     }
+    
+    /**
+     * Creates relative directory as a string
+     * @param input
+     * @return rootDirectory
+     */
     private String createRelativeDirectoryAsString(URI input)
     {
         return rootDirectory.relativize(new File((input.toString().replaceFirst("file:/",""))).toURI() ).getPath();
     }
 
-
+    /**
+     * Matches webpage urls with local directory
+     * @param currentLocal
+     */
     public void matchWebpageWithLocal(URI currentLocal) {
         if (!webpageURLs.isEmpty()) {
             webpageURLs.clear();
@@ -316,15 +325,16 @@ public class TagExtractor implements Cloneable {
      * @throws URISyntaxException
      */
     public void runExtractor() throws IOException, URISyntaxException {
-        traverseFiles(getPathToRoot());
+        
+    	traverseFiles(getPathToRoot());
     }
 
     /**
      *  Starts at the root directory of the local Website and parses all files
      *  including the files of sub-directories.
      *
-     *@param files **The local root site**
-     *@throws IOException **Thrown if file is invalid
+     * @param files **The local root site**
+     * @throws IOException **Thrown if file is invalid
      * @throws URISyntaxException **
      */
     public void traverseFiles(File[] files) throws IOException, URISyntaxException
@@ -411,7 +421,7 @@ public class TagExtractor implements Cloneable {
         this.rootDirectory = rootDirectory;
     }
 
-    /**
+    /*
      * Creates hashcode based on sum of member variables hashcodes.
      */
     @Override
@@ -459,7 +469,7 @@ public class TagExtractor implements Cloneable {
     /**
      * Takes the size of a file in Bytes and converts to MiB.
      *
-     *@param file **A local resource file**
+     * @param file **A local resource file**
      * @return The file size in Mebibytes(MiB)
      */
     public double calculateMiB(File file) {
@@ -477,7 +487,7 @@ public class TagExtractor implements Cloneable {
      * Takes the double type file size in MiB and rounds to the nearest
      * two digits as well as appending "MiB" to the end.
      *
-     *@param fileSize **The size of the local resource in bytes**
+     * @param fileSize **The size of the local resource in bytes**
      * @return The formatted file size
      */
     public String formatFileSize(double fileSize) {
@@ -499,7 +509,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     *  Returns the set of stylesheets.
+     * Returns the set of stylesheets.
      * @return the set of stylesheets
      */
     public Set<Resource> getLinks() {
@@ -532,7 +542,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Sets the set of data from anchors.
-     *@param anchors **The extracted html resource from an anchor tag**
+     * @param anchors **The extracted html resource from an anchor tag**
      */
     public void setAnchors(Set<Resource> anchors) {
         this.anchors = anchors;
@@ -540,7 +550,8 @@ public class TagExtractor implements Cloneable {
 
 
     /**
-     * @return
+     * Returns webpage urls
+     * @return webpageURLs
      */
     public Set<URI> getWebpageURLs() {
         return webpageURLs;
@@ -548,6 +559,7 @@ public class TagExtractor implements Cloneable {
 
 
     /**
+     * Sets webpage urls
      * @param webpageURLs
      */
     public void setWebpageURLs(Set<URI> webpageURLs) {
@@ -556,7 +568,8 @@ public class TagExtractor implements Cloneable {
 
 
     /**
-     * @return
+     * Returns path to root directory
+     * @return pathToRoot
      */
     public File[] getPathToRoot() {
         pathToRoot = new File(rootDirectory.getPath()).listFiles().clone();
@@ -564,14 +577,16 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     * @return
+     * Returns page object
+     * @return page
      */
     public Webpage getPage() {
         return page;
     }
 
     /**
-     * @return
+     * Returns website object
+     * @return website
      */
     public Website getWebsite() {
         return website;

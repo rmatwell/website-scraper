@@ -14,7 +14,6 @@ import java.util.Set;
  */
 public class Resource implements Cloneable {
 
-
     /**
      *  Size of the resource.
      */
@@ -91,7 +90,6 @@ public class Resource implements Cloneable {
         this.fileSize = fileSize;
     }
 
-
     /**
      * @return typeOfLink
      * external, internal, or intra-page
@@ -99,7 +97,6 @@ public class Resource implements Cloneable {
     public String getTypeOfLink() {
         return typeOfLink;
     }
-
 
     /**
      * @param typeOfLink
@@ -112,7 +109,6 @@ public class Resource implements Cloneable {
         }
     }
 
-
     /**
      * @return url
      * the url of the resource
@@ -121,8 +117,7 @@ public class Resource implements Cloneable {
 
     	return url;
     }
-
-
+    
     /**
      * @param url
      * sets the url of the resource
@@ -131,7 +126,6 @@ public class Resource implements Cloneable {
     	
         	this.url = url;
     }
-
 
     /**
      * @return usedOn
@@ -152,7 +146,7 @@ public class Resource implements Cloneable {
 
 
     /*
-     *
+     * Creates hashcode based on url, typeOfLink, and usedOn strings
      */
     @Override
     public int hashCode() {
@@ -195,10 +189,10 @@ public class Resource implements Cloneable {
     }
 
 
-    /**
+    /*
      * Creates identical copy of Resource object.
      * @throws CloneNotSupportedException
-     *
+     * @return aCopy
      */
     @Override
     public Resource clone() throws CloneNotSupportedException
@@ -213,11 +207,9 @@ public class Resource implements Cloneable {
         return aCopy;
     }
 
-    /**
+    /*
      * @return string
-     * 
      * Displays the contents of the Resource.
-     *
      */
     @Override
     public String toString()
@@ -227,10 +219,19 @@ public class Resource implements Cloneable {
         return string;
     }
     
+    /**
+     * Sets the absolute path for url
+     * @param input
+     */
     public void setAbsoluteUrl(String input)
     {
     	absoluteUrl = input;
     }
+    
+    /**
+     * Gets the absolute path for url
+     * @return absoluteUrl
+     */
     public String getAbsoluteUrl()
     {
     	return absoluteUrl;

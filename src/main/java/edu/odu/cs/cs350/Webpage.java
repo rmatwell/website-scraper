@@ -84,6 +84,7 @@ public class Webpage {
     }
 
     /**
+     * Adds image to resource object
      * @param resource
      */
     public void addImageToWebpage(Resource resource) {
@@ -94,6 +95,7 @@ public class Webpage {
     }
 
     /**
+     * Adds scripts to resource object
      * @param resource
      */
     public void addScriptToWebpage(Resource resource) {
@@ -103,6 +105,7 @@ public class Webpage {
     }
 
     /**
+     * Adds CSS to resource object
      * @param resource
      */
     public void addCSSToWebpage(Resource resource) {
@@ -112,6 +115,7 @@ public class Webpage {
     }
 
     /**
+     * Adds anchor links to resource object
      * @param resource
      */
     public void addAnchortoWebpage(Resource resource) {
@@ -146,7 +150,8 @@ public class Webpage {
     }
 
     /**
-     * @return
+     * Gets the local url path of the webpage
+     * @return path
      */
     public String getAbsolutePath() {
         return path;
@@ -257,64 +262,124 @@ public class Webpage {
         this.linkCount = linkCount;
     }
 
+    /**
+     * Gets the sum of all images on page
+     * @return sumImages
+     */
     public int getSumImages() {
         return sumImages;
     }
 
+    /**
+     * Sets sum of all images on page
+     * @param sumImages
+     */
     public void setSumImages(int sumImages) {
         this.sumImages = sumImages;
     }
 
+    /**
+     * Returns sum of javascripts
+     * @return sumJS
+     */
     public int getSumJS() {
         return sumJS;
     }
 
+    /**
+     * Sets sum of javascripts
+     * @param sumJS
+     */
     public void setSumJS(int sumJS) {
         this.sumJS = sumJS;
     }
 
+    /**
+     * Returns sum of CSS
+     * @return sumCSS
+     */
     public int getSumCSS() {
         return sumCSS;
     }
 
+    /**
+     * Sets sum of CSS
+     * @param sumCSS
+     */
     public void setSumCSS(int sumCSS) {
         this.sumCSS = sumCSS;
     }
 
+    /**
+     * Returns sum of local files
+     * @return sumLocal
+     */
     public int getSumLocal() {
         return sumLocal;
     }
 
+    /**
+     * Sets sum of local files
+     * @param sumLocal
+     */
     public void setSumLocal(int sumLocal) {
         this.sumLocal = sumLocal;
     }
 
+    /**
+     * Returns sum of external files
+     * @return sumExternal
+     */
     public int getSumExternal() {
         return sumExternal;
     }
 
+    /**
+     * Sets sum of external files
+     * @param sumExternal
+     */
     public void setSumExternal(int sumExternal) {
         this.sumExternal = sumExternal;
     }
 
+    /**
+     * Returns sum of intra-page links
+     * @return sumIntrapage
+     */
     public int getSumIntrapage() {
         return sumIntrapage;
     }
 
+    /**
+     * Sets sum of intra-page links
+     * @param sumIntrapage
+     */
     public void setSumIntrapage(int sumIntrapage) {
         this.sumIntrapage = sumIntrapage;
     }
     
+    /**
+     * Returns sum of image sizes
+     * @return sumOfImageSizes
+     */
     public double getSumOfImageSizes()
     {
     	return sumOfImageSizes;
     }
     
+    /**
+     * Sets root path
+     * @param root
+     */
     public void setPath(File root)
     {
     	path ="./" + root.toURI().relativize(new File(path).toURI()).getPath();
     }
     
+    /**
+     * Returns root path
+     * @return path
+     */
 	public String getPath()
 	{
 		return path;
