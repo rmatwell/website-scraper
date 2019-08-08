@@ -20,7 +20,7 @@ build-job:
     # Make entire build directory available
     # for the deploy portion of the job
     paths:
-      - ./build
+      - ./build ./*.json ./*.txt ./*.xlsx ./build/libs/*.jar
 
 deploy-job:
   tags:
