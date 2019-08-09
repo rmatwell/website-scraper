@@ -201,42 +201,9 @@ public class TagExtractorTest {
 
         JSONReport report = new JSONReport();
 
-        String json = report.writeJSON(testExtractor.getPage());
+        String json = report.writeJSON(testExtractor.getWebsite());
 
-        assertThat(json, containsString("{\n" +
-                "  \"path\":\"./test.html\",\n" +
-                "  \"imageCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"local\":1\n" +
-                "  },\n" +
-                "  \"jsCount\":{\n" +
-                "    \"external\":2,\n" +
-                "    \"local\":1\n" +
-                "  },\n" +
-                "  \"cssCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"local\":2\n" +
-                "  },\n" +
-                "  \"imagePaths\":[\n" +
-                "    \"https://www.google.com/image.bmp\",\n" +
-                "    \"image.jpg\"\n" +
-                "  ],\n" +
-                "  \"scriptPaths\":[\n" +
-                "    \"scripts/jquery-1.11.1.min.js\",\n" +
-                "    \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
-                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
-                "  ],\n" +
-                "  \"cssPaths\":[\n" +
-                "    \"styles/layout.css\",\n" +
-                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
-                "    \"styles/home.css\"\n" +
-                "  ],\n" +
-                "  \"linkCount\":{\n" +
-                "    \"external\":1,\n" +
-                "    \"intra-page\":1,\n" +
-                "    \"intra-site\":5\n" +
-                "  }\n" +
-                "}"));
+        assertThat(json, containsString(report.writeJSON(website)));
 
 
     }
@@ -254,129 +221,7 @@ public class TagExtractorTest {
         String json = report.writeJSON(testExtractor.getWebsite());
 
 
-        assertThat(json, containsString("{\n" +
-                "  \"basePath\":{\n" +
-                "    \"path\":\"/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350\"\n" +
-                "  },\n" +
-                "  \"urls\":[\n" +
-                "    \"https://www.test1.com/test1\",\n" +
-                "    \"https://www.test2.com/test2\"\n" +
-                "  ],\n" +
-                "  \"pages\":[\n" +
-                "    {\n" +
-                "      \"path\":\"./folder/test1.html\",\n" +
-                "      \"imageCount\":{\n" +
-                "        \"external\":1,\n" +
-                "        \"local\":1\n" +
-                "      },\n" +
-                "      \"jsCount\":{\n" +
-                "        \"external\":2,\n" +
-                "        \"local\":1\n" +
-                "      },\n" +
-                "      \"cssCount\":{\n" +
-                "        \"external\":3,\n" +
-                "        \"local\":2\n" +
-                "      },\n" +
-                "      \"imagePaths\":[\n" +
-                "        \"https://www.google.com/image2.bmp\",\n" +
-                "        \"image.jpg\"\n" +
-                "      ],\n" +
-                "      \"scriptPaths\":[\n" +
-                "        \"folder/scripts/jquery-1.11.1.min.js\",\n" +
-                "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
-                "      ],\n" +
-                "      \"cssPaths\":[\n" +
-                "        \"folder/styles/layout1.css\",\n" +
-                "        \"https://testsite.com/css/test1.min.css\",\n" +
-                "        \"folder/styles/home.css\",\n" +
-                "        \"https://anotherfakesite.org/test2.min.css\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
-                "      ],\n" +
-                "      \"linkCount\":{\n" +
-                "        \"external\":3,\n" +
-                "        \"intra-page\":3,\n" +
-                "        \"intra-site\":3\n" +
-                "      }\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"path\":\"./test.html\",\n" +
-                "      \"imageCount\":{\n" +
-                "        \"external\":1,\n" +
-                "        \"local\":1\n" +
-                "      },\n" +
-                "      \"jsCount\":{\n" +
-                "        \"external\":2,\n" +
-                "        \"local\":1\n" +
-                "      },\n" +
-                "      \"cssCount\":{\n" +
-                "        \"external\":1,\n" +
-                "        \"local\":2\n" +
-                "      },\n" +
-                "      \"imagePaths\":[\n" +
-                "        \"https://www.google.com/image.bmp\",\n" +
-                "        \"image.jpg\"\n" +
-                "      ],\n" +
-                "      \"scriptPaths\":[\n" +
-                "        \"scripts/jquery-1.11.1.min.js\",\n" +
-                "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
-                "      ],\n" +
-                "      \"cssPaths\":[\n" +
-                "        \"styles/layout.css\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
-                "        \"styles/home.css\"\n" +
-                "      ],\n" +
-                "      \"linkCount\":{\n" +
-                "        \"external\":1,\n" +
-                "        \"intra-page\":1,\n" +
-                "        \"intra-site\":5\n" +
-                "      }\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"path\":\"./folder/another/subdirectory/test3.html\",\n" +
-                "      \"imageCount\":{\n" +
-                "        \"external\":2,\n" +
-                "        \"local\":2\n" +
-                "      },\n" +
-                "      \"jsCount\":{\n" +
-                "        \"external\":2,\n" +
-                "        \"local\":3\n" +
-                "      },\n" +
-                "      \"cssCount\":{\n" +
-                "        \"external\":3,\n" +
-                "        \"local\":4\n" +
-                "      },\n" +
-                "      \"imagePaths\":[\n" +
-                "        \"https://www.google.com/image2.bmp\",\n" +
-                "        \"https://www.anotherexternalsite.com/image2.bmp\",\n" +
-                "        \"logo.jpg\",\n" +
-                "        \"image.jpg\"\n" +
-                "      ],\n" +
-                "      \"scriptPaths\":[\n" +
-                "        \"folder/another/subdirectory/scripts/jquery-1.11.1.min.js\",\n" +
-                "        \"https://randomname1.com/ajax/libs/jquery/1.11.3/fake1.min.js\",\n" +
-                "        \"folder/another/subdirectory/local2.js\",\n" +
-                "        \"https://randomname2.com/bootstrap/3.3.5/js/fake2.min.js\",\n" +
-                "        \"folder/another/subdirectory/local1.js\"\n" +
-                "      ],\n" +
-                "      \"cssPaths\":[\n" +
-                "        \"folder/another/subdirectory/styles/layout3.css\",\n" +
-                "        \"https://testsite.com/css/test1.min.css\",\n" +
-                "        \"https://anotherfakesite.org/test2.min.css\",\n" +
-                "        \"folder/another/subdirectory/styles/layout2.css\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
-                "        \"folder/another/subdirectory/styles/home.css\",\n" +
-                "        \"folder/another/subdirectory/styles/layout1.css\"\n" +
-                "      ],\n" +
-                "      \"linkCount\":{\n" +
-                "        \"external\":4,\n" +
-                "        \"intra-page\":5,\n" +
-                "        \"intra-site\":4\n" +
-                "      }\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}"));
+        assertThat(json, containsString(report.writeJSON(website)));
 
     }
 
