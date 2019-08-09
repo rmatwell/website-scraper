@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Test case for Resource class
  * @author Richard Atwell
  *
  */
@@ -58,7 +59,6 @@ public class TestResource {
         assertThat(defaultConstruct, equalTo(defaultConstruct));
 
         assertThat(defaultConstruct, instanceOf(Resource.class));
-
 
     }
 
