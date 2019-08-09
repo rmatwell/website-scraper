@@ -17,20 +17,19 @@ import java.net.*;
 public class TestWebsite 
 {
 	@Test
-	public void TestSetUserPathGoodPath() throws IOException
+	public void TestSetUserPathGoodPath()
 	{
 		Website testSite = new Website();
 		
-		String goodPath = "../../../build/libs";
+		String goodPath = "build/libs";
 		File goodPathFile = new File(goodPath);
-		System.out.println(goodPathFile.getCanonicalPath() );
-		System.out.println(testSite.getUserFilePath().getCanonicalPath() );
+
 		
 		assertNull(testSite.getUserFilePath() );
-		testSite.setUserFilePath(goodPath);
+		testSite.setUserFilePath(goodPathFile.getAbsolutePath().toString());
 		
 		//because the path was good, it should take
-		assertThat(testSite.getUserFilePath().getCanonicalPath(), is(goodPathFile.getCanonicalFile()) );
+		assertThat(testSite.getUserFilePath().getAbsolutePath(), is(goodPathFile.getAbsolutePath()) );
 	}
 	
 	@Test
@@ -38,11 +37,11 @@ public class TestWebsite
 	{
 		Website testSite = new Website();
 		
-		String nonPath = "../../../build/libz";
+		String nonPath = "build/libz";
 		File nonPathFile = new File(nonPath);
 
 		assertNull(testSite.getUserFilePath() );
-		testSite.setUserFilePath(nonPath);
+		testSite.setUserFilePath(nonPathFile.getAbsolutePath().toString());
 
 		assertNull(testSite.getUserFilePath() );
 	}
@@ -52,16 +51,16 @@ public class TestWebsite
 	{
 		Website testSite = new Website();
 		
-		String nonPath = "../../../gradlew.bat"; //using this because gradlew.bat is basically guaranteed to work
-		File nonPathFile = new File(nonPath);
+		String nonPath = "gradlew.bat"; //using this because gradlew.bat is basically guaranteed to work
+		File nonPathFile = new File(nonPath );
 		
 		assertNull(testSite.getUserFilePath() );
-		testSite.setUserFilePath(nonPath);
+		testSite.setUserFilePath(nonPathFile.getAbsolutePath().toString());
 		
 
 		assertNull(testSite.getUserFilePath() );
 	}
-		
+			
 	@Test
 	public void TestSetPagesHappyPath()
 	{
