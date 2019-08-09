@@ -57,14 +57,13 @@ public class Resource implements Cloneable {
         typeOfLink = "";
         url = "";
 
-
     }
 
     /**
-     * @param fileSize Size of the file
-     * @param typeOfLink External, Internal, or intra-page link
-     * @param url
-     * @param usedOn
+     * @param fileSize **Size of the file
+     * @param typeOfLink **External, Internal, or intra-page link
+     * @param url **Url of resource
+     * @param usedOn **Page resource is found on
      */
     public Resource(double fileSize, String typeOfLink,
             String url, Set<String> usedOn) {
@@ -77,6 +76,7 @@ public class Resource implements Cloneable {
     }
 
     /**
+     * Returns the size of file
      * @return fileSize
      */
     public double getFileSize() {
@@ -84,6 +84,7 @@ public class Resource implements Cloneable {
     }
 
     /**
+     * Sets the size of file
      * @param fileSize
      */
     public void setFileSize(double fileSize) {
@@ -91,16 +92,16 @@ public class Resource implements Cloneable {
     }
 
     /**
+     * Returns the type of link (external, internal, or intra-page)
      * @return typeOfLink
-     * external, internal, or intra-page
      */
     public String getTypeOfLink() {
         return typeOfLink;
     }
 
     /**
+     * Sets the type of link to external, internal, or intra-page
      * @param typeOfLink
-     * sets the type of link to external, internal, or intra-page
      */
     public void setTypeOfLink(String typeOfLink) {
         if (typeOfLink.equals("local") || typeOfLink.equals("external")
@@ -110,8 +111,8 @@ public class Resource implements Cloneable {
     }
 
     /**
+     * Returns the url of the resource
      * @return url
-     * the url of the resource
      */
     public String getUrl() {
 
@@ -119,8 +120,8 @@ public class Resource implements Cloneable {
     }
     
     /**
+     * Sets the url of the resource
      * @param url
-     * sets the url of the resource
      */
     public void setUrl(String url) {
     	
@@ -128,8 +129,8 @@ public class Resource implements Cloneable {
     }
 
     /**
+     * Returns the page the resource is found on
      * @return usedOn
-     * the page the resource is found on
      */
     public Set<String> getUsedOn() {
         return usedOn;
@@ -137,7 +138,6 @@ public class Resource implements Cloneable {
 
     /**
      * Sets the url of the page the resource is found on.
-     * 
      * @param usedOn
      */
     public void setUsedOn(String usedOn) {
@@ -187,7 +187,6 @@ public class Resource implements Cloneable {
 
 
     }
-
 
     /*
      * Creates identical copy of Resource object.
