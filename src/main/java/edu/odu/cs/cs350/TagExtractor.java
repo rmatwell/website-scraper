@@ -110,7 +110,7 @@ public class TagExtractor implements Cloneable {
      *  Initializes the tag extractor with the starting root directory along
      *  with user supplied URLs.
      *
-     * @param rootDirectory **The local root site**
+     * @param rootToPath **The local root path**
      * @param userURLs **The website urls that correspond to the local root
      * @param website **The website object
      * @throws URISyntaxException **
@@ -150,8 +150,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /**
-     *  TODO Implement method to extract from "a" tags and classify as
-     *  video, audio, archive, and other. Possibly using tika.detect().
+     * Extracts anchor tags from HTML document
      *
      * @param document **The Jsoup document of the local file
      * @throws URISyntaxException **
@@ -245,7 +244,6 @@ public class TagExtractor implements Cloneable {
      * Translates a website link url path to the local directory path.
      * @param resource
      * @throws URISyntaxException
-     * @return The translated local path.
      */
     public void translateURL(Resource resource) throws URISyntaxException {
 
@@ -320,8 +318,8 @@ public class TagExtractor implements Cloneable {
 
     }
 
-
     /**
+     * Runs extractor to parse files
      * @throws IOException
      * @throws URISyntaxException
      */
@@ -384,7 +382,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Gets the analysis time.
-     * @return the formatted time of when the Website Analysis began.
+     * @return analysisTime **The formatted time of when the Website Analysis began.
      */
     public String getAnalysisTime() {
         return analysisTime;
@@ -392,7 +390,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Gets the user supplied URLs connected to the local website copy.
-     * @return the user entered URL variations for the Website.
+     * @return userURLs **The user entered URL variations for the Website.
      */
     public Set<URI> getUserURLs() {
         return userURLs;
@@ -408,7 +406,7 @@ public class TagExtractor implements Cloneable {
 
     /**
      * Gets the local root site of the website.
-     * @return the root directory of the Website.
+     * @return rootDirectory **The root directory of the Website.
      */
     public URI getRootDirectory() {
         return rootDirectory;
@@ -436,7 +434,7 @@ public class TagExtractor implements Cloneable {
     }
 
     /*
-     *  Generates a copy of a TagExtractor object.
+     * Generates a copy of a TagExtractor object.
      */
     @Override
     public TagExtractor clone() throws CloneNotSupportedException {
@@ -471,7 +469,7 @@ public class TagExtractor implements Cloneable {
      * Takes the size of a file in Bytes and converts to MiB.
      *
      * @param file **A local resource file**
-     * @return The file size in Mebibytes(MiB)
+     * @return sizeInMiB **The file size in Mebibytes(MiB)
      */
     public double calculateMiB(File file) {
 
@@ -549,7 +547,6 @@ public class TagExtractor implements Cloneable {
         this.anchors = anchors;
     }
 
-
     /**
      * Returns webpage urls
      * @return webpageURLs
@@ -558,7 +555,6 @@ public class TagExtractor implements Cloneable {
         return webpageURLs;
     }
 
-
     /**
      * Sets webpage urls
      * @param webpageURLs
@@ -566,7 +562,6 @@ public class TagExtractor implements Cloneable {
     public void setWebpageURLs(Set<URI> webpageURLs) {
         this.webpageURLs = webpageURLs;
     }
-
 
     /**
      * Returns path to root directory
@@ -592,4 +587,5 @@ public class TagExtractor implements Cloneable {
     public Website getWebsite() {
         return website;
     }
+    
 }
