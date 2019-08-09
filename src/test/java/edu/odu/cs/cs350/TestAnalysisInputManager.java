@@ -13,6 +13,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
 
+/**
+ * Test case for AnalysisInputManager class
+ *
+ */
+
 //this tests only that when main gets correct arguments, all the reports are generated. every other class along the way has its own tests, so no need to do detailed testing here
 public class TestAnalysisInputManager 
 {
