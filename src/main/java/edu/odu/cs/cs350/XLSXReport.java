@@ -31,14 +31,45 @@ public class XLSXReport implements Cloneable {
 
     private Workbook workbook = new XSSFWorkbook();
 
-
+    /**
+     * Name of the file
+     */
     private String fileName;
+    
+    /**
+     * Time the analysis began
+     */
     private String analysisTime;
+    
+    /**
+     * Formatted XLSX string created from website object
+     */
     private String xlsx;
+    
+    /**
+     * The file output stream that will write the formatted XLSX
+     * string to the file
+     */
     private FileOutputStream xlsxFile;
+    
+    /**
+     * The website object from which the XLSX file will be generated
+     */
     private Website website;
+    
+    /**
+     * The webpage object from which the XLSX object will be generated
+     */
     private Webpage page;
+    
+    /**
+     * The pages to be analyzed
+     */
     private Set<Webpage> pages = new HashSet<Webpage> ();
+    
+    /**
+     * The prime number to be used with the hashcode function 
+     */
     private static final int PRIME_NUM_HASH = 31;
 
     /**
@@ -52,12 +83,11 @@ public class XLSXReport implements Cloneable {
 
     }
 
-
     /**
      * Creates an XLSX file using the website object and
      * time analysis began.
-     * @param website
-     * @param analysisTime
+     * @param website **The website object
+     * @param analysisTime **The time of analysis
      */
     public XLSXReport(Website website, String analysisTime) {
 
@@ -71,8 +101,8 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Creates formatted XLSX string from analyzed HTML content
-     * @param website The object that will be used in the XLSX file
-     * @return xlsx The XLSX file as a formatted string
+     * @param website **The object that will be used in the XLSX file
+     * @return xlsx **The XLSX file as a formatted string
      * @throws IOException
      */
     public void writeXLSX(Website website) throws IOException {
@@ -149,7 +179,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Sets the file name and adds .xlsx file extension.
-     * @param analysisTime
+     * @param analysisTime **The time of analysis
      *
      */
     public void setFileName(String analysisTime) {
@@ -159,7 +189,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Returns fileName as analysis time with .xlsx
-     * @return fileName 
+     * @return fileName **The name of file 
      */
     public String getFileName() {
 
@@ -168,7 +198,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Returns the formatted xlsx string
-     * @return xlsx
+     * @return xlsx **Formatted xlsx string
      */
     @Override
     public String toString() {
@@ -178,7 +208,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Returns the website object
-     * @return website
+     * @return website **The website object
      */
     public Website getWebsite() {
 
@@ -187,7 +217,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Sets the website object
-     * @param website
+     * @param website **The website object
      */
     public void setWebsite(Website website) {
 
@@ -196,7 +226,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Returns the webpage object
-     * @return page
+     * @return page **The webpage object
      */
     public Webpage getPage() {
         return page;
@@ -204,7 +234,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Sets the webpage object
-     * @param page
+     * @param page **The webpage object
      */
     public void setPage(Webpage page) {
         this.page = page;
@@ -212,7 +242,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Returns the analysisTime string
-     * @return analysisTime
+     * @return analysisTime **The time of analysis
      */
     public String getAnalysisTime() {
 
@@ -221,7 +251,7 @@ public class XLSXReport implements Cloneable {
 
     /**
      * Sets the analysisTime string
-     * @param analysisTime
+     * @param analysisTime **The time of analysis
      */
     public void setAnalysisTime(String analysisTime) {
 
