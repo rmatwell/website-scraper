@@ -94,7 +94,7 @@ public class Website
 
     /**
      * Checks to ensure the file path the user is valid and sets it if so
-     * @param input
+     * @param input **Path that is input
      */
     public void setUserFilePath(String input)
     {
@@ -112,7 +112,7 @@ public class Website
 
     /**
      * Logic to determine that a file path exists
-     * @param path
+     * @param path **Path of file
      */
     private boolean IsValidFilePath(File path)
     {
@@ -136,15 +136,17 @@ public class Website
             return false;
         }
     }
+    
     /*
 	private File convertURLToCanonicalPath(URL input)
 	{
 		return new File(input.getPath().replaceFirst("/", "") );
 	}
      */
+    
     /**
      * Returns the filepath the user input in File form
-     * @return basePath
+     * @return basePath **Path provided by user
      */
     public File getUserFilePath()
     {
@@ -153,7 +155,7 @@ public class Website
 
     /**
      * Returns the HTMLFiles that must be reported on
-     * @return pages
+     * @return pages **Pages in HTMLFiles
      */
     public HashSet<Webpage> getPages()
     {
@@ -162,7 +164,7 @@ public class Website
 
     /**
      * Returns the URLs the user provided as part of the input as URL objects
-     * @return userURLs
+     * @return userURLs **URLs provided by user
      */
     public HashSet<URL> getUserURLs()
     {
@@ -171,7 +173,7 @@ public class Website
 
     /**
      * Returns the URLs the user provided as part of the input as URI objects
-     * @return uriSet
+     * @return uriSet **URI object
      */
     public Set<URI> getUserURLsAsURI()
     {
@@ -195,28 +197,27 @@ public class Website
 
     /**
      * Add pages to webpage object
-     * @param page
+     * @param page **Pages for webpage object
      */
     public void addWebpage(Webpage page) {
         page.setPath(this.getUserFilePath());
     	pages.add(page);
     }
 
-
     /**
      * The website url
-     * @return urls
+     * @return urls **URLs for website
      */
     public Set<String> getUrls() {
         return urls;
     }
 
-
     /**
      * Sets the website url
-     * @param urls
+     * @param urls **URLs for website
      */
     public void setUrls(Set<String> urls) {
         this.urls = urls;
     }
+    
 }
