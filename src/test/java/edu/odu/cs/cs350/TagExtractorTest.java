@@ -11,9 +11,11 @@ import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,9 +39,11 @@ public class TagExtractorTest {
 
     private URI root2;
 
-    private File rootToSource = new File( "/src/test/resources/edu/odu/cs/cs350/");
+    private Iterator<String> itr;
 
-    private File anotherRoot = new File( "/home/system/directory/");
+    private File rootToSource = new File( "src/test/resources/edu/odu/cs/cs350/");
+
+    private File anotherRoot = new File( "home/system/directory/");
 
     private String url1 = "https://www.test1.com/test1";
 
@@ -53,13 +57,18 @@ public class TagExtractorTest {
 
     private Website website;
 
+    private String absRoot;
+
 
     @Before
-    public void setUp() throws URISyntaxException {
+    public void setUp() throws URISyntaxException, MalformedURLException {
 
-        website = new Website();
+        absRoot = rootToSource.getAbsolutePath().toString();
 
-        rootDirectory = rootToSource.toURI();
+        String [] args = {absRoot, "https://www.test1.com/test1", "https://www.test2.com/test2"};
+
+        website = new Website(args);
+
 
         root2 = anotherRoot.toURI();
 
@@ -94,11 +103,15 @@ public class TagExtractorTest {
 
         assertThat(formatSize, containsString("1.21 MiB"));
 
+        String expectedString = "file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/ ";
+
+        System.out.println(testExtractor.toString());
+
         testExtractor.timeOfAnalysis();
         assertThat(testExtractor.getAnalysisTime(),
                 containsString("-summary"));
         assertThat(testExtractor.toString(),
-                containsString("src/test/resources/edu/odu/cs/cs350 , "
+                containsString(expectedString + ", "
                         + "[https://www.test2.com/test2, "
                         + "https://www.test1.com/test1"));
         assertThat(testExtractor, equalTo(testExtractor));
@@ -190,14 +203,10 @@ public class TagExtractorTest {
 
         JSONReport report = new JSONReport();
 
-        String json = report.writeJSON(testExtractor.getWebsite());
-
-        System.out.println(json);
-
-
+        String json = report.writeJSON(testExtractor.getPage());
 
         assertThat(json, containsString("{\n" +
-                "  \"path\":\"src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
+                "  \"path\":\"./test.html\",\n" +
                 "  \"imageCount\":{\n" +
                 "    \"external\":1,\n" +
                 "    \"local\":1\n" +
@@ -211,23 +220,23 @@ public class TagExtractorTest {
                 "    \"local\":2\n" +
                 "  },\n" +
                 "  \"imagePaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
-                "    \"https://www.google.com/image.bmp\"\n" +
+                "    \"https://www.google.com/image.bmp\",\n" +
+                "    \"image.jpg\"\n" +
                 "  ],\n" +
                 "  \"scriptPaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "    \"scripts/jquery-1.11.1.min.js\",\n" +
                 "    \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
                 "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
                 "  ],\n" +
                 "  \"cssPaths\":[\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
-                "    \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
-                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "    \"styles/layout.css\",\n" +
+                "    \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
+                "    \"styles/home.css\"\n" +
                 "  ],\n" +
                 "  \"linkCount\":{\n" +
                 "    \"external\":1,\n" +
                 "    \"intra-page\":1,\n" +
-                "    \"intra-site\":3\n" +
+                "    \"intra-site\":5\n" +
                 "  }\n" +
                 "}"));
 
@@ -244,16 +253,20 @@ public class TagExtractorTest {
 
         JSONReport report = new JSONReport();
 
-        String json = report.writeJSON(testExtractor.getPage());
-
-        //System.out.println(json);
-
+        String json = report.writeJSON(testExtractor.getWebsite());
 
 
         assertThat(json, containsString("{\n" +
+                "  \"basePath\":{\n" +
+                "    \"path\":\"/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350\"\n" +
+                "  },\n" +
+                "  \"urls\":[\n" +
+                "    \"https://www.test1.com/test1\",\n" +
+                "    \"https://www.test2.com/test2\"\n" +
+                "  ],\n" +
                 "  \"pages\":[\n" +
                 "    {\n" +
-                "      \"path\":\"./src/test/resources/edu/odu/cs/cs350/test1.html\",\n" +
+                "      \"path\":\"./folder/test1.html\",\n" +
                 "      \"imageCount\":{\n" +
                 "        \"external\":1,\n" +
                 "        \"local\":1\n" +
@@ -263,31 +276,33 @@ public class TagExtractorTest {
                 "        \"local\":1\n" +
                 "      },\n" +
                 "      \"cssCount\":{\n" +
-                "        \"external\":1,\n" +
+                "        \"external\":3,\n" +
                 "        \"local\":2\n" +
                 "      },\n" +
                 "      \"imagePaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/image.jpg\",\n" +
-                "        \"https://www.google.com/image2.bmp\"\n" +
+                "        \"https://www.google.com/image2.bmp\",\n" +
+                "        \"image.jpg\"\n" +
                 "      ],\n" +
                 "      \"scriptPaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "        \"folder/scripts/jquery-1.11.1.min.js\",\n" +
                 "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
                 "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
                 "      ],\n" +
                 "      \"cssPaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
+                "        \"folder/styles/layout1.css\",\n" +
+                "        \"https://testsite.com/css/test1.min.css\",\n" +
+                "        \"folder/styles/home.css\",\n" +
+                "        \"https://anotherfakesite.org/test2.min.css\",\n" +
                 "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
                 "      ],\n" +
                 "      \"linkCount\":{\n" +
-                "        \"external\":1,\n" +
-                "        \"intra-page\":1,\n" +
+                "        \"external\":3,\n" +
+                "        \"intra-page\":3,\n" +
                 "        \"intra-site\":3\n" +
                 "      }\n" +
                 "    },\n" +
                 "    {\n" +
-                "      \"path\":\"./src/test/resources/edu/odu/cs/cs350/test.html\",\n" +
+                "      \"path\":\"./test.html\",\n" +
                 "      \"imageCount\":{\n" +
                 "        \"external\":1,\n" +
                 "        \"local\":1\n" +
@@ -301,23 +316,65 @@ public class TagExtractorTest {
                 "        \"local\":2\n" +
                 "      },\n" +
                 "      \"imagePaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/pic.jpg\",\n" +
-                "        \"https://www.google.com/image.bmp\"\n" +
+                "        \"https://www.google.com/image.bmp\",\n" +
+                "        \"image.jpg\"\n" +
                 "      ],\n" +
                 "      \"scriptPaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/scripts/jquery-1.11.1.min.js\",\n" +
+                "        \"scripts/jquery-1.11.1.min.js\",\n" +
                 "        \"https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js\",\n" +
                 "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js\"\n" +
                 "      ],\n" +
                 "      \"cssPaths\":[\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/styles/layout.css\",\n" +
-                "        \"src/test/resources/edu/odu/cs/cs350/styles/home.css\",\n" +
-                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\"\n" +
+                "        \"styles/layout.css\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
+                "        \"styles/home.css\"\n" +
                 "      ],\n" +
                 "      \"linkCount\":{\n" +
                 "        \"external\":1,\n" +
                 "        \"intra-page\":1,\n" +
-                "        \"intra-site\":3\n" +
+                "        \"intra-site\":5\n" +
+                "      }\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"path\":\"./folder/another/subdirectory/test3.html\",\n" +
+                "      \"imageCount\":{\n" +
+                "        \"external\":2,\n" +
+                "        \"local\":2\n" +
+                "      },\n" +
+                "      \"jsCount\":{\n" +
+                "        \"external\":2,\n" +
+                "        \"local\":3\n" +
+                "      },\n" +
+                "      \"cssCount\":{\n" +
+                "        \"external\":3,\n" +
+                "        \"local\":4\n" +
+                "      },\n" +
+                "      \"imagePaths\":[\n" +
+                "        \"https://www.google.com/image2.bmp\",\n" +
+                "        \"https://www.anotherexternalsite.com/image2.bmp\",\n" +
+                "        \"logo.jpg\",\n" +
+                "        \"image.jpg\"\n" +
+                "      ],\n" +
+                "      \"scriptPaths\":[\n" +
+                "        \"folder/another/subdirectory/scripts/jquery-1.11.1.min.js\",\n" +
+                "        \"https://randomname1.com/ajax/libs/jquery/1.11.3/fake1.min.js\",\n" +
+                "        \"folder/another/subdirectory/local2.js\",\n" +
+                "        \"https://randomname2.com/bootstrap/3.3.5/js/fake2.min.js\",\n" +
+                "        \"folder/another/subdirectory/local1.js\"\n" +
+                "      ],\n" +
+                "      \"cssPaths\":[\n" +
+                "        \"folder/another/subdirectory/styles/layout3.css\",\n" +
+                "        \"https://testsite.com/css/test1.min.css\",\n" +
+                "        \"https://anotherfakesite.org/test2.min.css\",\n" +
+                "        \"folder/another/subdirectory/styles/layout2.css\",\n" +
+                "        \"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css\",\n" +
+                "        \"folder/another/subdirectory/styles/home.css\",\n" +
+                "        \"folder/another/subdirectory/styles/layout1.css\"\n" +
+                "      ],\n" +
+                "      \"linkCount\":{\n" +
+                "        \"external\":4,\n" +
+                "        \"intra-page\":5,\n" +
+                "        \"intra-site\":4\n" +
                 "      }\n" +
                 "    }\n" +
                 "  ]\n" +
