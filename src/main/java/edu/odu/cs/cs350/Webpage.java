@@ -85,7 +85,7 @@ public class Webpage {
 
     /**
      * Adds image to resource object
-     * @param resource
+     * @param resource **The resource object
      */
     public void addImageToWebpage(Resource resource) {
         imageCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
@@ -96,7 +96,7 @@ public class Webpage {
 
     /**
      * Adds scripts to resource object
-     * @param resource
+     * @param resource **The resource object
      */
     public void addScriptToWebpage(Resource resource) {
         jsCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
@@ -106,7 +106,7 @@ public class Webpage {
 
     /**
      * Adds CSS to resource object
-     * @param resource
+     * @param resource **The resource object
      */
     public void addCSSToWebpage(Resource resource) {
         cssCount.merge(resource.getTypeOfLink(), 1, Integer::sum);
@@ -116,7 +116,7 @@ public class Webpage {
 
     /**
      * Adds anchor links to resource object
-     * @param resource
+     * @param resource **The resource object
      */
     public void addAnchortoWebpage(Resource resource) {
         if(resource.getTypeOfLink().contains("local")) {
@@ -135,7 +135,7 @@ public class Webpage {
 
     /**
      * Gets the amount of local and external images.
-     * @return The count of local and external images.
+     * @return imageCount **The count of local and external images.
      */
     public Map<String, Integer> getImageCount() {
         return imageCount;
@@ -151,7 +151,7 @@ public class Webpage {
 
     /**
      * Gets the local url path of the webpage
-     * @return path
+     * @return path **The local path of webpage
      */
     public String getAbsolutePath() {
         return path;
@@ -159,7 +159,7 @@ public class Webpage {
 
     /**
      * Sets the local url path of the Webpage.
-     * @param path
+     * @param path **The local path of webpage
      */
     public void setAbsolutePath(String path) {
         this.path = path;
@@ -167,7 +167,7 @@ public class Webpage {
 
     /**
      * Returns the quantity of local and external .js files of the Webpage.
-     * @return jsCount
+     * @return jsCount **Number of js files
      */
     public Map<String, Integer> getjsCount() {
         return jsCount ;
@@ -175,7 +175,7 @@ public class Webpage {
 
     /**
      * Sets the quantity for local and external .js files for the Webpage.
-     * @param jsCount
+     * @param jsCount **Number of js files
      */
     public void setJsCount(Map<String, Integer> jsCount) {
         this.jsCount = jsCount;
@@ -183,7 +183,7 @@ public class Webpage {
 
     /**
      * Gets the quantity of local and external .css files of the Webpage.
-     * @return cssCount;
+     * @return cssCount **Number of css files
      */
     public Map<String, Integer> getCssCount() {
 
@@ -192,7 +192,7 @@ public class Webpage {
 
     /**
      * Sets the quantity of local and external .css files.
-     * @param cssCount
+     * @param cssCount **Number of css files
      */
     public void setCssCount(Map<String, Integer> cssCount) {
         this.cssCount = cssCount;
@@ -200,7 +200,7 @@ public class Webpage {
 
     /**
      * Returns the url paths for the images of the Webpage.
-     * @return imagePaths
+     * @return imagePaths **Url paths for images
      */
     public Set<String> getImagePaths() {
         return imagePaths;
@@ -208,7 +208,7 @@ public class Webpage {
 
     /**
      * Sets the url paths for image files of the Webpage.
-     * @param imagePaths
+     * @param imagePaths **Url paths for images
      */
     public void setImagePaths(Set<String> imagePaths) {
         this.imagePaths = imagePaths;
@@ -216,7 +216,7 @@ public class Webpage {
 
     /**
      * Returns the set of .js url paths of a webpage.
-     * @return scriptPaths
+     * @return scriptPaths **Url paths for js files
      */
     public Set<String> getScriptPaths() {
         return scriptPaths;
@@ -224,7 +224,7 @@ public class Webpage {
 
     /**
      * Sets the url path of the .js file.
-     * @param scriptPaths
+     * @param scriptPaths **Url paths for js files
      */
     public void setScriptPaths(Set<String> scriptPaths) {
         this.scriptPaths = scriptPaths;
@@ -232,7 +232,7 @@ public class Webpage {
 
     /**
      * Returns the url path of the .css file.
-     * @return cssPaths
+     * @return cssPaths **Url paths for css files
      */
     public Set<String> getCssPaths() {
         return cssPaths;
@@ -240,7 +240,7 @@ public class Webpage {
 
     /**
      * Sets the url path to .css files.
-     * @param cssPaths
+     * @param cssPaths **Url paths for css files
      */
     public void setCssPaths(Set<String> cssPaths) {
         this.cssPaths = cssPaths;
@@ -256,7 +256,7 @@ public class Webpage {
 
     /**
      * Sets the quantity of local and external .css files.
-     * @param linkCount
+     * @param linkCount **Number of links on page
      */
     public void setLinkCount(Map<String, Integer> linkCount) {
         this.linkCount = linkCount;
@@ -264,7 +264,7 @@ public class Webpage {
 
     /**
      * Gets the sum of all images on page
-     * @return sumImages
+     * @return sumImages **Sum of image sizes on page
      */
     public int getSumImages() {
         return sumImages;
@@ -272,7 +272,7 @@ public class Webpage {
 
     /**
      * Sets sum of all images on page
-     * @param sumImages
+     * @param sumImages **Sum of image sizes on page
      */
     public void setSumImages(int sumImages) {
         this.sumImages = sumImages;
@@ -280,7 +280,7 @@ public class Webpage {
 
     /**
      * Returns sum of javascripts
-     * @return sumJS
+     * @return sumJS **Sum of js files on page
      */
     public int getSumJS() {
         return sumJS;
@@ -288,7 +288,7 @@ public class Webpage {
 
     /**
      * Sets sum of javascripts
-     * @param sumJS
+     * @param sumJS **Sum of js files on page
      */
     public void setSumJS(int sumJS) {
         this.sumJS = sumJS;
@@ -296,7 +296,7 @@ public class Webpage {
 
     /**
      * Returns sum of CSS
-     * @return sumCSS
+     * @return sumCSS **Sum of css files on page
      */
     public int getSumCSS() {
         return sumCSS;
@@ -304,7 +304,7 @@ public class Webpage {
 
     /**
      * Sets sum of CSS
-     * @param sumCSS
+     * @param sumCSS **Sum of css files on page
      */
     public void setSumCSS(int sumCSS) {
         this.sumCSS = sumCSS;
@@ -312,7 +312,7 @@ public class Webpage {
 
     /**
      * Returns sum of local files
-     * @return sumLocal
+     * @return sumLocal **Sum of local files on page
      */
     public int getSumLocal() {
         return sumLocal;
@@ -320,7 +320,7 @@ public class Webpage {
 
     /**
      * Sets sum of local files
-     * @param sumLocal
+     * @param sumLocal **Sum of local files on page
      */
     public void setSumLocal(int sumLocal) {
         this.sumLocal = sumLocal;
@@ -328,7 +328,7 @@ public class Webpage {
 
     /**
      * Returns sum of external files
-     * @return sumExternal
+     * @return sumExternal **Sum of external files on page
      */
     public int getSumExternal() {
         return sumExternal;
@@ -336,7 +336,7 @@ public class Webpage {
 
     /**
      * Sets sum of external files
-     * @param sumExternal
+     * @param sumExternal **Sum of external files on page
      */
     public void setSumExternal(int sumExternal) {
         this.sumExternal = sumExternal;
@@ -344,7 +344,7 @@ public class Webpage {
 
     /**
      * Returns sum of intra-page links
-     * @return sumIntrapage
+     * @return sumIntrapage **Sum of intra-page links
      */
     public int getSumIntrapage() {
         return sumIntrapage;
@@ -352,7 +352,7 @@ public class Webpage {
 
     /**
      * Sets sum of intra-page links
-     * @param sumIntrapage
+     * @param sumIntrapage **Sum of intra-page links
      */
     public void setSumIntrapage(int sumIntrapage) {
         this.sumIntrapage = sumIntrapage;
@@ -360,7 +360,7 @@ public class Webpage {
     
     /**
      * Returns sum of image sizes
-     * @return sumOfImageSizes
+     * @return sumOfImageSizes **Sum of image sizes on page
      */
     public double getSumOfImageSizes()
     {
@@ -369,7 +369,7 @@ public class Webpage {
     
     /**
      * Sets root path
-     * @param root
+     * @param root **The file root path
      */
     public void setPath(File root)
     {
@@ -378,10 +378,11 @@ public class Webpage {
     
     /**
      * Returns root path
-     * @return path
+     * @return path **The file root path
      */
 	public String getPath()
 	{
 		return path;
 	}
+	
 }
