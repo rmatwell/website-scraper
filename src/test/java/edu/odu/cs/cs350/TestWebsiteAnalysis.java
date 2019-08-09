@@ -8,7 +8,12 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 //import static org.hamcrest.Matchers.closeTo;
 
-public class TestWebsiteAnalysis  
+/**
+ * Test case for WebsiteAnalysis class
+ *
+ */
+
+public class TestWebsiteAnalysis 
 { 	
 	@Test
 	public void TestAnalysisTime()
@@ -43,4 +48,5 @@ public class TestWebsiteAnalysis
 		//it should not be ready
 		assertThat(testAnalysis.isReady(), is(false) ); 
 	}
+	
 }
