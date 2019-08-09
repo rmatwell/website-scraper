@@ -24,12 +24,13 @@ public class TestWebsite
 		String goodPath = "../../../build/libs";
 		File goodPathFile = new File(goodPath);
 		System.out.println(goodPathFile.getCanonicalPath() );
+		System.out.println(testSite.getUserFilePath().getCanonicalPath() );
 		
 		assertNull(testSite.getUserFilePath() );
 		testSite.setUserFilePath(goodPath);
 		
 		//because the path was good, it should take
-		assertThat(testSite.getUserFilePath().getCanonicalFile(), is(goodPathFile.getCanonicalFile()) );
+		assertThat(testSite.getUserFilePath().getCanonicalPath(), is(goodPathFile.getCanonicalFile()) );
 	}
 	
 	@Test
