@@ -68,7 +68,6 @@ public class JSONReport implements Cloneable {
 
     }
 
-
     /**
      * JSONReport takes a webpage object and the time the analysis started
      * to created a formatted JSON file.
@@ -102,7 +101,7 @@ public class JSONReport implements Cloneable {
      * Creates formatted JSON string from a webpage.
      * 
      * @param page
-     * @return The formatted json string
+     * @return json **The formatted json string
      */
     public String writeJSON(Webpage page) {
 
@@ -121,8 +120,8 @@ public class JSONReport implements Cloneable {
     /**
      * Creates formatted JSON string from a website and all webpage and
      * extracted html resources.
-     * @param website The website object that will be used in the JSON file
-     * @return json The JSON created from the objects of the website as a
+     * @param website **The website object that will be used in the JSON file
+     * @return json **The JSON created from the objects of the website as a
      * formatted String.
      */
     public String writeJSON(Website website) {
@@ -160,7 +159,7 @@ public class JSONReport implements Cloneable {
 
     /**
      * Sets the file name with the formatted analysis time appended with .json.
-     * @param analysisTime The formatted time that the analysis starts
+     * @param analysisTime **The formatted time that the analysis starts
      *
      */
     public void setFileName(String analysisTime) {
@@ -168,7 +167,8 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @return the filename, analysis time with .json.
+     * Returns the name of json file
+     * @return fileName
      */
     public String getFileName() {
         return fileName;
@@ -184,13 +184,15 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @return the website object
+     * Returns the website object
+     * @return website
      */
     public Website getWebsite() {
         return website;
     }
 
     /**
+     * Sets the website object
      * @param website
      *
      */
@@ -199,13 +201,15 @@ public class JSONReport implements Cloneable {
     }
 
     /**
-     * @return the analysisTime string
+     * Returns the analysisTime string
+     * @return analysisTime
      */
     public String getAnalysisTime() {
         return analysisTime;
     }
 
     /**
+     * Sets the analysisTime string
      * @param analysisTime **The time the report began**
      */
     public void setAnalysisTime(String analysisTime) {
@@ -266,7 +270,7 @@ public class JSONReport implements Cloneable {
 
     /**
      * Returns the webpage object.
-     * @return page
+     * @return page **The webpage
      */
     public Webpage getPage() {
         return page;
