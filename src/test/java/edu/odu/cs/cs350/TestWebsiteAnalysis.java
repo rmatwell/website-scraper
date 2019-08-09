@@ -38,7 +38,7 @@ public class TestWebsiteAnalysis
 		//make an empty analysis
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis(); 
 		
-		String filepath = new File("testing/test").getAbsolutePath().toString();
+		String filepath = new File("src/test/resources").getAbsolutePath().toString();
 		
 		//it should not be ready
 		assertThat(testAnalysis.isReady(), is(false) ); 
