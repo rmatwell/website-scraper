@@ -23,7 +23,7 @@ public class TestWebsite
 		
 		String goodPath = "../../../build/libs";
 		File goodPathFile = new File(goodPath);
-		//System.out.println(goodPathFile.getCanonicalPath() );
+		System.out.println(goodPathFile.getCanonicalPath() );
 		
 		assertNull(testSite.getUserFilePath() );
 		testSite.setUserFilePath(goodPath);
