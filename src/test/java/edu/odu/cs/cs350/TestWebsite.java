@@ -11,23 +11,25 @@ import static org.hamcrest.Matchers.*;
 import java.util.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.*;
 
 public class TestWebsite 
 {
 	@Test
-	public void TestSetUserPathGoodPath()
+	public void TestSetUserPathGoodPath() throws IOException
 	{
 		Website testSite = new Website();
 		
 		String goodPath = "../../../build/libs";
 		File goodPathFile = new File(goodPath);
+		//System.out.println(goodPathFile.getCanonicalPath() );
 		
 		assertNull(testSite.getUserFilePath() );
 		testSite.setUserFilePath(goodPath);
 		
 		//because the path was good, it should take
-		assertThat(testSite.getUserFilePath(), is(goodPathFile) );
+		assertThat(testSite.getUserFilePath().getCanonicalFile(), is(goodPathFile.getCanonicalFile()) );
 	}
 	
 	@Test
