@@ -13,11 +13,16 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.*;
 //import static org.hamcrest.Matchers.closeTo;
 
+/**
+ * Test case for TXTReport class
+ *
+ */
+
 public class TestTXTReport {
 	
 	TXTReport testTXT, testDefault;
 	
-	private String analysisTime = "20190724-113553-summary";
+	private String analysisTime = "20190724-113553-summary"; 
 	private Website website;
 	
 	@Before 
