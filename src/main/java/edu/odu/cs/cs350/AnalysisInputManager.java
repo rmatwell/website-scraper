@@ -14,7 +14,10 @@ import java.util.TimeZone;
 
 public class AnalysisInputManager
 {
-
+	/**
+	 * holds the timestamp of the analysis
+	 */
+	private static String analysisTime;
     /**
      * Main function that takes user's input and starts the analysis using it
      * @param args
@@ -31,6 +34,7 @@ public class AnalysisInputManager
         }
         else
         {
+        	setAnalysisTime();
             doAnalysis(args);
         }
     }
@@ -66,7 +70,7 @@ public class AnalysisInputManager
      * Records and formats the time the Analysis was run at for report naming purposes
      * @return timeStamp
      */
-    public static String getAnalysisTime()
+    public static void setAnalysisTime()
     {
         String date = "yyyyMMdd-hhmmss'-summary'";
         SimpleDateFormat timeStamp = new SimpleDateFormat(date);
@@ -75,6 +79,13 @@ public class AnalysisInputManager
         timeStamp.setTimeZone(est);
 
 
-        return timeStamp.format(new Date());
+        analysisTime = timeStamp.format(new Date());
+    }
+    /**
+     * returns the previously calculated analysis time
+     */
+    public static String getAnalysisTime()
+    {
+    	return analysisTime;
     }
 }
