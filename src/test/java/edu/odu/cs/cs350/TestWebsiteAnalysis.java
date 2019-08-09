@@ -2,6 +2,9 @@ package edu.odu.cs.cs350;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
+
+import java.io.File;
+
 import org.junit.Test;
 //import org.junit.Before;
 
@@ -35,16 +38,18 @@ public class TestWebsiteAnalysis
 		//make an empty analysis
 		WebsiteAnalysis testAnalysis = new WebsiteAnalysis(); 
 		
+		String filepath = new File("testing/test").getAbsolutePath().toString();
+		
 		//it should not be ready
 		assertThat(testAnalysis.isReady(), is(false) ); 
 		
 		//make an analysis with valid information
-		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, "now" ); 
+		testAnalysis = new WebsiteAnalysis( new String[]{ filepath,"https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, "now" ); 
 		//it should be ready
 		assertThat(testAnalysis.isReady(), is(true) ); 
 				
 		//do not pass in time, all other information is valid
-		testAnalysis = new WebsiteAnalysis( new String[]{ "testing/test","https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, null ); 
+		testAnalysis = new WebsiteAnalysis( new String[]{ filepath,"https://www.test.com/testing/test/test1","https://www.test.com/testing/test/test2" }, null ); 
 		//it should not be ready
 		assertThat(testAnalysis.isReady(), is(false) ); 
 	}
