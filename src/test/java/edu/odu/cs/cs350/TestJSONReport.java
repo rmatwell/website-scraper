@@ -12,8 +12,10 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-//in progress
-
+/**
+ * Test case for JSONReport class
+ *
+ */
 
 public class TestJSONReport {
 
