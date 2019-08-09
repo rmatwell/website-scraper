@@ -13,6 +13,11 @@ import org.junit.Before;
 
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Test case for Webpage class
+ *
+ */
+
 public class TestWebpage {
 	
 	Webpage testWebpage, testDefault;
@@ -33,7 +38,6 @@ public class TestWebpage {
     	testDefault = new Webpage();
     	testWebpage = new Webpage(path);
     	
-    }
-    
+    }  
 	
 }
