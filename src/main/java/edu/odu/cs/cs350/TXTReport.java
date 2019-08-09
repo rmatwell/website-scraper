@@ -41,15 +41,15 @@ public class TXTReport
 	/**
 	 * Default constructor
 	 */
-	public TXTReport() 
+	public TXTReport()
 	{
 
 	}
 	
 	/**
 	 * Non-default constructor, used by WebsiteAnalysis
-	 * @param website
-	 * @param analysisTime
+	 * @param website **The website object
+	 * @param analysisTime **Time of analysis
 	 */
 	public TXTReport(Website website, String analysisTime) 
 	{
@@ -86,7 +86,7 @@ public class TXTReport
 
 	/**
 	 * Sets the filename of our txt file
-	 * @param analysisTime
+	 * @param analysisTime **Time of analysis
 	 */
 	public void setFileName(String analysisTime) 
 	{
@@ -95,7 +95,7 @@ public class TXTReport
 	
 	/**
 	 * Returns the filename of our txt file
-	 * @return fileName
+	 * @return fileName **Name of txt file
 	 */
 	public String getFileName()
 	{
@@ -104,7 +104,7 @@ public class TXTReport
 	
 	/**
 	 * Returns the Website object we will get pages from
-	 * @return website
+	 * @return website **The website object
 	 */
 	public Website getWebsite() 
 	{
@@ -113,7 +113,7 @@ public class TXTReport
 	
 	/**
 	 * Sets the Website object we will get pages from
-	 * @param website
+	 * @param website **The website object
 	 */
 	public void setWebsite(Website website) 
 	{
@@ -122,15 +122,16 @@ public class TXTReport
 	
 	/**
 	 * Sets the image set we will get sizes from
-	 * @param input
+	 * @param input **Input for resource object
 	 */
 	public void setImages(Set<Resource> input)
 	{
 		images = input;
 	}
+	
 	/**
 	 * Gets the image set we will get sizes from
-	 * @return images
+	 * @return images **Images from webpage
 	 */
 	public Set<Resource> getImages()
 	{
@@ -139,7 +140,7 @@ public class TXTReport
 	
 	/**
 	 * Converts our HashSet of images to a sorted List for reporting
-	 * @return sortedList
+	 * @return sortedList **List of paths sorted lexicographically
 	 */
 	private List<Webpage> generateLexicographicList()
 	{
@@ -155,31 +156,4 @@ public class TXTReport
 		return sortedList;
 	}
 	
-	//I see no reason that we actually need to clone the TXTReport object, so I'm commenting it out -Jason
-	/*
-	@Override
-	public TXTReport clone() throws CloneNotSupportedException
-	{
-
-		TXTReport aCopy = (TXTReport)super.clone();
-
-		
-		aCopy.fileName = fileName;
-		aCopy.txt = txt;
-		aCopy.txtFile = txtFile;
-		aCopy.website = website;
-
-		return aCopy;
-	}
-	*/
-	
-	//I see no reason that we actually need to get a toString() of the TXT reporter, so I'm commenting it out -Jason
-	/*
-	@Override
-	public String toString() 
-	{
-
-		return txt;
-	}
-	*/
 }
