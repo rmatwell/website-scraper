@@ -12,6 +12,11 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test case for XLSXReport class
+ *
+ */
+
 public class TestXLSXReport {
 
 	XLSXReport testXLSX, testDefaultC;
@@ -78,7 +83,6 @@ public class TestXLSXReport {
 		assertThat(aCopy.hashCode(), equalTo(testXLSX.hashCode()));
 		assertThat(aCopy, equalTo(testXLSX));
 		assertThat(aCopy.toString(), equalTo(testXLSX.toString()));
-
 		
 	}
 
