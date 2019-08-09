@@ -73,21 +73,18 @@ public class Website
      */
     public void setUserURLs(String[] args)
     {
-        if(basePath != null)
+        for(int i = 0 ; i < args.length ; i++)
         {
-            for(int i = 0 ; i < args.length ; i++)
+            URL inputURL = null;
+            try
             {
-                URL inputURL = null;
-                try
-                {
-                    inputURL = new URL(args[i]);
-                }
-                catch (MalformedURLException e)
-                {}
-                if(inputURL != null)
-                {
-                    userURLs.add(inputURL);
-                }
+                inputURL = new URL(args[i]);
+            }
+            catch (MalformedURLException e)
+            {}
+            if(inputURL != null)
+            {
+                userURLs.add(inputURL);
             }
         }
     }

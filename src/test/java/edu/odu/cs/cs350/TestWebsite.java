@@ -13,11 +13,6 @@ import java.util.*;
 import java.io.File;
 import java.net.*;
 
-/**
- * Test case for Website class
- *
- */
-
 public class TestWebsite 
 {
 	@Test
@@ -81,10 +76,10 @@ public class TestWebsite
 	public void TestURLtoURI()
 	{
 		Website testSite = new Website();
-		testSite.setUserFilePath("testing/test");
+		testSite.setUserFilePath("../../../../resources/");
 		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
-		HashSet<URI> testURIset = new HashSet<URI>();
+		Set<URI> testURIset = new HashSet<URI>();
 		try 
 		{
 			testURIset.add(new URI("https://www.test.com/testing/test/test1") );
@@ -94,7 +89,8 @@ public class TestWebsite
 		{}
 		
 		assertThat(testSite.getUserURLsAsURI(), is(testURIset) );
+
+
 		
 	}
-	
 }
