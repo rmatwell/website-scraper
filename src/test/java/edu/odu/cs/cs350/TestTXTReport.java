@@ -61,23 +61,6 @@ public class TestTXTReport {
 		assertEquals("20190724-113553-summary.txt", testTXT.getFileName());
 		
 	}
-	
-	//removing this test, as we do not need to clone the txt writer at any point in time.
-	/*
-	@Test
-	public void testClone() throws CloneNotSupportedException {
 
-		testTXT.setFileName(analysisTime);
-		TXTReport aCopy = testTXT.clone();
-
-		assertThat(aCopy.getAnalysisTime(), equalTo(testTXT.getAnalysisTime()));
-		assertThat(aCopy.getFileName(), equalTo(testTXT.getFileName()));
-		assertThat(aCopy.getWebsite(), equalTo(testTXT.getWebsite()));
-		assertThat(aCopy.hashCode(), equalTo(testTXT.hashCode()));
-		assertThat(aCopy.toString(), equalTo(testTXT.toString()));
-		assertThat(aCopy, equalTo(testTXT));
-		
-	}
-	*/
 }
 	
