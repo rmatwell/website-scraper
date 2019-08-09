@@ -103,15 +103,13 @@ public class TagExtractorTest {
 
         assertThat(formatSize, containsString("1.21 MiB"));
 
-        String expectedString = "file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/ ";
-
-        System.out.println(testExtractor.toString());
+        String expectedString = testExtractor.getRootDirectory().toString();
 
         testExtractor.timeOfAnalysis();
         assertThat(testExtractor.getAnalysisTime(),
                 containsString("-summary"));
         assertThat(testExtractor.toString(),
-                containsString(expectedString + ", "
+                containsString(expectedString + " , "
                         + "[https://www.test2.com/test2, "
                         + "https://www.test1.com/test1"));
         assertThat(testExtractor, equalTo(testExtractor));

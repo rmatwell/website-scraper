@@ -287,7 +287,7 @@ public class TagExtractor implements Cloneable {
         }
 
     }
-    
+
     /**
      * Creates relative directory as a string
      * @param input
@@ -295,7 +295,7 @@ public class TagExtractor implements Cloneable {
      */
     private String createRelativeDirectoryAsString(URI input)
     {
-    	//System.out.println("root directory: " + rootDirectory.toString() + " - input: " + input.toString());
+        //System.out.println("root directory: " + rootDirectory.toString() + " - input: " + input.toString());
         return rootDirectory.relativize(input).getPath();
     }
 
@@ -324,8 +324,8 @@ public class TagExtractor implements Cloneable {
      * @throws URISyntaxException
      */
     public void runExtractor() throws IOException, URISyntaxException {
-        
-    	traverseFiles(getPathToRoot());
+
+        traverseFiles(getPathToRoot());
     }
 
     /**
@@ -473,9 +473,9 @@ public class TagExtractor implements Cloneable {
      */
     public double calculateMiB(File file) {
 
-    	//System.out.println("Path: " + file);
+        //System.out.println("Path: " + file);
         long fileSize = file.length();
-       // System.out.println("Long: " + fileSize);
+        // System.out.println("Long: " + fileSize);
         double sizeInMiB = fileSize / BYTE_TO_MEBIBYTE;
         //System.out.println("Double: " + sizeInMiB);
         return sizeInMiB;
@@ -568,8 +568,8 @@ public class TagExtractor implements Cloneable {
      * @return pathToRoot
      */
     public File[] getPathToRoot() {
-        pathToRoot = new File(rootDirectory.getPath()).listFiles().clone();
-        return pathToRoot;
+        pathToRoot = new File(getRootDirectory().getPath()).listFiles();
+        return pathToRoot.clone();
     }
 
     /**
@@ -587,5 +587,5 @@ public class TagExtractor implements Cloneable {
     public Website getWebsite() {
         return website;
     }
-    
+
 }
