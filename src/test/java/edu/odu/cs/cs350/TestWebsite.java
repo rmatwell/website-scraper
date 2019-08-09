@@ -13,6 +13,11 @@ import java.util.*;
 import java.io.File;
 import java.net.*;
 
+/**
+ * Test case for Website class
+ *
+ */
+
 public class TestWebsite 
 {
 	@Test
@@ -89,8 +94,7 @@ public class TestWebsite
 		{}
 		
 		assertThat(testSite.getUserURLsAsURI(), is(testURIset) );
-
-
 		
 	}
+	
 }
