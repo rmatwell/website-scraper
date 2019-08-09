@@ -20,7 +20,7 @@ public class TestWebsite
 	{
 		Website testSite = new Website();
 		
-		String goodPath = "build\\libs";
+		String goodPath = "../../../../../../../build/libs";
 		File goodPathFile = new File(goodPath);
 		
 		assertNull(testSite.getUserFilePath() );
@@ -35,7 +35,7 @@ public class TestWebsite
 	{
 		Website testSite = new Website();
 		
-		String nonPath = "build\\libz";
+		String nonPath = "../../../../../../../build/libz";
 		File nonPathFile = new File(nonPath);
 
 		assertNull(testSite.getUserFilePath() );
@@ -49,7 +49,7 @@ public class TestWebsite
 	{
 		Website testSite = new Website();
 		
-		String nonPath = "gradlew.bat"; //using this because gradlew.bat is basically guaranteed to work
+		String nonPath = "../../../../../../../gradlew.bat"; //using this because gradlew.bat is basically guaranteed to work
 		File nonPathFile = new File(nonPath);
 		
 		assertNull(testSite.getUserFilePath() );
