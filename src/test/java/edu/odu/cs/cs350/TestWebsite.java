@@ -63,7 +63,6 @@ public class TestWebsite
 	public void TestSetPagesHappyPath()
 	{
 		Website testSite = new Website();
-		testSite.setUserFilePath("testing/test");
 		
 		assertThat(testSite.getPages(), is(new HashSet<Webpage>() ) );
 		
@@ -76,7 +75,6 @@ public class TestWebsite
 	public void TestURLtoURI()
 	{
 		Website testSite = new Website();
-		testSite.setUserFilePath("../../../../resources/");
 		testSite.setUserURLs(new String[]{"https://www.test.com/testing/test/test1" , "https://www.test.com/testing/test/test2"});
 		
 		Set<URI> testURIset = new HashSet<URI>();
