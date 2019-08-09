@@ -38,7 +38,7 @@ public class WebsiteAnalysis
     /**
      * Constructor that takes arguments and a string for the report names: used by AnalysisInputManager
      * @param args
-     * @param analysisTime
+     * @param analysisTime **Time of analysis
      */
     public WebsiteAnalysis(String[] args, String analysisTime)
     {
@@ -48,7 +48,7 @@ public class WebsiteAnalysis
 
     /**
      * Returns the string containing the analysis time
-     * @return analysisTime
+     * @return analysisTime **Time of analysis
      */
     public String getAnalysisTime()
     {
@@ -57,7 +57,7 @@ public class WebsiteAnalysis
     
     /**
      * Sets the string containing the analysis time
-     * @param input
+     * @param input **Input for analysis time string
      */
     public void setAnalysisTime(String input)
     {
@@ -66,7 +66,7 @@ public class WebsiteAnalysis
     
     /**
      * Returns the website to be analyzed
-     * @return analysisSubject
+     * @return analysisSubject **Subject to be analyzed
      */
     public Website getAnalysisSubject()
     {
