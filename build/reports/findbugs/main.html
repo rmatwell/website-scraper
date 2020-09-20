@@ -1,0 +1,516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+<script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+</head>
+<body>
+<h1>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> Report</h1>
+<h2>Project Information</h2>
+<p>Project: 
+		</p>
+<p>FindBugs version: 3.0.1</p>
+<p>Code analyzed:</p>
+<ul>
+<li>/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/build/classes/java/main</li>
+</ul>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Metrics</h2>
+<p>893 lines of code analyzed,
+	in 13 classes, 
+	in 1 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">4</td>
+<td align="right">4.48</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">7</td>
+<td align="right">7.84</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>11</b>
+</td>
+<td align="right">
+<b>12.32</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Contents</h2>
+<ul>
+<li>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</li>
+<li>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</li>
+<li>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+</ul>
+<h1>Summary</h1>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</td>
+<td align="right">1</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</td>
+<td align="right">1</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">6</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">1</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>11</b>
+</td>
+</tr>
+</table>
+<h1>Warnings</h1>
+<p>Click on a warning row to see full context information.</p>
+<h2>
+<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65944');">
+<td>
+<span class="priority-1">RV</span>
+</td>
+<td>Return value of String.replace(CharSequence, CharSequence) ignored in new edu.odu.cs.cs350.TagExtractor(File, Set, Website)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65944" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
+<br/>In class edu.odu.cs.cs350.TagExtractor<br/>In method new edu.odu.cs.cs350.TagExtractor(File, Set, Website)<br/>Called method String.replace(CharSequence, CharSequence)<br/>At TagExtractor.java:[line 125]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66369');">
+<td>
+<span class="priority-2">UR</span>
+</td>
+<td>Uninitialized read of page in new edu.odu.cs.cs350.XLSXReport(Website, String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66369" style="display: none;">
+<a href="#UR_UNINIT_READ">Bug type UR_UNINIT_READ (click for details)</a>
+<br/>In class edu.odu.cs.cs350.XLSXReport<br/>In method new edu.odu.cs.cs350.XLSXReport(Website, String)<br/>Field edu.odu.cs.cs350.XLSXReport.page<br/>At XLSXReport.java:[line 65]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66281');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>edu.odu.cs.cs350.XLSXReport.writeXLSX(Website) may fail to clean up java.io.OutputStream on checked exception</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66281" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Bug type OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE (click for details)</a>
+<br/>In class edu.odu.cs.cs350.XLSXReport<br/>In method edu.odu.cs.cs350.XLSXReport.writeXLSX(Website)<br/>Reference type java.io.OutputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at XLSXReport.java:[line 128] is not discharged<br/>Path continues at XLSXReport.java:[line 129]<br/>Remaining obligations: {OutputStream x 1}</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65803');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>edu.odu.cs.cs350.TagExtractor.getPathToRoot() may expose internal representation by returning TagExtractor.pathToRoot</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65803" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class edu.odu.cs.cs350.TagExtractor<br/>In method edu.odu.cs.cs350.TagExtractor.getPathToRoot()<br/>Field edu.odu.cs.cs350.TagExtractor.pathToRoot<br/>At TagExtractor.java:[line 586]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66061');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>edu.odu.cs.cs350.Website.userURLs is or uses a map or set of URLs, which can be a performance hog</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66061" style="display: none;">
+<a href="#DMI_COLLECTION_OF_URLS">Bug type DMI_COLLECTION_OF_URLS (click for details)</a>
+<br/>In class edu.odu.cs.cs350.Website<br/>Field edu.odu.cs.cs350.Website.userURLs<br/>In Website.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66108');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>edu.odu.cs.cs350.Website.getUserURLs() is or uses a map or set of URLs, which can be a performance hog</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66108" style="display: none;">
+<a href="#DMI_COLLECTION_OF_URLS">Bug type DMI_COLLECTION_OF_URLS (click for details)</a>
+<br/>In class edu.odu.cs.cs350.Website<br/>In method edu.odu.cs.cs350.Website.getUserURLs()<br/>At Website.java:[line 169]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66161');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>edu.odu.cs.cs350.Website.setUserURLs(String[]) is or uses a map or set of URLs, which can be a performance hog</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66161" style="display: none;">
+<a href="#DMI_COLLECTION_OF_URLS">Bug type DMI_COLLECTION_OF_URLS (click for details)</a>
+<br/>In class edu.odu.cs.cs350.Website<br/>In method edu.odu.cs.cs350.Website.setUserURLs(String[])<br/>Called method java.util.HashSet.add(Object)<br/>At Website.java:[line 89]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66230');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread field: edu.odu.cs.cs350.Website.resources</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66230" style="display: none;">
+<a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
+<br/>In class edu.odu.cs.cs350.Website<br/>Field edu.odu.cs.cs350.Website.resources<br/>At Website.java:[line 44]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65756');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: edu.odu.cs.cs350.TXTReport.txtFile</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65756" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class edu.odu.cs.cs350.TXTReport<br/>Field edu.odu.cs.cs350.TXTReport.txtFile<br/>In TXTReport.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66014');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused field: edu.odu.cs.cs350.Webpage.absolutePath</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66014" style="display: none;">
+<a href="#UUF_UNUSED_FIELD">Bug type UUF_UNUSED_FIELD (click for details)</a>
+<br/>In class edu.odu.cs.cs350.Webpage<br/>Field edu.odu.cs.cs350.Webpage.absolutePath<br/>In Webpage.java</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65871');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Possible null pointer dereference in edu.odu.cs.cs350.TagExtractor.getPathToRoot() due to return value of called method</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65871" style="display: none;">
+<a href="#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">Bug type NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE (click for details)</a>
+<br/>In class edu.odu.cs.cs350.TagExtractor<br/>In method edu.odu.cs.cs350.TagExtractor.getPathToRoot()<br/>Local variable stored in JVM register ?<br/>Dereferenced at TagExtractor.java:[line 585]<br/>Known null at TagExtractor.java:[line 585]</p>
+</td>
+</tr>
+</table>
+<h1>
+<a name="Details">Details</a>
+</h1>
+<h2>
+<a name="DMI_COLLECTION_OF_URLS">DMI_COLLECTION_OF_URLS: Maps and sets of URLs can be performance hogs</a>
+</h2>
+
+  <p> This method or field is or uses a Map or Set of URLs. Since both the equals and hashCode
+method of URL perform domain name resolution, this can result in a big performance hit.
+See <a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> for more information.
+Consider using <code>java.net.URI</code> instead.
+   </p>
+
+    
+<h2>
+<a name="EI_EXPOSE_REP">EI_EXPOSE_REP: May expose internal representation by returning reference to mutable object</a>
+</h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    
+<h2>
+<a name="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE: Possible null pointer dereference due to return value of called method</a>
+</h2>
+      
+<p> The return value from a method is dereferenced without a null check,
+and the return value of that method is one that should generally be checked
+for null.  This may lead to a <code>NullPointerException</code> when the code is executed.
+</p>
+      
+   
+<h2>
+<a name="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE: Method may fail to clean up stream or resource on checked exception</a>
+</h2>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      
+<h2>
+<a name="RV_RETURN_VALUE_IGNORED">RV_RETURN_VALUE_IGNORED: Method ignores return value</a>
+</h2>
+
+   <p> The return value of this method should be checked. One common
+cause of this warning is to invoke a method on an immutable object,
+thinking that it updates the object. For example, in the following code
+fragment,</p>
+<blockquote>
+<pre>
+String dateString = getHeaderField(name);
+dateString.trim();
+</pre>
+</blockquote>
+<p>the programmer seems to be thinking that the trim() method will update
+the String referenced by dateString. But since Strings are immutable, the trim()
+function returns a new String value, which is being ignored here. The code
+should be corrected to: </p>
+<blockquote>
+<pre>
+String dateString = getHeaderField(name);
+dateString = dateString.trim();
+</pre>
+</blockquote>
+
+    
+<h2>
+<a name="UR_UNINIT_READ">UR_UNINIT_READ: Uninitialized read of field in constructor</a>
+</h2>
+
+  <p> This constructor reads a field which has not yet been assigned a value.&nbsp;
+  This is often caused when the programmer mistakenly uses the field instead
+  of one of the constructor's parameters.</p>
+
+    
+<h2>
+<a name="URF_UNREAD_FIELD">URF_UNREAD_FIELD: Unread field</a>
+</h2>
+
+  <p> This field is never read.&nbsp; Consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UUF_UNUSED_FIELD">UUF_UNUSED_FIELD: Unused field</a>
+</h2>
+
+  <p> This field is never used.&nbsp; Consider removing it from the class.</p>
+
+    </body>
+</html>

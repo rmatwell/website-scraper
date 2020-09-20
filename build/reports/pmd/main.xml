@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.8.0" timestamp="2019-08-09T00:26:14.601">
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/AnalysisInputManager.java">
+<violation beginline="15" endline="80" begincolumn="8" endcolumn="1" rule="ClassNamingConventions" ruleset="Code Style" package="edu.odu.cs.cs350" class="AnalysisInputManager" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#classnamingconventions" priority="1">
+The utility class name 'AnalysisInputManager' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)'
+</violation>
+</file>
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/TXTReport.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.File'
+</violation>
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.File'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="27" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.IOException'
+</violation>
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="27" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.io.IOException'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.net.URI'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="20" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.net.URI'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="35" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.net.URISyntaxException'
+</violation>
+<violation beginline="10" endline="10" begincolumn="1" endcolumn="35" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.net.URISyntaxException'
+</violation>
+<violation beginline="14" endline="14" begincolumn="1" endcolumn="25" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.util.HashSet'
+</violation>
+<violation beginline="14" endline="14" begincolumn="1" endcolumn="25" rule="UnusedImports" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.util.HashSet'
+</violation>
+<violation beginline="31" endline="31" begincolumn="34" endcolumn="40" rule="UnusedPrivateField" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TXTReport" variable="txtFile" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'txtFile'.
+</violation>
+<violation beginline="83" endline="84" begincolumn="19" endcolumn="18" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TXTReport" method="writeTXT" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/TagExtractor.java">
+<violation beginline="24" endline="604" begincolumn="48" endcolumn="1" rule="TooManyMethods" ruleset="Design" package="edu.odu.cs.cs350" class="TagExtractor" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#toomanymethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="125" endline="125" begincolumn="9" endcolumn="24" rule="UselessOperationOnImmutable" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TagExtractor" method="TagExtractor" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#uselessoperationonimmutable" priority="3">
+An operation on an Immutable object (String, BigDecimal or BigInteger) wont change the object itself
+</violation>
+<violation beginline="126" endline="126" begincolumn="28" endcolumn="44" rule="StringToString" ruleset="Performance" package="edu.odu.cs.cs350" class="TagExtractor" method="TagExtractor" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_performance.html#stringtostring" priority="3">
+Avoid calling toString() on String objects; this is unnecessary.
+</violation>
+<violation beginline="239" endline="239" begincolumn="50" endcolumn="56" rule="AvoidDuplicateLiterals" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TagExtractor" method="extractImageTags" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#avoidduplicateliterals" priority="3">
+The String literal &quot;local&quot; appears 4 times in this file; the first occurrence is on line 239
+</violation>
+<violation beginline="586" endline="586" begincolumn="9" endcolumn="26" rule="MethodReturnsInternalArray" ruleset="Best Practices" package="edu.odu.cs.cs350" class="TagExtractor" method="getPathToRoot" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#methodreturnsinternalarray" priority="3">
+Returning 'pathToRoot' may expose an internal array.
+</violation>
+</file>
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/Webpage.java">
+<violation beginline="14" endline="387" begincolumn="8" endcolumn="1" rule="TooManyFields" ruleset="Design" package="edu.odu.cs.cs350" class="Webpage" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_design.html#toomanyfields" priority="3">
+Too many fields
+</violation>
+<violation beginline="19" endline="19" begincolumn="30" endcolumn="41" rule="UnusedPrivateField" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Webpage" variable="absolutePath" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'absolutePath'.
+</violation>
+</file>
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/Website.java">
+<violation beginline="33" endline="33" begincolumn="23" endcolumn="34" rule="LooseCoupling" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HashSet'; use the interface instead
+</violation>
+<violation beginline="38" endline="38" begincolumn="13" endcolumn="28" rule="LooseCoupling" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HashSet'; use the interface instead
+</violation>
+<violation beginline="44" endline="44" begincolumn="41" endcolumn="49" rule="UnusedPrivateField" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" variable="resources" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#unusedprivatefield" priority="3">
+Avoid unused private fields such as 'resources'.
+</violation>
+<violation beginline="44" endline="44" begincolumn="23" endcolumn="39" rule="LooseCoupling" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HashSet'; use the interface instead
+</violation>
+<violation beginline="85" endline="86" begincolumn="17" endcolumn="18" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Website" method="setUserURLs" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="108" endline="110" begincolumn="9" endcolumn="9" rule="EmptyIfStmt" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Website" method="setUserFilePath" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptyifstmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="117" endline="138" begincolumn="13" endcolumn="5" rule="MethodNamingConventions" ruleset="Code Style" package="edu.odu.cs.cs350" class="Website" method="IsValidFilePath" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#methodnamingconventions" priority="1">
+The instance method name 'IsValidFilePath' doesn't match '[a-z][a-zA-Z0-9]*'
+</violation>
+<violation beginline="158" endline="158" begincolumn="12" endcolumn="27" rule="LooseCoupling" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" method="getPages" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HashSet'; use the interface instead
+</violation>
+<violation beginline="167" endline="167" begincolumn="12" endcolumn="23" rule="LooseCoupling" ruleset="Best Practices" package="edu.odu.cs.cs350" class="Website" method="getUserURLs" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_bestpractices.html#loosecoupling" priority="3">
+Avoid using implementation types like 'HashSet'; use the interface instead
+</violation>
+<violation beginline="188" endline="189" begincolumn="13" endcolumn="15" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Website" method="getUserURLsAsURI" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+<file name="/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/main/java/edu/odu/cs/cs350/WebsiteAnalysis.java">
+<violation beginline="90" endline="90" begincolumn="18" endcolumn="126" rule="UselessParentheses" ruleset="Code Style" package="edu.odu.cs.cs350" class="WebsiteAnalysis" method="isReady" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+<violation beginline="103" endline="104" begincolumn="11" endcolumn="10" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="WebsiteAnalysis" method="parseFiles" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+<violation beginline="128" endline="129" begincolumn="11" endcolumn="10" rule="EmptyCatchBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="WebsiteAnalysis" method="generateReports" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_errorprone.html#emptycatchblock" priority="3">
+Avoid empty catch blocks
+</violation>
+</file>
+</pmd>

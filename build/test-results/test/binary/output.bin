@@ -1,0 +1,41 @@
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+«root directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/image.jpg
+ªroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/logo.jpg
+Úroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/scripts/jquery-1.11.1.min.js
+Çroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/local1.js
+Çroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/local2.js
+Ðroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/styles/layout1.css
+Ðroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/styles/layout2.css
+Ðroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/styles/layout3.css
+Íroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/styles/home.css
+Åroot directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/another/subdirectory/another
+²root directory: /src/test/resources/edu/odu/cs/cs350 - input: file:/mnt/c/Users/Richa/OneDrive/Desktop/CS350PROJECT/Avocado1/src/test/resources/edu/odu/cs/cs350/folder/external2
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+%/src/test/resources/edu/odu/cs/cs350
+%/src/test/resources/edu/odu/cs/cs350
+/home/system/directory
+/home/system/directory
+QERROR: 'gradlew.bat' is not a directory. Please input a directory (not a file). 
+HERROR: 'build\libs' does not exist. Please input an existing directory.
+HERROR: 'build\libz' does not exist. Please input an existing directory.
+JERROR: 'testing/test' does not exist. Please input an existing directory.
+JERROR: 'testing/test' does not exist. Please input an existing directory.
+JERROR: 'testing/test' does not exist. Please input an existing directory.

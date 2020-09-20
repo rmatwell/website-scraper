@@ -1,0 +1,4 @@
+2.42 MiB     ./test.html
+2.42 MiB     ./folder/test1.html
+1.23 MiB     ./folder/another/subdirectory/test3.html
+6.08 MiB     .
