@@ -3,7 +3,7 @@ buildscript {
         jcenter()
 
 	ivy {
-            url 'https://secweb.cs.odu.edu/~zeil/ivyrepo'
+            url 'https://www.cs.odu.edu/~zeil/ivyrepo'
         }
 
 	maven {
